@@ -21,6 +21,8 @@ namespace Self_App
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool isDarkMode = false;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +32,25 @@ namespace Self_App
         {
             TaskWindow myWindow = new TaskWindow();
             myWindow.ShowDialog();
+        }
+
+        private void btn_colorMode_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = e.Source as Button;
+            
+            string colorMode = "Light";
+            if (!isDarkMode)
+            {
+                isDarkMode = true;
+                colorMode = "Dark";
+            }
+            else if (isDarkMode)
+            {
+                isDarkMode = false;
+            }
+
+            App.Current.Resources.MergedDictionaries[0].Source = new Uri($"themes/{colorMode}.xaml", UriKind.Relative);
+            btn.Content = colorMode;
         }
     }
 }

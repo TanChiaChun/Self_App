@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Create" Width="100" Height="50" Name="btn_create" Click="btn_create_Click"/>
+        <StackPanel>
+            <Button Content="Light" Width="100" Height="50" Name="btn_colorMode" Click="btn_colorMode_Click"/>
+            <Button Content="Create" Width="100" Height="50" Name="btn_create" Click="btn_create_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
