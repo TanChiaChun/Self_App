@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Self_App.myWindows;
 
-namespace Self_App
+namespace Self_App.myWindows
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TaskWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TaskWindow : Window
     {
-        public MainWindow()
+        public TaskWindow()
         {
             InitializeComponent();
-        }
-
-        private void btn_create_Click(object sender, RoutedEventArgs e)
-        {
-            TaskWindow myWindow = new TaskWindow();
-            myWindow.ShowDialog();
         }
     }
 }
