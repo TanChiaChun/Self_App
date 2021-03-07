@@ -404,6 +404,7 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type DatePicker}">

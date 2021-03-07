@@ -95,7 +95,7 @@ namespace Self_App.myWindows
                 return;
             }
             
-            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text, txtBx_task.Text, (bool)chkBx_task.IsChecked, ValidateDate(datePick_due), ValidateDate(datePick_do), ValidateDate(datePick_start), cmBx_priority.SelectedIndex);
+            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text, txtBx_task.Text, (bool)chkBx_task.IsChecked, ValidateDate(datePick_due), ValidateDate(datePick_do), ValidateDate(datePick_start), cmBx_priority.SelectedIndex, cmBx_myDay.SelectedIndex);
             MessageBox.Show(cTask.ToString());
         }
 
