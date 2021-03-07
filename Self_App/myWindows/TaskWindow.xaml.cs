@@ -56,10 +56,7 @@ namespace Self_App.myWindows
             return true;
         }
 
-        //////////////////////////////////////////////////
-        // Events
-        //////////////////////////////////////////////////
-        private void btn_create_Click(object sender, RoutedEventArgs e)
+        private void CreateTask()
         {
             if (!IsInputsValid())
             {
@@ -68,6 +65,26 @@ namespace Self_App.myWindows
 
             MyTask cTask = new MyTask(cmBx_proj.Text);
             MessageBox.Show(cTask.ToString());
+        }
+
+        //////////////////////////////////////////////////
+        // Events
+        //////////////////////////////////////////////////
+        private void btn_create_Click(object sender, RoutedEventArgs e)
+        {
+            CreateTask();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                CreateTask();
+            }
+            else if (e.Key == Key.Escape)
+            {
+                Close();
+            }
         }
     }
 }
