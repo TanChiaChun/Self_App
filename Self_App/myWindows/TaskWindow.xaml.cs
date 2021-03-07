@@ -23,9 +23,12 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         // Class variables
         //////////////////////////////////////////////////
-        ///// Generic
+        // Generic
         private MyFunctions f = new MyFunctions();
-        
+
+        // Specific
+        private List<Tuple<bool, string>> steps = new List<Tuple<bool, string>>();
+
         public TaskWindow()
         {
             // Generic
@@ -33,45 +36,32 @@ namespace Self_App.myWindows
 
             // Specific
             this.Title += " - Create";
+            dataGrid_steps.ItemsSource = steps;
         }
 
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
-        private bool IsTextInputValid(bool allowEmpty, string input, string type)
+        private void RefreshData()
         {
-            if (!allowEmpty && String.IsNullOrEmpty(input))
-            {
-                MessageBox.Show($"{type} cannot be empty!");
-                return false;
-            }
-
-            string badInput_proj = f.ValidateSqlInput(input);
-            if (badInput_proj != "")
-            {
-                MessageBox.Show($"{badInput_proj} is not allowed in {type}!");
-                return false;
-            }
-
-            return true;
+            dataGrid_steps.Items.Refresh();
         }
-
         private bool IsInputsValid()
         {
             // Project
-            if (!IsTextInputValid(true, cmBx_proj.Text, "Project"))
+            if (!f.IsTextInputValid(true, cmBx_proj.Text, "Project"))
             {
                 return false;
             }
 
             // Section
-            if (!IsTextInputValid(true, cmBx_sect.Text, "Section"))
+            if (!f.IsTextInputValid(true, cmBx_sect.Text, "Section"))
             {
                 return false;
             }
 
             // Project
-            if (!IsTextInputValid(false, txtBx_task.Text, "Task Name"))
+            if (!f.IsTextInputValid(false, txtBx_task.Text, "Task Name"))
             {
                 return false;
             }
@@ -102,11 +92,7 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////
-        private void btn_create_Click(object sender, RoutedEventArgs e)
-        {
-            CreateTask();
-        }
-
+        // Generic with differences
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -116,6 +102,23 @@ namespace Self_App.myWindows
             else if (e.Key == Key.Escape)
             {
                 Close();
+            }
+        }
+
+        // Specific
+        private void btn_create_Click(object sender, RoutedEventArgs e)
+        {
+            CreateTask();
+        }
+        
+        private void btn_stepAdd_Click(object sender, RoutedEventArgs e)
+        {
+            StepWindow stepWin = new StepWindow();
+            stepWin.ShowDialog();
+            if (stepWin.hasChange)
+            {
+                steps.Add(stepWin.step);
+                RefreshData();
             }
         }
     }
