@@ -65,7 +65,7 @@
             <DatePicker Grid.Column="1" Grid.Row="0" Style="{DynamicResource DatePickerStyle1}" Name="datePick_due"/>
 
             <TextBlock Text="Do" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <DatePicker Grid.Column="4" Grid.Row="0" Style="{DynamicResource DatePickerStyle1}" Name="datePick_do" Width="110"/>
+            <DatePicker Grid.Column="4" Grid.Row="0" Style="{DynamicResource DatePickerStyle1}" Name="datePick_do"/>
 
             <TextBlock Text="Start" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
             <DatePicker Grid.Column="1" Grid.Row="2" Style="{DynamicResource DatePickerStyle1}" Name="datePick_start"/>
