@@ -89,6 +89,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="myClasses\MyFunctions.cs" />
+    <Compile Include="myClasses\MyTask.cs" />
     <Compile Include="myPages\TodoPage.xaml.cs">
       <DependentUpon>TodoPage.xaml</DependentUpon>
     </Compile>

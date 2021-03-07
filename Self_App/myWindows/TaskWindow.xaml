@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Self_App.myWindows"
         mc:Ignorable="d"
-        Title="TaskWindow" Height="450" Width="800">
+        Title="Task" Height="719" Width="500">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+            <ComboBox Width="100" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}" Name="cmBx_proj">
+                <ComboBoxItem Content="Project1"/>
+                <ComboBoxItem Content="Project2"/>
+            </ComboBox>
+        </StackPanel>
+
+        <Button Grid.Column="1" Grid.Row="2" Content="Create" Width="100" Margin="0,20,0,0" Padding="0,5" Name="btn_create" Click="btn_create_Click"/>
     </Grid>
 </Window>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Self_App.myClasses;
 
 namespace Self_App.myWindows
 {
@@ -19,9 +20,54 @@ namespace Self_App.myWindows
     /// </summary>
     public partial class TaskWindow : Window
     {
+        //////////////////////////////////////////////////
+        // Class variables
+        //////////////////////////////////////////////////
+        ///// Generic
+        MyFunctions f = new MyFunctions();
+        
         public TaskWindow()
         {
+            // Generic
             InitializeComponent();
+
+            // Specific
+            this.Title += " - Create";
+        }
+
+        //////////////////////////////////////////////////
+        // Functions
+        //////////////////////////////////////////////////
+        private bool IsInputsValid()
+        {
+            if (String.IsNullOrEmpty(cmBx_proj.Text))
+            {
+                MessageBox.Show("Project cannot be empty!");
+                return false;
+            }
+
+            string badInput_proj = f.ValidateSqlInput(cmBx_proj.Text);
+            if (badInput_proj != "")
+            {
+                MessageBox.Show($"{badInput_proj} is not allowed in Project!");
+                return false;
+            }
+
+            return true;
+        }
+
+        //////////////////////////////////////////////////
+        // Events
+        //////////////////////////////////////////////////
+        private void btn_create_Click(object sender, RoutedEventArgs e)
+        {
+            if (!IsInputsValid())
+            {
+                return;
+            }
+
+            MyTask cTask = new MyTask(cmBx_proj.Text);
+            MessageBox.Show(cTask.ToString());
         }
     }
 }
