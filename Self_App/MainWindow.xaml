@@ -5,11 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Self_App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Self App" Height="600" Width="1000">
     <Grid>
-        <StackPanel>
-            <Button Content="Light" Width="100" Height="50" Name="btn_colorMode" Click="btn_colorMode_Click"/>
-            <Button Content="Create" Width="100" Height="50" Name="btn_create" Click="btn_create_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Light" Padding="50,0" Name="btn_colorMode" Click="btn_colorMode_Click"/>
         </StackPanel>
     </Grid>
 </Window>

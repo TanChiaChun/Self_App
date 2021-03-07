@@ -28,12 +28,6 @@ namespace Self_App
             InitializeComponent();
         }
 
-        private void btn_create_Click(object sender, RoutedEventArgs e)
-        {
-            TaskWindow myWindow = new TaskWindow();
-            myWindow.ShowDialog();
-        }
-
         private void btn_colorMode_Click(object sender, RoutedEventArgs e)
         {
             Button btn = e.Source as Button;
