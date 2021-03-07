@@ -24,7 +24,7 @@ namespace Self_App.myWindows
         // Class variables
         //////////////////////////////////////////////////
         ///// Generic
-        MyFunctions f = new MyFunctions();
+        private MyFunctions f = new MyFunctions();
         
         public TaskWindow()
         {
