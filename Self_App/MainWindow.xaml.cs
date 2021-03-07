@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Self_App.myWindows;
+using Self_App.myPages;
 
 namespace Self_App
 {
@@ -22,6 +23,7 @@ namespace Self_App
     public partial class MainWindow : Window
     {
         private bool isDarkMode = false;
+        private TodoPage todoPg = new TodoPage();
         
         public MainWindow()
         {
@@ -45,6 +47,11 @@ namespace Self_App
 
             App.Current.Resources.MergedDictionaries[0].Source = new Uri($"themes/{colorMode}.xaml", UriKind.Relative);
             btn.Content = colorMode;
+        }
+
+        private void btn_todo_Click(object sender, RoutedEventArgs e)
+        {
+            fr_main.Content = todoPg;
         }
     }
 }
