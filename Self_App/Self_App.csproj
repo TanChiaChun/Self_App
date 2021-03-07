@@ -112,6 +112,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="myClasses\Database.cs" />
     <Compile Include="myClasses\MyFunctions.cs" />
     <Compile Include="myClasses\MyTask.cs" />
     <Compile Include="myPages\TodoPage.xaml.cs">
