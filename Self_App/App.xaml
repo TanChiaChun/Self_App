@@ -521,7 +521,7 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Button x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding Foreground}" Focusable="False" HorizontalAlignment="Left" Margin="3,0,3,0" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" VerticalAlignment="Top" Width="20"/>
-                                    <DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Stretch"/>
+                                    <DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Stretch" Style="{DynamicResource DatePickerTextBoxStyle1}"/>
                                     <Grid x:Name="PART_DisabledVisual" Grid.ColumnSpan="2" Grid.Column="0" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -535,7 +535,7 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <DataTrigger Binding="{Binding Source={x:Static SystemParameters.HighContrast}}" Value="false">
-                                    <Setter Property="Foreground" TargetName="PART_TextBox" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                    <Setter Property="Foreground" TargetName="PART_TextBox" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
                                 </DataTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -597,8 +597,8 @@
                                 </VisualStateManager.VisualStateGroups>
                                 <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="1" Opacity="1" Padding="{TemplateBinding Padding}">
                                     <Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                        <Border x:Name="ContentElement" BorderBrush="#FFFFFFFF" BorderThickness="1"/>
-                                        <Border x:Name="watermark_decorator" BorderBrush="#FFFFFFFF" BorderThickness="1">
+                                        <Border x:Name="ContentElement" BorderBrush="#FFFFFFFF" BorderThickness="0"/>
+                                        <Border x:Name="watermark_decorator" BorderBrush="#FFFFFFFF" BorderThickness="0">
                                             <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2"/>
                                         </Border>
                                         <ScrollViewer x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
