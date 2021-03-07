@@ -19,6 +19,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -113,6 +114,11 @@
             </DataGrid>
         </StackPanel>
 
-        <Button Grid.Column="1" Grid.Row="5" Content="Create" Width="100" Margin="0,30,0,0" Padding="0,5" Name="btn_create" Click="btn_create_Click"/>
+        <StackPanel Grid.Column="1" Grid.Row="5" Margin="0,30,0,0">
+            <TextBlock Text="Note"/>
+            <TextBox Padding="5" AcceptsReturn="True" Height="120" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Name="txtBx_note"/>
+        </StackPanel>
+
+        <Button Grid.Column="1" Grid.Row="6" Content="Create" Width="100" Margin="0,30,0,0" Padding="0,5" Name="btn_create" Click="btn_create_Click"/>
     </Grid>
 </Window>

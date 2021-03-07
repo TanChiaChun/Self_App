@@ -66,6 +66,12 @@ namespace Self_App.myWindows
                 return false;
             }
 
+            // Note
+            if (!f.IsTextInputValid(true, txtBx_note.Text, "Note"))
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -85,7 +91,7 @@ namespace Self_App.myWindows
                 return;
             }
             
-            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text, txtBx_task.Text, (bool)chkBx_task.IsChecked, ValidateDate(datePick_due), ValidateDate(datePick_do), ValidateDate(datePick_start), cmBx_priority.SelectedIndex, cmBx_myDay.SelectedIndex, steps);
+            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text, txtBx_task.Text, (bool)chkBx_task.IsChecked, ValidateDate(datePick_due), ValidateDate(datePick_do), ValidateDate(datePick_start), cmBx_priority.SelectedIndex, cmBx_myDay.SelectedIndex, steps, txtBx_note.Text);
             MessageBox.Show(cTask.ToString());
         }
 
