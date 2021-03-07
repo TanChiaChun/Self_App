@@ -61,17 +61,22 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </Grid.Resources>
 
-            <TextBlock Text="Due" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBlock Text="Due" Grid.Column="0" Grid.Row="0"/>
             <DatePicker Grid.Column="1" Grid.Row="0" Style="{DynamicResource DatePickerStyle1}" Name="datePick_due"/>
 
-            <TextBlock Text="Do" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBlock Text="Do" Grid.Column="3" Grid.Row="0"/>
             <DatePicker Grid.Column="4" Grid.Row="0" Style="{DynamicResource DatePickerStyle1}" Name="datePick_do"/>
 
-            <TextBlock Text="Start" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBlock Text="Start" Grid.Column="0" Grid.Row="2"/>
             <DatePicker Grid.Column="1" Grid.Row="2" Style="{DynamicResource DatePickerStyle1}" Name="datePick_start"/>
 
-            <TextBlock Text="Priority" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBlock Text="Priority" Grid.Column="0" Grid.Row="4"/>
             <ComboBox Grid.Column="1" Grid.Row="4" Style="{DynamicResource ComboBoxStyle1}" Name="cmBx_priority" SelectedIndex="2">
                 <ComboBoxItem Content="Urgent"/>
                 <ComboBoxItem Content="Important"/>
@@ -79,7 +84,7 @@
                 <ComboBoxItem Content="Low"/>
             </ComboBox>
 
-            <TextBlock Text="My Day" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBlock Text="My Day" Grid.Column="3" Grid.Row="4"/>
             <ComboBox Grid.Column="4" Grid.Row="4" Style="{DynamicResource ComboBoxStyle1}" Name="cmBx_myDay" SelectedIndex="4">
                 <ComboBoxItem Content="Urgent_Important"/>
                 <ComboBoxItem Content="NotUrgent_Important"/>
