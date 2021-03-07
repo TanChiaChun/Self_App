@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Self_App.myWindows"
         mc:Ignorable="d"
-        Title="Task" Height="719" Width="500" FocusManager.FocusedElement="{Binding ElementName=txtBx_task}" KeyDown="Window_KeyDown">
+        Title="Task" Height="660" Width="500" MinHeight="660" MinWidth="500" FocusManager.FocusedElement="{Binding ElementName=txtBx_task}" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -106,7 +106,7 @@
                 <Button Content="Add" Grid.Column="1" Padding="10,0" Name="btn_stepAdd" Click="btn_stepAdd_Click"/>
             </Grid>
 
-            <DataGrid Name="dataGrid_steps" Style="{DynamicResource DataGridStyle1}" HeadersVisibility="None" Margin="0,5,0,0">
+            <DataGrid Name="dataGrid_steps" Style="{DynamicResource DataGridStyle1}" HeadersVisibility="None" Margin="0,5,0,0" MaxHeight="80">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Header="Completed" Binding="{Binding Item1, Mode=OneTime}"/>
                     <DataGridTextColumn Header="Step" Binding="{Binding Item2, Mode=OneTime}" Foreground="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" Width="*"/>
