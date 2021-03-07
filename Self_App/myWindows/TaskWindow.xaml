@@ -60,6 +60,9 @@
 
             <TextBlock Text="Due" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
             <DatePicker Grid.Column="1" Grid.Row="0" Style="{DynamicResource DatePickerStyle1}" Name="datePick_due"/>
+
+            <TextBlock Text="Do" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center"/>
+            <DatePicker Grid.Column="3" Grid.Row="0" Style="{DynamicResource DatePickerStyle1}" Name="datePick_do"/>
         </Grid>
         
         <Button Grid.Column="1" Grid.Row="4" Content="Create" Width="100" Margin="0,20,0,0" Padding="0,5" Name="btn_create" Click="btn_create_Click"/>
