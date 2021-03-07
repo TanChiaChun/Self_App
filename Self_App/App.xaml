@@ -9,9 +9,15 @@
                 <ResourceDictionary Source="/themes/Light.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <!--Button-->
             <Style TargetType="Button">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            </Style>
+            
+            <!--Border-->
+            <Style TargetType="Border">
                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
             </Style>
         </ResourceDictionary>
