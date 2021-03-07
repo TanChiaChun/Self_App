@@ -12,13 +12,15 @@ namespace Self_App.myClasses
         // Class variables
         //////////////////////////////////////////////////
         public string project { get; } = "General";
+        public string section { get; } = "General";
 
         //////////////////////////////////////////////////
         // Constructors
         //////////////////////////////////////////////////
-        public MyTask(string pProj)
+        public MyTask(string pProj, string pSect)
         {
             project = pProj;
+            section = pSect;
         }
 
         //////////////////////////////////////////////////
@@ -26,7 +28,7 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         public override string ToString()
         {
-            return project;
+            return $"{project}-{section}";
         }
     }
 }

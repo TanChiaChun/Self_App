@@ -38,18 +38,35 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
-        private bool IsInputsValid()
+        private bool IsComboboxValid_Edit(string input, string type)
         {
-            if (String.IsNullOrEmpty(cmBx_proj.Text))
+            if (String.IsNullOrEmpty(input))
             {
-                MessageBox.Show("Project cannot be empty!");
+                MessageBox.Show($"{type} cannot be empty!");
                 return false;
             }
 
-            string badInput_proj = f.ValidateSqlInput(cmBx_proj.Text);
+            string badInput_proj = f.ValidateSqlInput(input);
             if (badInput_proj != "")
             {
-                MessageBox.Show($"{badInput_proj} is not allowed in Project!");
+                MessageBox.Show($"{badInput_proj} is not allowed in {type}!");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsInputsValid()
+        {
+            // Project
+            if (!IsComboboxValid_Edit(cmBx_proj.Text, "Project"))
+            {
+                return false;
+            }
+
+            // Section
+            if (!IsComboboxValid_Edit(cmBx_sect.Text, "Section"))
+            {
                 return false;
             }
 
@@ -63,7 +80,7 @@ namespace Self_App.myWindows
                 return;
             }
 
-            MyTask cTask = new MyTask(cmBx_proj.Text);
+            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text);
             MessageBox.Show(cTask.ToString());
         }
 
