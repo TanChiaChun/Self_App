@@ -38,7 +38,7 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
-        private bool IsComboboxValid_Edit(string input, string type)
+        private bool IsTextInputValid(string input, string type)
         {
             if (String.IsNullOrEmpty(input))
             {
@@ -59,13 +59,19 @@ namespace Self_App.myWindows
         private bool IsInputsValid()
         {
             // Project
-            if (!IsComboboxValid_Edit(cmBx_proj.Text, "Project"))
+            if (!IsTextInputValid(cmBx_proj.Text, "Project"))
             {
                 return false;
             }
 
             // Section
-            if (!IsComboboxValid_Edit(cmBx_sect.Text, "Section"))
+            if (!IsTextInputValid(cmBx_sect.Text, "Section"))
+            {
+                return false;
+            }
+
+            // Project
+            if (!IsTextInputValid(txtBx_task.Text, "Task Name"))
             {
                 return false;
             }
@@ -80,7 +86,7 @@ namespace Self_App.myWindows
                 return;
             }
 
-            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text);
+            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text, txtBx_task.Text);
             MessageBox.Show(cTask.ToString());
         }
 
