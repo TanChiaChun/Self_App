@@ -21,11 +21,18 @@ namespace Self_App.myPages
     /// </summary>
     public partial class TodoPage : Page
     {
+        //////////////////////////////////////////////////
+        // Main
+        //////////////////////////////////////////////////
         public TodoPage()
         {
+            // Generic
             InitializeComponent();
         }
 
+        //////////////////////////////////////////////////
+        // Events
+        //////////////////////////////////////////////////
         private void btn_task_create_Click(object sender, RoutedEventArgs e)
         {
             TaskWindow taskWin = new TaskWindow();

@@ -22,14 +22,25 @@ namespace Self_App
     /// </summary>
     public partial class MainWindow : Window
     {
+        //////////////////////////////////////////////////
+        // Class variables
+        //////////////////////////////////////////////////
+        // Specific
         private bool isDarkMode = false;
         private TodoPage todoPg = new TodoPage();
-        
+
+        //////////////////////////////////////////////////
+        // Main
+        //////////////////////////////////////////////////
         public MainWindow()
         {
+            // Generic
             InitializeComponent();
         }
 
+        //////////////////////////////////////////////////
+        // Events
+        //////////////////////////////////////////////////
         private void btn_colorMode_Click(object sender, RoutedEventArgs e)
         {
             Button btn = e.Source as Button;
