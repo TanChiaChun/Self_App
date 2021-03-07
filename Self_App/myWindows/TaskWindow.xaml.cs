@@ -86,7 +86,7 @@ namespace Self_App.myWindows
                 return;
             }
 
-            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text, txtBx_task.Text);
+            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text, txtBx_task.Text, (bool)chkBx_task.IsChecked);
             MessageBox.Show(cTask.ToString());
         }
 
