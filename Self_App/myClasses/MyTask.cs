@@ -15,14 +15,16 @@ namespace Self_App.myClasses
         public string section { get; } = "General";
         public string taskName { get; } = "";
         public bool isCompleted { get; } = false;
+        public DateTime due { get; } = DateTime.MinValue.Date;
 
         //////////////////////////////////////////////////
         // Constructors
         //////////////////////////////////////////////////
-        public MyTask(string pProj, string pSect, string pTaskName, bool pIsCompleted)
+        public MyTask(string pProj, string pSect, string pTaskName, bool pIsCompleted, DateTime pDue)
         {
             taskName = pTaskName;
             isCompleted = pIsCompleted;
+            due = pDue;
 
             if (pProj != "")
             {
@@ -39,7 +41,7 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         public override string ToString()
         {
-            return $"{project}-{section}-{taskName}-{isCompleted.ToString()}";
+            return $"{project}-{section}-{taskName}-{isCompleted.ToString()}-{due.ToString()}";
         }
     }
 }

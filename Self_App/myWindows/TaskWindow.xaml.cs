@@ -79,14 +79,23 @@ namespace Self_App.myWindows
             return true;
         }
 
+        private DateTime ValidateDate(DatePicker datePick)
+        {
+            if (datePick.SelectedDate.HasValue)
+            {
+                return (DateTime)datePick.SelectedDate;
+            }
+            return DateTime.MinValue.Date;
+        }
+
         private void CreateTask()
         {
             if (!IsInputsValid())
             {
                 return;
             }
-
-            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text, txtBx_task.Text, (bool)chkBx_task.IsChecked);
+            
+            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text, txtBx_task.Text, (bool)chkBx_task.IsChecked, ValidateDate(datePick_due));
             MessageBox.Show(cTask.ToString());
         }
 

@@ -17,6 +17,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -42,7 +43,25 @@
             <CheckBox Grid.Column="0" VerticalAlignment="Center" Style="{DynamicResource CheckBoxStyle1}" Name="chkBx_task"/>
             <TextBox Grid.Column="1" Margin="5,0,0,0" FontSize="14" Padding="5" Name="txtBx_task"/>
         </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="3" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Due" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
+            <DatePicker Grid.Column="1" Grid.Row="0" Style="{DynamicResource DatePickerStyle1}" Name="datePick_due"/>
+        </Grid>
         
-        <Button Grid.Column="1" Grid.Row="3" Content="Create" Width="100" Margin="0,20,0,0" Padding="0,5" Name="btn_create" Click="btn_create_Click"/>
+        <Button Grid.Column="1" Grid.Row="4" Content="Create" Width="100" Margin="0,20,0,0" Padding="0,5" Name="btn_create" Click="btn_create_Click"/>
     </Grid>
 </Window>
