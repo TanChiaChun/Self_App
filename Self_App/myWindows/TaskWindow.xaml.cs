@@ -38,9 +38,9 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
-        private bool IsTextInputValid(string input, string type)
+        private bool IsTextInputValid(bool allowEmpty, string input, string type)
         {
-            if (String.IsNullOrEmpty(input))
+            if (!allowEmpty && String.IsNullOrEmpty(input))
             {
                 MessageBox.Show($"{type} cannot be empty!");
                 return false;
@@ -59,19 +59,19 @@ namespace Self_App.myWindows
         private bool IsInputsValid()
         {
             // Project
-            if (!IsTextInputValid(cmBx_proj.Text, "Project"))
+            if (!IsTextInputValid(true, cmBx_proj.Text, "Project"))
             {
                 return false;
             }
 
             // Section
-            if (!IsTextInputValid(cmBx_sect.Text, "Section"))
+            if (!IsTextInputValid(true, cmBx_sect.Text, "Section"))
             {
                 return false;
             }
 
             // Project
-            if (!IsTextInputValid(txtBx_task.Text, "Task Name"))
+            if (!IsTextInputValid(false, txtBx_task.Text, "Task Name"))
             {
                 return false;
             }

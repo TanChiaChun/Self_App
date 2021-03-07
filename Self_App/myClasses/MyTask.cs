@@ -20,9 +20,16 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         public MyTask(string pProj, string pSect, string pTaskName)
         {
-            project = pProj;
-            section = pSect;
             taskName = pTaskName;
+
+            if (pProj != "")
+            {
+                project = pProj;
+            }
+            if (pSect != "")
+            {
+                section = pSect;
+            }
         }
 
         //////////////////////////////////////////////////
