@@ -20,6 +20,7 @@ namespace Self_App.myClasses
         public DateTime startDate { get; } = DateTime.MinValue.Date;
         private Priority _priority = Priority.Normal;
         private MyDay _myDay = MyDay.None;
+        public List<Tuple<bool, string>> steps { get; set; } = new List<Tuple<bool, string>>();
         private enum Priority
         {
             Urgent,
@@ -39,7 +40,7 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         // Constructors
         //////////////////////////////////////////////////
-        public MyTask(string pProj, string pSect, string pTaskName, bool pIsCompleted, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, int pPriority, int pMyDay)
+        public MyTask(string pProj, string pSect, string pTaskName, bool pIsCompleted, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, int pPriority, int pMyDay, List<Tuple<bool, string>> pSteps)
         {
             taskName = pTaskName;
             isCompleted = pIsCompleted;
@@ -48,6 +49,7 @@ namespace Self_App.myClasses
             startDate = pStartDate;
             _priority = (Priority)pPriority;
             _myDay = (MyDay)pMyDay;
+            steps = pSteps;
 
             if (pProj != "")
             {
@@ -64,7 +66,7 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         public override string ToString()
         {
-            return $"{project}-{section}-{taskName}-{isCompleted.ToString()}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_priority.ToString()}-{_myDay.ToString()}";
+            return $"{project}-{section}-{taskName}-{isCompleted.ToString()}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_priority.ToString()}-{_myDay.ToString()}-{steps.Count}";
         }
     }
 }
