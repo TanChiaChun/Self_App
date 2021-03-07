@@ -18,6 +18,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -87,7 +88,26 @@
                 <ComboBoxItem Content="None"/>
             </ComboBox>
         </Grid>
-        
-        <Button Grid.Column="1" Grid.Row="4" Content="Create" Width="100" Margin="0,30,0,0" Padding="0,5" Name="btn_create" Click="btn_create_Click"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="4" Margin="0,30,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Steps" Grid.Column="0"/>
+                <Button Content="Add" Grid.Column="1" Padding="10,0" Name="btn_stepAdd" Click="btn_stepAdd_Click"/>
+            </Grid>
+
+            <DataGrid Name="dataGrid_steps" Style="{DynamicResource DataGridStyle1}" HeadersVisibility="None" Margin="0,5,0,0">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="Completed" Binding="{Binding Item1, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Step" Binding="{Binding Item2, Mode=OneTime}" Foreground="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <Button Grid.Column="1" Grid.Row="5" Content="Create" Width="100" Margin="0,30,0,0" Padding="0,5" Name="btn_create" Click="btn_create_Click"/>
     </Grid>
 </Window>
