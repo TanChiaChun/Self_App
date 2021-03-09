@@ -46,6 +46,7 @@ namespace Self_App.myWindows
         {
             dataGrid_steps.Items.Refresh();
         }
+
         private bool IsInputsValid()
         {
             // Project
@@ -121,9 +122,27 @@ namespace Self_App.myWindows
         {
             StepWindow stepWin = new StepWindow();
             stepWin.ShowDialog();
-            if (stepWin.hasChange)
+            if (stepWin.toAdd)
             {
                 steps.Add(stepWin.step);
+                RefreshData();
+            }
+        }
+
+        private void dataGrid_steps_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGrid cDataGrid = e.Source as DataGrid;
+            int i = cDataGrid.SelectedIndex;
+            if (i == -1)
+            {
+                return;
+            }
+
+            StepWindow stepWin = new StepWindow(steps[i]);
+            stepWin.ShowDialog();
+            if (stepWin.toDelete)
+            {
+                steps.RemoveAt(i);
                 RefreshData();
             }
         }

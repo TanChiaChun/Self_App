@@ -27,7 +27,8 @@ namespace Self_App.myWindows
         private MyFunctions f = new MyFunctions();
 
         // Specific
-        public bool hasChange { get; private set; } = false;
+        public bool toAdd { get; private set; } = false;
+        public bool toDelete { get; private set; } = false;
         public Tuple<bool, string> step { get; private set; }
 
         public StepWindow()
@@ -37,6 +38,20 @@ namespace Self_App.myWindows
 
             // Specific
             this.Title += " - Add";
+            btn_update.Visibility = Visibility.Collapsed;
+            btn_delete.Visibility = Visibility.Collapsed;
+        }
+
+        public StepWindow(Tuple<bool, string> step)
+        {
+            // Generic
+            InitializeComponent();
+
+            // Specific
+            this.Title += " - Modify";
+            btn_add.Visibility = Visibility.Collapsed;
+            txtBx_step.Text = step.Item2;
+            chkBx_step.IsChecked = step.Item1;
         }
 
         //////////////////////////////////////////////////
@@ -50,7 +65,7 @@ namespace Self_App.myWindows
             }
 
             step = new Tuple<bool, string>((bool)chkBx_step.IsChecked, txtBx_step.Text);
-            hasChange = true;
+            toAdd = true;
             Close();
         }
 
@@ -74,6 +89,12 @@ namespace Self_App.myWindows
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
             AddStep();
+        }
+
+        private void btn_delete_Click(object sender, RoutedEventArgs e)
+        {
+            toDelete = true;
+            Close();
         }
     }
 }
