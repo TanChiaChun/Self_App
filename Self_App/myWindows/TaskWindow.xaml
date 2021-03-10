@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Self_App.myWindows"
         mc:Ignorable="d"
-        Title="Task" Height="660" Width="500" MinHeight="660" MinWidth="500" FocusManager.FocusedElement="{Binding ElementName=txtBx_task}" KeyDown="Window_KeyDown">
+        Title="Task" Height="730" Width="500" MinHeight="730" MinWidth="500" FocusManager.FocusedElement="{Binding ElementName=txtBx_task}" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
