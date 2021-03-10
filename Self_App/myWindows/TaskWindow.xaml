@@ -20,6 +20,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -95,7 +96,19 @@
             </ComboBox>
         </Grid>
 
-        <StackPanel Grid.Column="1" Grid.Row="4" Margin="0,30,0,0">
+        <Grid Grid.Column="1" Grid.Row="4" Margin="0,30,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Tags" Grid.Column="0" VerticalAlignment="Center"/>
+            <ListBox Grid.Column="1" Style="{StaticResource my_listBxHoriz}"></ListBox>
+            <Button Content="Add" Grid.Column="2" Padding="10,0" Margin="10,0,0,0" Height="25"/>
+        </Grid>
+        
+        <StackPanel Grid.Column="1" Grid.Row="5" Margin="0,30,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -114,11 +127,11 @@
             </DataGrid>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="5" Margin="0,30,0,0">
+        <StackPanel Grid.Column="1" Grid.Row="6" Margin="0,30,0,0">
             <TextBlock Text="Note"/>
             <TextBox Padding="5" AcceptsReturn="True" Height="120" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Name="txtBx_note"/>
         </StackPanel>
 
-        <Button Grid.Column="1" Grid.Row="6" Content="Create" Width="100" Margin="0,30,0,0" Padding="0,5" Name="btn_create" Click="btn_create_Click"/>
+        <Button Grid.Column="1" Grid.Row="7" Content="Create" Width="100" Margin="0,30,0,0" Padding="0,5" Name="btn_create" Click="btn_create_Click"/>
     </Grid>
 </Window>
