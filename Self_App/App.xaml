@@ -29,6 +29,23 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
             </Style>
             
+            <!--TextBlock-->
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            </Style>
+
+            <!--TextBlock H1-->
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="my_TxtBlk_H1">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+
+            <!--TextBlock H2-->
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="my_TxtBlk_H2">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+
             <!--ListBox-->
             <Style TargetType="{x:Type ListBox}">
                 <Setter Property="Background" Value="Transparent"/>
@@ -37,7 +54,7 @@
             </Style>
 
             <!--ListBox Horizontal-->
-            <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource {x:Type ListBox}}" x:Key="my_listBxHoriz">
+            <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource {x:Type ListBox}}" x:Key="my_listBx_Horiz">
                 <Setter Property="ItemsPanel">
                     <Setter.Value>
                         <ItemsPanelTemplate>
