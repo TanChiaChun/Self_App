@@ -104,7 +104,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Tags" Grid.Column="0" VerticalAlignment="Center"/>
-            <ListBox Grid.Column="1" Style="{DynamicResource my_listBxHoriz}" Name="listBx_tag"></ListBox>
+            <ListBox Grid.Column="1" Style="{DynamicResource my_listBxHoriz}" Name="listBx_tag" MouseDoubleClick="listBx_tag_MouseDoubleClick"></ListBox>
             <Button Content="Add" Grid.Column="2" Padding="10,0" Margin="10,0,0,0" Height="25" Name="btn_tagAdd" Click="btn_tagAdd_Click"/>
         </Grid>
         

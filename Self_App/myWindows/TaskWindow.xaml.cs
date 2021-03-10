@@ -136,6 +136,26 @@ namespace Self_App.myWindows
             }
         }
 
+        private void listBx_tag_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ListBox listBx = e.Source as ListBox;
+            int i = listBx.SelectedIndex;
+            if (i == -1)
+            {
+                return;
+            }
+
+            // Delete tag
+            MessageBoxResult result = MessageBox.Show("Delete tag?", "Delete Tag", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    tags.RemoveAt(i);
+                    RefreshTags();
+                    break;
+            }
+        }
+
         private void btn_stepAdd_Click(object sender, RoutedEventArgs e)
         {
             StepWindow stepWin = new StepWindow();
