@@ -121,8 +121,14 @@ namespace Self_App.myWindows
 
         private void btn_delete_Click(object sender, RoutedEventArgs e)
         {
-            toDelete = true;
-            Close();
+            MessageBoxResult result = MessageBox.Show("Delete step?", "Delete Step", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    toDelete = true;
+                    Close();
+                    break;
+            }
         }
     }
 }
