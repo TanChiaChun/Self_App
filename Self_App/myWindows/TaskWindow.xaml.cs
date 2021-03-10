@@ -27,8 +27,10 @@ namespace Self_App.myWindows
         private MyFunctions f = new MyFunctions();
 
         // Specific
-        private List<Tuple<bool, string>> steps = new List<Tuple<bool, string>>();
+        private List<string> projects = new List<string>() { "Project1", "Project2", "Project3" };
+        private List<string> sections = new List<string>() { "Section1", "Section2", "Section3" };
         private List<string> tags = new List<string>();
+        private List<Tuple<bool, string>> steps = new List<Tuple<bool, string>>();
 
         public TaskWindow()
         {
@@ -37,6 +39,8 @@ namespace Self_App.myWindows
 
             // Specific
             this.Title += " - Create";
+            cmBx_proj.ItemsSource = projects;
+            cmBx_sect.ItemsSource = sections;
             listBx_tag.ItemsSource = tags;
             dataGrid_steps.ItemsSource = steps;
         }

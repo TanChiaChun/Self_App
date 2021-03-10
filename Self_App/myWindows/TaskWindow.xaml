@@ -26,15 +26,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-            <ComboBox Width="100" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}" Name="cmBx_proj">
-                <ComboBoxItem Content="Project1"/>
-                <ComboBoxItem Content="Project2"/>
-            </ComboBox>
+            <ComboBox Width="100" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}" Name="cmBx_proj"></ComboBox>
             <TextBlock Text=">" VerticalAlignment="Center" Margin="10,0"/>
-            <ComboBox Width="100" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}" Name="cmBx_sect">
-                <ComboBoxItem Content="Section1"/>
-                <ComboBoxItem Content="Section2"/>
-            </ComboBox>
+            <ComboBox Width="100" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}" Name="cmBx_sect"></ComboBox>
         </StackPanel>
 
         <Grid Grid.Column="1" Grid.Row="2" Margin="0,30,0,0">
