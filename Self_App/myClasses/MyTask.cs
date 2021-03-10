@@ -18,8 +18,9 @@ namespace Self_App.myClasses
         public DateTime dueDate { get; } = DateTime.MinValue.Date;
         public DateTime doDate { get; } = DateTime.MinValue.Date;
         public DateTime startDate { get; } = DateTime.MinValue.Date;
-        private Priority _priority = Priority.Normal;
         private MyDay _myDay = MyDay.None;
+        private Priority _priority = Priority.Normal;
+        private List<string> tags = new List<string>();
         public List<Tuple<bool, string>> steps { get; set; } = new List<Tuple<bool, string>>();
         public string note { get; } = "";
         private enum Priority
@@ -41,7 +42,7 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         // Constructors
         //////////////////////////////////////////////////
-        public MyTask(string pProj, string pSect, string pTaskName, bool pIsCompleted, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, int pPriority, int pMyDay, List<Tuple<bool, string>> pSteps, string pNote)
+        public MyTask(string pProj, string pSect, string pTaskName, bool pIsCompleted, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, int pMyDay, int pPriority, List<string> pTags, List<Tuple<bool, string>> pSteps, string pNote)
         {
             taskName = pTaskName;
             isCompleted = pIsCompleted;
@@ -50,6 +51,7 @@ namespace Self_App.myClasses
             startDate = pStartDate;
             _priority = (Priority)pPriority;
             _myDay = (MyDay)pMyDay;
+            tags = pTags;
             steps = pSteps;
             note = pNote;
 
@@ -68,7 +70,7 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         public override string ToString()
         {
-            return $"{project}-{section}-{taskName}-{isCompleted.ToString()}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_priority.ToString()}-{_myDay.ToString()}-{steps.Count}-{note}";
+            return $"{project}-{section}-{taskName}-{isCompleted.ToString()}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_myDay.ToString()}-{_priority.ToString()}-{tags.Count}-{steps.Count}-{note}";
         }
     }
 }
