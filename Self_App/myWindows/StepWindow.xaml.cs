@@ -27,9 +27,16 @@ namespace Self_App.myWindows
         private MyFunctions f = new MyFunctions();
 
         // Specific
+        private bool isModify = false;
         public bool toAdd { get; private set; } = false;
+        public bool toUpdate { get; private set; } = false;
         public bool toDelete { get; private set; } = false;
         public Tuple<bool, string> step { get; private set; }
+        private enum MyWrite
+        {
+            Add,
+            Update
+        }
 
         public StepWindow()
         {
@@ -52,12 +59,13 @@ namespace Self_App.myWindows
             btn_add.Visibility = Visibility.Collapsed;
             txtBx_step.Text = step.Item2;
             chkBx_step.IsChecked = step.Item1;
+            isModify = true;
         }
 
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
-        private void AddStep()
+        private void WriteStep(MyWrite pWrite)
         {
             if (!f.IsTextInputValid(false, txtBx_step.Text, "Step"))
             {
@@ -65,7 +73,15 @@ namespace Self_App.myWindows
             }
 
             step = new Tuple<bool, string>((bool)chkBx_step.IsChecked, txtBx_step.Text);
-            toAdd = true;
+
+            if (pWrite == MyWrite.Add)
+            {
+                toAdd = true;
+            }
+            else if (pWrite == MyWrite.Update)
+            {
+                toUpdate = true;
+            }
             Close();
         }
 
@@ -77,7 +93,14 @@ namespace Self_App.myWindows
         {
             if (e.Key == Key.Return)
             {
-                AddStep();
+                if (!isModify)
+                {
+                    WriteStep(MyWrite.Add);
+                }
+                else if (isModify)
+                {
+                    WriteStep(MyWrite.Update);
+                }
             }
             else if (e.Key == Key.Escape)
             {
@@ -88,7 +111,12 @@ namespace Self_App.myWindows
         // Specific
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
-            AddStep();
+            WriteStep(MyWrite.Add);
+        }
+
+        private void btn_update_Click(object sender, RoutedEventArgs e)
+        {
+            WriteStep(MyWrite.Update);
         }
 
         private void btn_delete_Click(object sender, RoutedEventArgs e)

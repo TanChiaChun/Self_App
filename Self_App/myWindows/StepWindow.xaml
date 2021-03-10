@@ -34,7 +34,7 @@
             
             <Button Content="Add" Name="btn_add" Click="btn_add_Click"/>
             <Button Content="Delete" Background="Red" Name="btn_delete" Click="btn_delete_Click"/>
-            <Button Content="Update" Name="btn_update"/>
+            <Button Content="Update" Name="btn_update" Click="btn_update_Click"/>
         </StackPanel>
     </Grid>
 </Window>

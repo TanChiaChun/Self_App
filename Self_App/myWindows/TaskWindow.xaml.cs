@@ -140,7 +140,15 @@ namespace Self_App.myWindows
 
             StepWindow stepWin = new StepWindow(steps[i]);
             stepWin.ShowDialog();
-            if (stepWin.toDelete)
+
+            // Update step
+            if (stepWin.toUpdate)
+            {
+                steps[i] = stepWin.step;
+                RefreshData();
+            }
+            // Delete step
+            else if (stepWin.toDelete)
             {
                 steps.RemoveAt(i);
                 RefreshData();
