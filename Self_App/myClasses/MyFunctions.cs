@@ -14,7 +14,7 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         public string ValidateSqlInput(string input)
         {
-            List<char> badChars = new List<char>() { '"', '\'', ';' };
+            List<char> badChars = new List<char>() { '"', '\'', ';', '|' };
 
             foreach (char c in input)
             {
