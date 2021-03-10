@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Configuration;
 using Self_App.myWindows;
 using Self_App.myPages;
 
@@ -26,8 +27,13 @@ namespace Self_App
         // Class variables
         //////////////////////////////////////////////////
         // Specific
-        private bool isDarkMode = false;
+        private string myColorMode = ConfigurationManager.AppSettings.Get("ColorMode");
         private TodoPage todoPg = new TodoPage();
+        private enum ColorMode
+        {
+            Light,
+            Dark
+        }
 
         //////////////////////////////////////////////////
         // Main
@@ -36,6 +42,26 @@ namespace Self_App
         {
             // Generic
             InitializeComponent();
+
+            // Specific
+            SetColorMode();
+        }
+
+        //////////////////////////////////////////////////
+        // Functions
+        //////////////////////////////////////////////////
+        private void SetColorMode()
+        {
+            App.Current.Resources.MergedDictionaries[0].Source = new Uri($"themes/{myColorMode}.xaml", UriKind.Relative);
+            btn_colorMode.Content = myColorMode;
+        }
+        
+        private void SetConfig(string key, string value)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings[key].Value = value;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
         }
 
         //////////////////////////////////////////////////
@@ -45,19 +71,18 @@ namespace Self_App
         {
             Button btn = e.Source as Button;
             
-            string colorMode = "Light";
-            if (!isDarkMode)
+            if (myColorMode == ColorMode.Light.ToString())
             {
-                isDarkMode = true;
-                colorMode = "Dark";
+                myColorMode = ColorMode.Dark.ToString();
+                SetConfig("ColorMode", myColorMode);
             }
-            else if (isDarkMode)
+            else if (myColorMode == ColorMode.Dark.ToString())
             {
-                isDarkMode = false;
+                myColorMode = ColorMode.Light.ToString();
+                SetConfig("ColorMode", myColorMode);
             }
 
-            App.Current.Resources.MergedDictionaries[0].Source = new Uri($"themes/{colorMode}.xaml", UriKind.Relative);
-            btn.Content = colorMode;
+            SetColorMode();
         }
 
         private void btn_todo_Click(object sender, RoutedEventArgs e)
