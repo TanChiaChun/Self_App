@@ -27,7 +27,7 @@ namespace Self_App.myWindows
         private MyFunctions f = new MyFunctions();
 
         // Specific
-        private bool isModify = false;
+        private MyWrite type;
         public bool toAdd { get; private set; } = false;
         public bool toUpdate { get; private set; } = false;
         public bool toDelete { get; private set; } = false;
@@ -44,7 +44,8 @@ namespace Self_App.myWindows
             InitializeComponent();
 
             // Specific
-            this.Title += " - Add";
+            type = MyWrite.Add;
+            this.Title += $" - {type}";
             btn_update.Visibility = Visibility.Collapsed;
             btn_delete.Visibility = Visibility.Collapsed;
         }
@@ -55,17 +56,17 @@ namespace Self_App.myWindows
             InitializeComponent();
 
             // Specific
-            this.Title += " - Modify";
+            type = MyWrite.Update;
+            this.Title += $" - {type}";
             btn_add.Visibility = Visibility.Collapsed;
             txtBx_step.Text = step.Item2;
             chkBx_step.IsChecked = step.Item1;
-            isModify = true;
         }
 
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
-        private void WriteStep(MyWrite pWrite)
+        private void WriteStep()
         {
             if (!f.IsTextInputValid(false, txtBx_step.Text, "Step"))
             {
@@ -74,11 +75,11 @@ namespace Self_App.myWindows
 
             step = new Tuple<bool, string>((bool)chkBx_step.IsChecked, txtBx_step.Text);
 
-            if (pWrite == MyWrite.Add)
+            if (type == MyWrite.Add)
             {
                 toAdd = true;
             }
-            else if (pWrite == MyWrite.Update)
+            else if (type == MyWrite.Update)
             {
                 toUpdate = true;
             }
@@ -93,14 +94,7 @@ namespace Self_App.myWindows
         {
             if (e.Key == Key.Return)
             {
-                if (!isModify)
-                {
-                    WriteStep(MyWrite.Add);
-                }
-                else if (isModify)
-                {
-                    WriteStep(MyWrite.Update);
-                }
+                WriteStep();
             }
             else if (e.Key == Key.Escape)
             {
@@ -111,12 +105,12 @@ namespace Self_App.myWindows
         // Specific
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
-            WriteStep(MyWrite.Add);
+            WriteStep();
         }
 
         private void btn_update_Click(object sender, RoutedEventArgs e)
         {
-            WriteStep(MyWrite.Update);
+            WriteStep();
         }
 
         private void btn_delete_Click(object sender, RoutedEventArgs e)
