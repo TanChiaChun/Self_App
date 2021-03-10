@@ -16,7 +16,7 @@
 
         <Border Grid.Column="0" BorderThickness="0,0,1,0">
             <StackPanel>
-                <Button Content="Create Task" Margin="8" Padding="0,5" Name="btn_task_create" Click="btn_task_create_Click"/>
+                <Button Content="Create Task" Margin="8" Name="btn_task_create" Click="btn_task_create_Click"/>
             </StackPanel>
         </Border>
     </Grid>

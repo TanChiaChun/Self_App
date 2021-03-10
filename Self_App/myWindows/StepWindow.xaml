@@ -27,8 +27,7 @@
         <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
-                    <Setter Property="Padding" Value="20,5"/>
-                    <Setter Property="Margin" Value="50,0"/>
+                    <Setter Property="Margin" Value="30,0"/>
                 </Style>
             </StackPanel.Resources>
             
