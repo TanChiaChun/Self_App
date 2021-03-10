@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Self_App.myWindows"
         mc:Ignorable="d"
-        Title="Tag" Height="150" Width="500" ResizeMode="NoResize">
+        Title="Tag" Height="150" Width="500" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -20,11 +20,11 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <ComboBox Grid.Column="1" Grid.Row="1" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}" Padding="5">
+        <ComboBox Grid.Column="1" Grid.Row="1" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}" Padding="5" Name="cmBx_tag">
             <ComboBoxItem Content="Tag1"/>
             <ComboBoxItem Content="Tag2"/>
         </ComboBox>
 
-        <Button Grid.Column="1" Grid.Row="2" Margin="0,20,0,0" HorizontalAlignment="Center" Content="Add"/>
+        <Button Grid.Column="1" Grid.Row="2" Margin="0,20,0,0" HorizontalAlignment="Center" Content="Add" Name="btn_add" Click="btn_add_Click"/>
     </Grid>
 </Window>

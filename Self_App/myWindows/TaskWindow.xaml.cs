@@ -28,6 +28,7 @@ namespace Self_App.myWindows
 
         // Specific
         private List<Tuple<bool, string>> steps = new List<Tuple<bool, string>>();
+        private List<string> tags = new List<string>();
 
         public TaskWindow()
         {
@@ -36,13 +37,19 @@ namespace Self_App.myWindows
 
             // Specific
             this.Title += " - Create";
+            listBx_tag.ItemsSource = tags;
             dataGrid_steps.ItemsSource = steps;
         }
 
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
-        private void RefreshData()
+        private void RefreshTags()
+        {
+            listBx_tag.Items.Refresh();
+        }
+        
+        private void RefreshSteps()
         {
             dataGrid_steps.Items.Refresh();
         }
@@ -122,6 +129,11 @@ namespace Self_App.myWindows
         {
             TagWindow tagWin = new TagWindow();
             tagWin.ShowDialog();
+            if (tagWin.toAdd)
+            {
+                tags.Add(tagWin.tag);
+                RefreshTags();
+            }
         }
 
         private void btn_stepAdd_Click(object sender, RoutedEventArgs e)
@@ -131,7 +143,7 @@ namespace Self_App.myWindows
             if (stepWin.toAdd)
             {
                 steps.Add(stepWin.step);
-                RefreshData();
+                RefreshSteps();
             }
         }
 
@@ -151,13 +163,13 @@ namespace Self_App.myWindows
             if (stepWin.toUpdate)
             {
                 steps[i] = stepWin.step;
-                RefreshData();
+                RefreshSteps();
             }
             // Delete step
             else if (stepWin.toDelete)
             {
                 steps.RemoveAt(i);
-                RefreshData();
+                RefreshSteps();
             }
         }
     }
