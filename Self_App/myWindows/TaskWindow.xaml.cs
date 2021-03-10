@@ -25,6 +25,7 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         // Generic
         private MyFunctions f = new MyFunctions();
+        private Database db = new Database();
 
         // Specific
         private List<string> projects = new List<string>() { "Project1", "Project2", "Project3" };
@@ -102,9 +103,102 @@ namespace Self_App.myWindows
             {
                 return;
             }
-            
-            MyTask cTask = new MyTask(cmBx_proj.Text, cmBx_sect.Text, txtBx_task.Text, (bool)chkBx_task.IsChecked, ValidateDate(datePick_due), ValidateDate(datePick_do), ValidateDate(datePick_start), cmBx_myDay.SelectedIndex, cmBx_priority.SelectedIndex, tags, steps, txtBx_note.Text);
-            MessageBox.Show(cTask.ToString());
+
+            string pre = db.SQL_COMMA;
+            string dF = db.DATE_FORMAT_DB;
+            string dtF = db.DATETIME_FORMAT_DB;
+
+            // task_name
+            string query_pre = "task_name";
+            string query_post = $"'{txtBx_task.Text}'";
+
+            // is_completed
+            query_pre += $"{pre}is_completed";
+            query_post += $"{pre}{Convert.ToInt32(chkBx_task.IsChecked)}";
+
+            // project
+            if (!String.IsNullOrEmpty(cmBx_proj.Text))
+            {
+                query_pre += $"{pre}project";
+                query_post += $"{pre}'{cmBx_proj.Text}'";
+            }
+
+            // section
+            if (!String.IsNullOrEmpty(cmBx_sect.Text))
+            {
+                query_pre += $"{pre}section";
+                query_post += $"{pre}'{cmBx_sect.Text}'";
+            }
+
+            // due_date
+            if (datePick_due.SelectedDate.HasValue)
+            {
+                query_pre += $"{pre}due_date";
+                query_post += $"{pre}'{((DateTime)datePick_due.SelectedDate).ToString(dF)}'";
+            }
+
+            // do_date
+            if (datePick_do.SelectedDate.HasValue)
+            {
+                query_pre += $"{pre}do_date";
+                query_post += $"{pre}'{((DateTime)datePick_do.SelectedDate).ToString(dF)}'";
+            }
+
+            // start_date
+            if (datePick_start.SelectedDate.HasValue)
+            {
+                query_pre += $"{pre}start_date";
+                query_post += $"{pre}'{((DateTime)datePick_start.SelectedDate).ToString(dF)}'";
+            }
+
+            // my_day
+            query_pre += $"{pre}my_day";
+            query_post += $"{pre}{cmBx_myDay.SelectedIndex}";
+
+            // priority
+            query_pre += $"{pre}priority";
+            query_post += $"{pre}{cmBx_priority.SelectedIndex}";
+
+            // tags
+            if (tags.Count > 0)
+            {
+                string tagQuery = "";
+                foreach (string tag in tags)
+                {
+                    tagQuery += $"{tag};";
+                }
+
+                query_pre += $"{pre}tags";
+                query_post += $"{pre}'{tagQuery}'";
+            }
+
+            // steps
+            if (steps.Count > 0)
+            {
+                string stepQuery = "";
+                foreach (Tuple<bool, string> step in steps)
+                {
+                    stepQuery += $"{Convert.ToInt32(step.Item1)}|{step.Item2};";
+                }
+
+                query_pre += $"{pre}steps";
+                query_post += $"{pre}'{stepQuery}'";
+            }
+
+            // note
+            query_pre += $"{pre}note";
+            query_post += $"{pre}'{txtBx_note.Text}'";
+
+            // create_date
+            query_pre += $"{pre}create_date";
+            query_post += $"{pre}'{DateTime.Now.ToString(dtF)}'";
+
+            // modify_date
+            query_pre += $"{pre}modify_date";
+            query_post += $"{pre}'{DateTime.Now.ToString(dtF)}'";
+
+            db.WriteDb($"INSERT INTO Task({query_pre}) VALUES({query_post})");
+            Close();
         }
 
         //////////////////////////////////////////////////
