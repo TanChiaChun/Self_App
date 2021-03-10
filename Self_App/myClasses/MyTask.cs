@@ -20,8 +20,8 @@ namespace Self_App.myClasses
         public DateTime startDate { get; } = DateTime.MinValue.Date;
         private MyDay _myDay = MyDay.None;
         private Priority _priority = Priority.Normal;
-        private List<string> tags = new List<string>();
-        public List<Tuple<bool, string>> steps { get; set; } = new List<Tuple<bool, string>>();
+        public List<string> tags { get; } = new List<string>();
+        public List<Tuple<bool, string>> steps { get; } = new List<Tuple<bool, string>>();
         public string note { get; } = "";
         private enum Priority
         {
