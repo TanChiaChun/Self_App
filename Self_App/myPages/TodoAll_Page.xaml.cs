@@ -12,26 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Self_App.myWindows;
-using Self_App.myPages;
 
 namespace Self_App.myPages
 {
     /// <summary>
-    /// Interaction logic for TodoPage.xaml
+    /// Interaction logic for TodoAll_Page.xaml
     /// </summary>
-    public partial class TodoPage : Page
+    public partial class TodoAll_Page : Page
     {
-        //////////////////////////////////////////////////
-        // Class variables
-        //////////////////////////////////////////////////
-        // Specific
-        private TodoAll_Page todoAllPg = new TodoAll_Page();
-
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
-        public TodoPage()
+        public TodoAll_Page()
         {
             // Generic
             InitializeComponent();
@@ -40,15 +32,5 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////
-        private void btn_task_create_Click(object sender, RoutedEventArgs e)
-        {
-            TaskWindow taskWin = new TaskWindow();
-            taskWin.ShowDialog();
-        }
-
-        private void btn_all_Click(object sender, RoutedEventArgs e)
-        {
-            fr_todo.Content = todoAllPg;
-        }
     }
 }

@@ -91,6 +91,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="myPages\TodoAll_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="myPages\TodoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -120,6 +124,9 @@
     <Compile Include="myClasses\Database.cs" />
     <Compile Include="myClasses\MyFunctions.cs" />
     <Compile Include="myClasses\MyTask.cs" />
+    <Compile Include="myPages\TodoAll_Page.xaml.cs">
+      <DependentUpon>TodoAll_Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="myPages\TodoPage.xaml.cs">
       <DependentUpon>TodoPage.xaml</DependentUpon>
     </Compile>
