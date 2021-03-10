@@ -117,7 +117,13 @@ namespace Self_App.myWindows
         {
             CreateTask();
         }
-        
+
+        private void btn_tagAdd_Click(object sender, RoutedEventArgs e)
+        {
+            TagWindow tagWin = new TagWindow();
+            tagWin.ShowDialog();
+        }
+
         private void btn_stepAdd_Click(object sender, RoutedEventArgs e)
         {
             StepWindow stepWin = new StepWindow();

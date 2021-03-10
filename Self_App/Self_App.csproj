@@ -98,6 +98,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="myWindows\TagWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="myWindows\TaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -120,6 +124,9 @@
     </Compile>
     <Compile Include="myWindows\StepWindow.xaml.cs">
       <DependentUpon>StepWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="myWindows\TagWindow.xaml.cs">
+      <DependentUpon>TagWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="myWindows\TaskWindow.xaml.cs">
       <DependentUpon>TaskWindow.xaml</DependentUpon>
