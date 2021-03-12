@@ -11,6 +11,19 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="All" Style="{DynamicResource my_TxtBlk_H1}"/>
+            <DataGrid Style="{DynamicResource DataGridStyle1}" Margin="0,5,0,0" Name="dataGrid_todoAll">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
+                    <DataGridCheckBoxColumn Header="Completed" Binding="{Binding isCompleted, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Project" Binding="{Binding project, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Section" Binding="{Binding section, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Do" Binding="{Binding doDateStr, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Start" Binding="{Binding startDateStr, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="My Day" Binding="{Binding myDay, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Priority" Binding="{Binding priority, Mode=OneTime}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Page>

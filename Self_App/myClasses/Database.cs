@@ -43,6 +43,30 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
+        public List<MyTask> Select_TodoAll()
+        {
+            List<MyTask> tasks = new List<MyTask>();
+            string query = "SELECT id, project, section, task_name, is_completed, due_date, do_date, start_date, my_day, priority FROM Task ORDER BY modify_date DESC";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            while (res.Read())
+                            {
+                                tasks.Add(new MyTask(Convert.ToInt32(res["id"]), res["project"].ToString(), res["section"].ToString(), res["task_name"].ToString(), Convert.ToBoolean(res["is_completed"]), DateTime.ParseExact(res["due_date"].ToString(), DATE_FORMAT_DB, null), DateTime.ParseExact(res["do_date"].ToString(), DATE_FORMAT_DB, null), DateTime.ParseExact(res["start_date"].ToString(), DATE_FORMAT_DB, null), Convert.ToInt32(res["my_day"]), Convert.ToInt32(res["priority"])));
+                            }
+                        }
+                    }
+                }
+            }
+            return tasks;
+        }
+
         public void WriteDb(string query)
         {
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
