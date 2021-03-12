@@ -31,7 +31,7 @@ namespace Self_App.myClasses
         {
             get
             {
-                string dateStr = !dueDate.Equals(DateTime.MinValue.Date) ? dueDate.ToString("DATE_FORMAT") : "";
+                string dateStr = !dueDate.Equals(DateTime.MinValue.Date) ? dueDate.ToString(DATE_FORMAT) : "";
                 return dateStr;
             }
         }
@@ -39,7 +39,7 @@ namespace Self_App.myClasses
         {
             get
             {
-                string dateStr = !doDate.Equals(DateTime.MinValue.Date) ? doDate.ToString("DATE_FORMAT") : "";
+                string dateStr = !doDate.Equals(DateTime.MinValue.Date) ? doDate.ToString(DATE_FORMAT) : "";
                 return dateStr;
             }
         }
@@ -47,7 +47,7 @@ namespace Self_App.myClasses
         {
             get
             {
-                string dateStr = !startDate.Equals(DateTime.MinValue.Date) ? startDate.ToString("DATE_FORMAT") : "";
+                string dateStr = !startDate.Equals(DateTime.MinValue.Date) ? startDate.ToString(DATE_FORMAT) : "";
                 return dateStr;
             }
         }
