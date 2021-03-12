@@ -63,7 +63,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
+            
             <!--ComboBox Template Start-->
             <Style x:Key="FocusVisual">
                 <Setter Property="Control.Template">
@@ -653,7 +653,7 @@
             <!--DataGrid Template Start-->
             <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
                 <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
@@ -663,7 +663,6 @@
                 <Setter Property="AutoGenerateColumns" Value="False"/>
                 <Setter Property="IsReadOnly" Value="True"/>
                 <Setter Property="HeadersVisibility" Value="Column"/>
-                <Setter Property="RowHeight" Value="25"/>
                 <Setter Property="GridLinesVisibility" Value="None"/>
                 <Setter Property="Template">
                     <Setter.Value>

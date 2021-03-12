@@ -26,6 +26,6 @@
             </StackPanel>
         </Border>
 
-        <Frame Grid.Column="1" Name="fr_todo" Padding="10"/>
+        <Frame Grid.Column="1" Name="fr_todo"/>
     </Grid>
 </Page>
