@@ -10,25 +10,6 @@
                 <ResourceDictionary Source="/themes/Light.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <!--Button-->
-            <Style TargetType="{x:Type Button}">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
-                <Setter Property="Padding" Value="30,5"/>
-            </Style>
-
-            <!--Border-->
-            <Style TargetType="{x:Type Border}">
-                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
-            </Style>
-
-            <!--TextBox-->
-            <Style TargetType="{x:Type TextBox}">
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
-            </Style>
-            
             <!--TextBlock-->
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
@@ -46,6 +27,25 @@
                 <Setter Property="FontSize" Value="16"/>
             </Style>
 
+            <!--TextBox-->
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            </Style>
+            
+            <!--Button-->
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+                <Setter Property="Padding" Value="30,5"/>
+            </Style>
+
+            <!--Border-->
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            </Style>
+            
             <!--ListBox-->
             <Style TargetType="{x:Type ListBox}">
                 <Setter Property="Background" Value="Transparent"/>
