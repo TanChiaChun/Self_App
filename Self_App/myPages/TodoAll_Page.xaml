@@ -14,7 +14,7 @@
             <DataGrid Margin="0,5,0,0" Name="dataGrid_todoAll" BorderThickness="0,1,0,0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
-                    <DataGridTextColumn Header="Done" Binding="{Binding isCompleted, Mode=OneTime}"/>
+                    <DataGridCheckBoxColumn Header="Done" Binding="{Binding isDone, Mode=OneTime}"/>
                     <DataGridTextColumn Header="Project" Binding="{Binding project, Mode=OneTime}"/>
                     <DataGridTextColumn Header="Section" Binding="{Binding section, Mode=OneTime}"/>
                     <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr, Mode=OneTime}"/>
