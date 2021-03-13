@@ -73,6 +73,8 @@ namespace Self_App.myClasses
         public MyTask(int pId, string pProj, string pSect, string pTaskName, bool pIsDone, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, int pMyDay, int pPriority)
         {
             id = pId;
+            project = (pProj != "") ? pProj : "";
+            section = (pSect != "") ? pSect : "";
             taskName = pTaskName;
             isDone = pIsDone;
             dueDate = pDueDate;
@@ -80,15 +82,6 @@ namespace Self_App.myClasses
             startDate = pStartDate;
             _myDay = (MyDay)pMyDay;
             _priority = (Priority)pPriority;
-
-            if (pProj != "")
-            {
-                project = pProj;
-            }
-            if (pSect != "")
-            {
-                section = pSect;
-            }
         }
 
         //////////////////////////////////////////////////
