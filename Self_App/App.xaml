@@ -73,7 +73,8 @@
                 <Setter Property="MinColumnWidth" Value="50"/>
                 <Setter Property="IsReadOnly" Value="True"/>
                 <Setter Property="HeadersVisibility" Value="Column"/>
-                <Setter Property="GridLinesVisibility" Value="None"/>
+                <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+                <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
             </Style>
             
             <!--ComboBox Template Start-->
@@ -677,7 +678,7 @@
             </Style>
             <Style TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="Padding" Value="15,6"/>
+                <Setter Property="Padding" Value="10,5,5,5"/>
                 <Setter Property="BorderThickness" Value="0,0,1,1"/>
                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
                 <Setter Property="Template">
@@ -709,14 +710,15 @@
             <!--DataGridColumnHeader Template End-->
 
             <!--DataGridCell Template Start-->
-            <Style x:Key="DataGridCellStyle1" TargetType="{x:Type DataGridCell}">
+            <Style TargetType="{x:Type DataGridCell}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="12,5,5,5"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type DataGridCell}">
-                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" Padding="{TemplateBinding Padding}">
                                 <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </Border>
                         </ControlTemplate>
