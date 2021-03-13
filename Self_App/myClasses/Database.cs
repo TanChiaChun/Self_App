@@ -89,6 +89,30 @@ namespace Self_App.myClasses
             return tasks;
         }
 
+        public List<string> Select_Projects()
+        {
+            List<string> projects = new List<string>();
+            string query = "SELECT DISTINCT project FROM Task ORDER BY project ASC";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            while (res.Read())
+                            {
+                                projects.Add(res["project"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            return projects;
+        }
+
         public void WriteDb(string query)
         {
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
