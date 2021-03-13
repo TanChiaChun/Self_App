@@ -28,10 +28,9 @@ namespace Self_App.myWindows
         private Database db = new Database();
 
         // Specific
+        private MyTask task = new MyTask(-1);
         private List<string> projects = new List<string>();
-        private List<string> sections = new List<string>() { "Section1", "Section2", "Section3" };
-        private HashSet<string> tags = new HashSet<string>();
-        private List<Tuple<bool, string>> steps = new List<Tuple<bool, string>>();
+        private List<string> sections = new List<string>();
 
         public TaskWindow()
         {
@@ -43,7 +42,7 @@ namespace Self_App.myWindows
             InitWindow();
         }
 
-        public TaskWindow(MyTask task)
+        public TaskWindow(MyTask pTask)
         {
             // Generic
             InitializeComponent();
@@ -52,6 +51,7 @@ namespace Self_App.myWindows
             this.Title += " - Update";
             btn_create.Visibility = Visibility.Collapsed;
 
+            task = pTask;
             cmBx_proj.Text = task.project;
             cmBx_sect.Text = task.section;
             txtBx_task.Text = task.taskName;
@@ -61,9 +61,9 @@ namespace Self_App.myWindows
             datePick_start.SelectedDate = task.startDate;
             cmBx_priority.Text = task.priority_str;
             cmBx_myDay.Text = task.myDay_str;
-            tags = task.tags;
-            steps = task.steps;
             txtBx_note.Text = task.note;
+
+            sections = db.Select_Sections(task.project);
 
             InitWindow();
         }
@@ -77,8 +77,14 @@ namespace Self_App.myWindows
             
             cmBx_proj.ItemsSource = projects;
             cmBx_sect.ItemsSource = sections;
-            listBx_tag.ItemsSource = tags;
-            dataGrid_steps.ItemsSource = steps;
+            listBx_tag.ItemsSource = task.tags;
+            dataGrid_steps.ItemsSource = task.steps;
+        }
+
+        private void RefreshSections(string project)
+        {
+            sections = db.Select_Sections(project);
+            cmBx_sect.ItemsSource = sections;
         }
         
         private void RefreshTags()
@@ -192,10 +198,10 @@ namespace Self_App.myWindows
             query_post += $"{pre}{cmBx_myDay.SelectedIndex}";
 
             // tags
-            if (tags.Count > 0)
+            if (task.tags.Count > 0)
             {
                 string tagQuery = "";
-                foreach (string tag in tags)
+                foreach (string tag in task.tags)
                 {
                     tagQuery += $"{tag};";
                 }
@@ -205,10 +211,10 @@ namespace Self_App.myWindows
             }
 
             // steps
-            if (steps.Count > 0)
+            if (task.steps.Count > 0)
             {
                 string stepQuery = "";
-                foreach (Tuple<bool, string> step in steps)
+                foreach (Tuple<bool, string> step in task.steps)
                 {
                     stepQuery += $"{Convert.ToInt32(step.Item1)}|{step.Item2};";
                 }
@@ -261,7 +267,7 @@ namespace Self_App.myWindows
             tagWin.ShowDialog();
             if (tagWin.toAdd)
             {
-                tags.Add(tagWin.tag);
+                task.tags.Add(tagWin.tag);
                 RefreshTags();
             }
         }
@@ -280,7 +286,7 @@ namespace Self_App.myWindows
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    tags.Remove(listBx.Items[i].ToString());
+                    task.tags.Remove(listBx.Items[i].ToString());
                     RefreshTags();
                     break;
             }
@@ -292,7 +298,7 @@ namespace Self_App.myWindows
             stepWin.ShowDialog();
             if (stepWin.toAdd)
             {
-                steps.Add(stepWin.step);
+                task.steps.Add(stepWin.step);
                 RefreshSteps();
             }
         }
@@ -306,21 +312,29 @@ namespace Self_App.myWindows
                 return;
             }
 
-            StepWindow stepWin = new StepWindow(steps[i]);
+            StepWindow stepWin = new StepWindow(task.steps[i]);
             stepWin.ShowDialog();
 
             // Update step
             if (stepWin.toUpdate)
             {
-                steps[i] = stepWin.step;
+                task.steps[i] = stepWin.step;
                 RefreshSteps();
             }
             // Delete step
             else if (stepWin.toDelete)
             {
-                steps.RemoveAt(i);
+                task.steps.RemoveAt(i);
                 RefreshSteps();
             }
+        }
+
+        private void cmBx_proj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cmBx = e.Source as ComboBox;
+            
+            cmBx_sect.Text = "";
+            RefreshSections(cmBx.Items[cmBx.SelectedIndex].ToString());
         }
     }
 }

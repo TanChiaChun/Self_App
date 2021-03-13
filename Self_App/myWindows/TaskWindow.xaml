@@ -26,7 +26,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-            <ComboBox Width="100" IsEditable="True" Name="cmBx_proj"></ComboBox>
+            <ComboBox Width="100" IsEditable="True" Name="cmBx_proj" SelectionChanged="cmBx_proj_SelectionChanged"></ComboBox>
             <TextBlock Text=">" VerticalAlignment="Center" Margin="10,0"/>
             <ComboBox Width="100" IsEditable="True" Name="cmBx_sect"></ComboBox>
         </StackPanel>

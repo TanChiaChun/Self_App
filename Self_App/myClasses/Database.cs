@@ -113,6 +113,30 @@ namespace Self_App.myClasses
             return projects;
         }
 
+        public List<string> Select_Sections(string project)
+        {
+            List<string> sections = new List<string>();
+            string query = $"SELECT DISTINCT section FROM Task WHERE project='{project}' ORDER BY section ASC";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            while (res.Read())
+                            {
+                                sections.Add(res["section"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            return sections;
+        }
+
         public void WriteDb(string query)
         {
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
