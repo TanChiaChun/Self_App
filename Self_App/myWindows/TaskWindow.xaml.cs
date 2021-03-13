@@ -30,7 +30,7 @@ namespace Self_App.myWindows
         // Specific
         private List<string> projects = new List<string>() { "Project1", "Project2", "Project3" };
         private List<string> sections = new List<string>() { "Section1", "Section2", "Section3" };
-        private List<string> tags = new List<string>();
+        private HashSet<string> tags = new HashSet<string>();
         private List<Tuple<bool, string>> steps = new List<Tuple<bool, string>>();
 
         public TaskWindow()
@@ -248,7 +248,7 @@ namespace Self_App.myWindows
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    tags.RemoveAt(i);
+                    tags.Remove(listBx.Items[i].ToString());
                     RefreshTags();
                     break;
             }

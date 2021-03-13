@@ -24,7 +24,7 @@ namespace Self_App.myClasses
         public string myDay => (int)_myDay + "-"  + _myDay.ToString();
         private Priority _priority = Priority.Normal;
         public string priority => (int)_priority + "-" + _priority.ToString();
-        public List<string> tags { get; } = new List<string>();
+        public HashSet<string> tags { get; } = new HashSet<string>();
         public List<Tuple<bool, string>> steps { get; } = new List<Tuple<bool, string>>();
         public string note { get; } = "";
         public string dueDateStr
