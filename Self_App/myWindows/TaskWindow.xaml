@@ -26,9 +26,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-            <ComboBox Width="100" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}" Name="cmBx_proj"></ComboBox>
+            <ComboBox Width="100" IsEditable="True" Name="cmBx_proj"></ComboBox>
             <TextBlock Text=">" VerticalAlignment="Center" Margin="10,0"/>
-            <ComboBox Width="100" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}" Name="cmBx_sect"></ComboBox>
+            <ComboBox Width="100" IsEditable="True" Name="cmBx_sect"></ComboBox>
         </StackPanel>
 
         <Grid Grid.Column="1" Grid.Row="2" Margin="0,30,0,0">
@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <CheckBox Grid.Column="0" VerticalAlignment="Center" Style="{DynamicResource CheckBoxStyle1}" Name="chkBx_task"/>
+            <CheckBox Grid.Column="0" VerticalAlignment="Center" Name="chkBx_task"/>
             <TextBox Grid.Column="1" Margin="5,0,0,0" FontSize="14" Padding="5" Name="txtBx_task"/>
         </Grid>
 
@@ -64,16 +64,16 @@
             </Grid.Resources>
 
             <TextBlock Text="Due" Grid.Column="0" Grid.Row="0"/>
-            <DatePicker Grid.Column="1" Grid.Row="0" Style="{DynamicResource DatePickerStyle1}" Name="datePick_due"/>
+            <DatePicker Grid.Column="1" Grid.Row="0" Name="datePick_due"/>
 
             <TextBlock Text="Do" Grid.Column="3" Grid.Row="0"/>
-            <DatePicker Grid.Column="4" Grid.Row="0" Style="{DynamicResource DatePickerStyle1}" Name="datePick_do"/>
+            <DatePicker Grid.Column="4" Grid.Row="0" Name="datePick_do"/>
 
             <TextBlock Text="Start" Grid.Column="0" Grid.Row="2"/>
-            <DatePicker Grid.Column="1" Grid.Row="2" Style="{DynamicResource DatePickerStyle1}" Name="datePick_start"/>
+            <DatePicker Grid.Column="1" Grid.Row="2" Name="datePick_start"/>
 
             <TextBlock Text="Priority" Grid.Column="0" Grid.Row="4"/>
-            <ComboBox Grid.Column="1" Grid.Row="4" Style="{DynamicResource ComboBoxStyle1}" Name="cmBx_priority" SelectedIndex="2">
+            <ComboBox Grid.Column="1" Grid.Row="4" Name="cmBx_priority" SelectedIndex="2">
                 <ComboBoxItem Content="Urgent"/>
                 <ComboBoxItem Content="Important"/>
                 <ComboBoxItem Content="Normal"/>
@@ -81,7 +81,7 @@
             </ComboBox>
 
             <TextBlock Text="My Day" Grid.Column="3" Grid.Row="4"/>
-            <ComboBox Grid.Column="4" Grid.Row="4" Style="{DynamicResource ComboBoxStyle1}" Name="cmBx_myDay" SelectedIndex="4">
+            <ComboBox Grid.Column="4" Grid.Row="4" Name="cmBx_myDay" SelectedIndex="4">
                 <ComboBoxItem Content="Urgent_Important"/>
                 <ComboBoxItem Content="NotUrgent_Important"/>
                 <ComboBoxItem Content="Urgent_NotImportant"/>
@@ -113,7 +113,7 @@
                 <Button Content="Add" Grid.Column="1" Padding="10,0" Name="btn_stepAdd" Click="btn_stepAdd_Click"/>
             </Grid>
 
-            <DataGrid Name="dataGrid_steps" Style="{DynamicResource DataGridStyle1}" HeadersVisibility="None" Margin="0,5,0,0" MaxHeight="80" MouseDoubleClick="dataGrid_steps_MouseDoubleClick">
+            <DataGrid Name="dataGrid_steps" HeadersVisibility="None" Margin="0,5,0,0" MaxHeight="80" MouseDoubleClick="dataGrid_steps_MouseDoubleClick">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Header="Completed" Binding="{Binding Item1, Mode=OneTime}"/>
                     <DataGridTextColumn Header="Step" Binding="{Binding Item2, Mode=OneTime}" Width="*"/>

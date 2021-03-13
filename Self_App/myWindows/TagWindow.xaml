@@ -20,7 +20,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <ComboBox Grid.Column="1" Grid.Row="1" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}" Padding="5" Name="cmBx_tag">
+        <ComboBox Grid.Column="1" Grid.Row="1" IsEditable="True" Padding="5" Name="cmBx_tag">
             <ComboBoxItem Content="Tag1"/>
             <ComboBoxItem Content="Tag2"/>
         </ComboBox>

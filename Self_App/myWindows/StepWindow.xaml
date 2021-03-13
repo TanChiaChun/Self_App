@@ -21,7 +21,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <CheckBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Style="{DynamicResource CheckBoxStyle1}" Name="chkBx_step"/>
+        <CheckBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Name="chkBx_step"/>
         <TextBox Grid.Column="2" Grid.Row="1" Margin="5,0,0,0" Padding="5" Name="txtBx_step"/>
 
         <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
