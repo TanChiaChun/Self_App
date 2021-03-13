@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="All" Style="{DynamicResource my_TxtBlk_H1}" Margin="10,10,0,0"/>
-            <DataGrid Margin="0,5,0,0" Name="dataGrid_todoAll" BorderThickness="0,1,0,0">
+            <DataGrid Margin="0,5,0,0" Name="dataGrid_todoAll" BorderThickness="0,1,0,0" CellStyle="{DynamicResource DataGridCellStyle1}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
                     <DataGridCheckBoxColumn Header="Done" Binding="{Binding isDone, Mode=OneTime}"/>
