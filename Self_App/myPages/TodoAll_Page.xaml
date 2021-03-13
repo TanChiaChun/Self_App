@@ -21,7 +21,7 @@
                     <DataGridTextColumn Header="Do" Binding="{Binding doDateStr, Mode=OneTime}"/>
                     <DataGridTextColumn Header="Start" Binding="{Binding startDateStr, Mode=OneTime}"/>
                     <DataGridTextColumn Header="My Day" Binding="{Binding myDay, Mode=OneTime}"/>
-                    <DataGridTextColumn Header="Priority" Binding="{Binding priority, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Priority" Binding="{Binding priority, Mode=OneTime}" HeaderStyle="{StaticResource my_dataGridColHead_last}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

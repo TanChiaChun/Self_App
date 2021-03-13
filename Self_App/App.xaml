@@ -652,7 +652,7 @@
 
             <!--DataGrid Template Start-->
             <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
-                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
                 <Setter Property="BorderThickness" Value="1"/>
@@ -661,6 +661,7 @@
                 <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
                 <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
                 <Setter Property="AutoGenerateColumns" Value="False"/>
+                <Setter Property="MinColumnWidth" Value="50"/>
                 <Setter Property="IsReadOnly" Value="True"/>
                 <Setter Property="HeadersVisibility" Value="Column"/>
                 <Setter Property="GridLinesVisibility" Value="None"/>
@@ -729,22 +730,42 @@
             </Style>
             <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="15,6"/>
+                <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                             <Grid>
                                 <Themes:DataGridHeaderBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" IsClickable="{TemplateBinding CanUserSort}" IsPressed="{TemplateBinding IsPressed}" IsHovered="{TemplateBinding IsMouseOver}" Padding="{TemplateBinding Padding}" SortDirection="{TemplateBinding SortDirection}" SeparatorBrush="{TemplateBinding SeparatorBrush}" SeparatorVisibility="{TemplateBinding SeparatorVisibility}">
-                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    <TextBlock x:Name="my_dataGridCol_txtBlk">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </TextBlock>
                                 </Themes:DataGridHeaderBorder>
                                 <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}"/>
                                 <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}"/>
                             </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="SortDirection" Value="Ascending">
+                                    <Setter TargetName="my_dataGridCol_txtBlk" Property="TextDecorations" Value="OverLine"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                                <Trigger Property="SortDirection" Value="Descending">
+                                    <Setter TargetName="my_dataGridCol_txtBlk" Property="TextDecorations" Value="Underline"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
             <!--DataGridColumnHeader Template End-->
-            
+
+            <!--DataGridColumnHeader-->
+            <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource DataGridColumnHeaderStyle1}" x:Key="my_dataGridColHead_last">
+                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
