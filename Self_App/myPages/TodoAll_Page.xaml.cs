@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Self_App.myClasses;
+using Self_App.myWindows;
 
 namespace Self_App.myPages
 {
@@ -27,6 +28,9 @@ namespace Self_App.myPages
         // Generic
         private Database db = new Database();
 
+        // Specific
+        private List<MyTask> tasks = new List<MyTask>();
+
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
@@ -34,11 +38,26 @@ namespace Self_App.myPages
         {
             // Generic
             InitializeComponent();
-            dataGrid_todoAll.ItemsSource = db.Select_TodoAll();
-        }
 
+            // Specific
+            tasks = db.Select_TodoAll();
+            dataGrid_todoAll.ItemsSource = tasks;
+        }
+        
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////
+        private void dataGrid_todoAll_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGrid cDataGrid = e.Source as DataGrid;
+            int i = cDataGrid.SelectedIndex;
+            if (i == -1)
+            {
+                return;
+            }
+
+            TaskWindow taskWin = new TaskWindow(db.Select_Task(tasks[i].id));
+            taskWin.ShowDialog();
+        }
     }
 }

@@ -6,27 +6,29 @@ using System.Threading.Tasks;
 
 namespace Self_App.myClasses
 {
-    class MyTask
+    public class MyTask
     {
         //////////////////////////////////////////////////
         // Class variables
         //////////////////////////////////////////////////
         private const string DATE_FORMAT = "yyyy-MM-dd";
         public int id { get; } = -1;
-        public string project { get; } = "General";
-        public string section { get; } = "General";
-        public string taskName { get; } = "";
-        public bool isDone { get; } = false;
-        public DateTime dueDate { get; } = DateTime.MinValue.Date;
-        public DateTime doDate { get; } = DateTime.MinValue.Date;
-        public DateTime startDate { get; } = DateTime.MinValue.Date;
-        private MyDay _myDay = MyDay.None;
-        public string myDay => (int)_myDay + "-"  + _myDay.ToString();
+        public string taskName { get; private set; } = "";
+        public bool isDone { get; private set; } = false;
+        public string project { get; private set; } = "General";
+        public string section { get; private set; } = "General";
+        public DateTime dueDate { get; private set; } = DateTime.MinValue.Date;
+        public DateTime doDate { get; private set; } = DateTime.MinValue.Date;
+        public DateTime startDate { get; private set; } = DateTime.MinValue.Date;
         private Priority _priority = Priority.Normal;
-        public string priority => (int)_priority + "-" + _priority.ToString();
+        public string priority_str => _priority.ToString();
+        public string priority_intStr => (int)_priority + "-" + _priority.ToString();
+        private MyDay _myDay = MyDay.None;
+        public string myDay_str => _myDay.ToString();
+        public string myDay_intStr => (int)_myDay + "-"  + _myDay.ToString();
         public HashSet<string> tags { get; } = new HashSet<string>();
         public List<Tuple<bool, string>> steps { get; } = new List<Tuple<bool, string>>();
-        public string note { get; } = "";
+        public string note { get; private set; } = "";
         public string dueDateStr
         {
             get
@@ -70,18 +72,23 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         // Constructors
         //////////////////////////////////////////////////
-        public MyTask(int pId, string pProj, string pSect, string pTaskName, bool pIsDone, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, int pMyDay, int pPriority)
+        public MyTask(int pId)
         {
             id = pId;
-            project = (pProj != "") ? pProj : "";
-            section = (pSect != "") ? pSect : "";
+        }
+
+        public MyTask(string pId, string pTaskName, string pIsDone, string pProj, string pSect, string pDueDate, string pDoDate, string pStartDate, string pPriority, string pMyDay)
+        {
+            id = Int32.Parse(pId);
             taskName = pTaskName;
-            isDone = pIsDone;
-            dueDate = pDueDate;
-            doDate = pDoDate;
-            startDate = pStartDate;
-            _myDay = (MyDay)pMyDay;
-            _priority = (Priority)pPriority;
+            isDone = Convert.ToBoolean(Int32.Parse(pIsDone));
+            project = pProj;
+            section = pSect;
+            dueDate = DateTime.ParseExact(pDueDate, DATE_FORMAT, null);
+            doDate = DateTime.ParseExact(pDoDate, DATE_FORMAT, null);
+            startDate = DateTime.ParseExact(pStartDate, DATE_FORMAT, null);
+            _priority = (Priority)Int32.Parse(pPriority);
+            _myDay = (MyDay)Int32.Parse(pMyDay);
         }
 
         //////////////////////////////////////////////////
@@ -89,7 +96,48 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         public override string ToString()
         {
-            return $"{project}-{section}-{taskName}-{isDone.ToString()}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_myDay.ToString()}-{_priority.ToString()}-{tags.Count}-{steps.Count}-{note}";
+            return $"{taskName}-{isDone.ToString()}-{project}-{section}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_priority.ToString()}-{_myDay.ToString()}-{tags.Count}-{steps.Count}-{note}";
+        }
+
+        public void UpdateTask_FromDb(string pTaskName, string pIsDone, string pProj, string pSect, string pDueDate, string pDoDate, string pStartDate, string pPriority, string pMyDay, string pTags, string pSteps, string pNote)
+        {
+            taskName = pTaskName;
+            isDone = Convert.ToBoolean(Int32.Parse(pIsDone));
+            project = pProj;
+            section = pSect;
+            dueDate = DateTime.ParseExact(pDueDate, DATE_FORMAT, null);
+            doDate = DateTime.ParseExact(pDoDate, DATE_FORMAT, null);
+            startDate = DateTime.ParseExact(pStartDate, DATE_FORMAT, null);
+            _priority = (Priority)Int32.Parse(pPriority);
+            _myDay = (MyDay)Int32.Parse(pMyDay);
+            note = pNote;
+
+            if (!String.IsNullOrEmpty(pTags))
+            {
+                string[] cTags = pTags.Split(';');
+                foreach (string sub in cTags)
+                {
+                    if (String.IsNullOrEmpty(sub))
+                    {
+                        continue;
+                    }
+                    tags.Add(sub);
+                }
+            }
+            
+            if (!String.IsNullOrEmpty(pSteps))
+            {
+                string[] cSteps = pSteps.Split(';');
+                foreach (string sub in cSteps)
+                {
+                    if (String.IsNullOrEmpty(sub))
+                    {
+                        continue;
+                    }
+                    string[] item = sub.Split('|');
+                    steps.Add(new Tuple<bool, string>(Convert.ToBoolean(Int32.Parse(item[0])), item[1]));
+                }
+            }
         }
     }
 }

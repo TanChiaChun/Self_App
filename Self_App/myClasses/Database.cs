@@ -28,7 +28,7 @@ namespace Self_App.myClasses
                 Directory.CreateDirectory(DB_FOLDER);
                 SQLiteConnection.CreateFile(DB_PATH);
 
-                string query = "CREATE TABLE 'Task' ('id' INTEGER, 'task_name' TEXT NOT NULL DEFAULT '', 'is_done' INTEGER NOT NULL DEFAULT 0 CHECK(is_done >= 0 AND is_done <= 1), 'project' TEXT NOT NULL DEFAULT 'General', 'section' TEXT NOT NULL DEFAULT 'General', 'due_date' TEXT NOT NULL DEFAULT '0001-01-01', 'do_date' TEXT NOT NULL DEFAULT '0001-01-01', 'start_date' TEXT NOT NULL DEFAULT '0001-01-01', 'my_day' INTEGER NOT NULL DEFAULT 4 CHECK(my_day >= 0 AND my_day <= 4), 'priority' INTEGER NOT NULL DEFAULT 2 CHECK(priority >= 0 AND priority <= 3), 'tags' TEXT NOT NULL DEFAULT '', 'steps' TEXT NOT NULL DEFAULT '', 'note' TEXT NOT NULL DEFAULT '', 'create_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'modify_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'complete_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'external_id' INTEGER NOT NULL DEFAULT -1, PRIMARY KEY('id' AUTOINCREMENT))";
+                string query = "CREATE TABLE 'Task' ('id' INTEGER, 'task_name' TEXT NOT NULL DEFAULT '', 'is_done' INTEGER NOT NULL DEFAULT 0 CHECK(is_done >= 0 AND is_done <= 1), 'project' TEXT NOT NULL DEFAULT 'General', 'section' TEXT NOT NULL DEFAULT 'General', 'due_date' TEXT NOT NULL DEFAULT '0001-01-01', 'do_date' TEXT NOT NULL DEFAULT '0001-01-01', 'start_date' TEXT NOT NULL DEFAULT '0001-01-01', 'priority' INTEGER NOT NULL DEFAULT 2 CHECK(priority >= 0 AND priority <= 3), 'my_day' INTEGER NOT NULL DEFAULT 4 CHECK(my_day >= 0 AND my_day <= 4), 'tags' TEXT NOT NULL DEFAULT '', 'steps' TEXT NOT NULL DEFAULT '', 'note' TEXT NOT NULL DEFAULT '', 'create_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'modify_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'complete_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'external_id' INTEGER NOT NULL DEFAULT -1, PRIMARY KEY('id' AUTOINCREMENT))";
                 using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
                 {
                     connect.Open();
@@ -43,10 +43,32 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
+        public MyTask Select_Task(int id)
+        {
+            MyTask task = new MyTask(id);
+            string query = $"SELECT project, section, task_name, is_done, due_date, do_date, start_date, priority, my_day, tags, steps, note FROM Task WHERE id={id}";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            res.Read();
+                            task.UpdateTask_FromDb(res["task_name"].ToString(), res["is_done"].ToString(), res["project"].ToString(), res["section"].ToString(), res["due_date"].ToString(), res["do_date"].ToString(), res["start_date"].ToString(), res["priority"].ToString(), res["my_day"].ToString(), res["tags"].ToString(), res["steps"].ToString(), res["note"].ToString());
+                        }
+                    }
+                }
+            }
+            return task;
+        }
+
         public List<MyTask> Select_TodoAll()
         {
             List<MyTask> tasks = new List<MyTask>();
-            string query = "SELECT id, project, section, task_name, is_done, due_date, do_date, start_date, my_day, priority FROM Task ORDER BY modify_date DESC";
+            string query = "SELECT id, task_name, is_done, project, section, due_date, do_date, start_date, priority, my_day FROM Task ORDER BY modify_date DESC";
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
             {
                 connect.Open();
@@ -58,7 +80,7 @@ namespace Self_App.myClasses
                         {
                             while (res.Read())
                             {
-                                tasks.Add(new MyTask(Convert.ToInt32(res["id"]), res["project"].ToString(), res["section"].ToString(), res["task_name"].ToString(), Convert.ToBoolean(res["is_done"]), DateTime.ParseExact(res["due_date"].ToString(), DATE_FORMAT_DB, null), DateTime.ParseExact(res["do_date"].ToString(), DATE_FORMAT_DB, null), DateTime.ParseExact(res["start_date"].ToString(), DATE_FORMAT_DB, null), Convert.ToInt32(res["my_day"]), Convert.ToInt32(res["priority"])));
+                                tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["is_done"].ToString(), res["project"].ToString(), res["section"].ToString(), res["due_date"].ToString(), res["do_date"].ToString(), res["start_date"].ToString(), res["priority"].ToString(), res["my_day"].ToString()));
                             }
                         }
                     }

@@ -40,15 +40,45 @@ namespace Self_App.myWindows
 
             // Specific
             this.Title += " - Create";
-            cmBx_proj.ItemsSource = projects;
-            cmBx_sect.ItemsSource = sections;
-            listBx_tag.ItemsSource = tags;
-            dataGrid_steps.ItemsSource = steps;
+            InitWindow();
+        }
+
+        public TaskWindow(MyTask task)
+        {
+            // Generic
+            InitializeComponent();
+
+            // Specific
+            this.Title += " - Update";
+            btn_create.Visibility = Visibility.Collapsed;
+
+            cmBx_proj.Text = task.project;
+            cmBx_sect.Text = task.section;
+            txtBx_task.Text = task.taskName;
+            chkBx_task.IsChecked = task.isDone;
+            datePick_due.SelectedDate = task.dueDate;
+            datePick_do.SelectedDate = task.doDate;
+            datePick_start.SelectedDate = task.startDate;
+            cmBx_priority.Text = task.priority_str;
+            cmBx_myDay.Text = task.myDay_str;
+            tags = task.tags;
+            steps = task.steps;
+            txtBx_note.Text = task.note;
+
+            InitWindow();
         }
 
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
+        private void InitWindow()
+        {
+            cmBx_proj.ItemsSource = projects;
+            cmBx_sect.ItemsSource = sections;
+            listBx_tag.ItemsSource = tags;
+            dataGrid_steps.ItemsSource = steps;
+        }
+        
         private void RefreshTags()
         {
             listBx_tag.Items.Refresh();
@@ -61,6 +91,12 @@ namespace Self_App.myWindows
 
         private bool IsInputsValid()
         {
+            // Task Name
+            if (!f.IsTextInputValid(false, txtBx_task.Text, "Task Name"))
+            {
+                return false;
+            }
+
             // Project
             if (!f.IsTextInputValid(true, cmBx_proj.Text, "Project"))
             {
@@ -69,12 +105,6 @@ namespace Self_App.myWindows
 
             // Section
             if (!f.IsTextInputValid(true, cmBx_sect.Text, "Section"))
-            {
-                return false;
-            }
-
-            // Project
-            if (!f.IsTextInputValid(false, txtBx_task.Text, "Task Name"))
             {
                 return false;
             }
@@ -151,13 +181,13 @@ namespace Self_App.myWindows
                 query_post += $"{pre}'{((DateTime)datePick_start.SelectedDate).ToString(dF)}'";
             }
 
-            // my_day
-            query_pre += $"{pre}my_day";
-            query_post += $"{pre}{cmBx_myDay.SelectedIndex}";
-
             // priority
             query_pre += $"{pre}priority";
             query_post += $"{pre}{cmBx_priority.SelectedIndex}";
+
+            // my_day
+            query_pre += $"{pre}my_day";
+            query_post += $"{pre}{cmBx_myDay.SelectedIndex}";
 
             // tags
             if (tags.Count > 0)
