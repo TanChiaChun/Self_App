@@ -16,7 +16,7 @@ namespace Self_App.myClasses
         public string project { get; } = "General";
         public string section { get; } = "General";
         public string taskName { get; } = "";
-        public bool isCompleted { get; } = false;
+        public bool isDone { get; } = false;
         public DateTime dueDate { get; } = DateTime.MinValue.Date;
         public DateTime doDate { get; } = DateTime.MinValue.Date;
         public DateTime startDate { get; } = DateTime.MinValue.Date;
@@ -70,11 +70,11 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         // Constructors
         //////////////////////////////////////////////////
-        public MyTask(int pId, string pProj, string pSect, string pTaskName, bool pIsCompleted, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, int pMyDay, int pPriority)
+        public MyTask(int pId, string pProj, string pSect, string pTaskName, bool pIsDone, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, int pMyDay, int pPriority)
         {
             id = pId;
             taskName = pTaskName;
-            isCompleted = pIsCompleted;
+            isDone = pIsDone;
             dueDate = pDueDate;
             doDate = pDoDate;
             startDate = pStartDate;
@@ -96,7 +96,7 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         public override string ToString()
         {
-            return $"{project}-{section}-{taskName}-{isCompleted.ToString()}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_myDay.ToString()}-{_priority.ToString()}-{tags.Count}-{steps.Count}-{note}";
+            return $"{project}-{section}-{taskName}-{isDone.ToString()}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_myDay.ToString()}-{_priority.ToString()}-{tags.Count}-{steps.Count}-{note}";
         }
     }
 }

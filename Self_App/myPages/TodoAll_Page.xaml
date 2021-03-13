@@ -14,7 +14,7 @@
             <DataGrid Style="{DynamicResource DataGridStyle1}" Margin="0,5,0,0" Name="dataGrid_todoAll" BorderThickness="0,1,0,0" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
-                    <DataGridCheckBoxColumn Header="Completed" Binding="{Binding isCompleted, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Done" Binding="{Binding isCompleted, Mode=OneTime}"/>
                     <DataGridTextColumn Header="Project" Binding="{Binding project, Mode=OneTime}"/>
                     <DataGridTextColumn Header="Section" Binding="{Binding section, Mode=OneTime}"/>
                     <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr, Mode=OneTime}"/>

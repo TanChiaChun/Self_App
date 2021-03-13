@@ -112,8 +112,8 @@ namespace Self_App.myWindows
             string query_pre = "task_name";
             string query_post = $"'{txtBx_task.Text}'";
 
-            // is_completed
-            query_pre += $"{pre}is_completed";
+            // is_done
+            query_pre += $"{pre}is_done";
             query_post += $"{pre}{Convert.ToInt32(chkBx_task.IsChecked)}";
 
             // project
