@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Self_App.myWindows"
         mc:Ignorable="d"
-        Title="Step" Height="150" Width="500" ResizeMode="NoResize" FocusManager.FocusedElement="{Binding ElementName=txtBx_step}" KeyDown="Window_KeyDown">
+        Title="Step" Height="150" Width="500" ResizeMode="NoResize"
+        FocusManager.FocusedElement="{Binding ElementName=txtBx_step}"
+        KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Self_App.myWindows"
         mc:Ignorable="d"
-        Title="Tag - Add" Height="150" Width="500" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+        Title="Tag - Add" Height="150" Width="500" ResizeMode="NoResize"
+        KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
