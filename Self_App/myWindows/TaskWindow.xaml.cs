@@ -24,9 +24,20 @@ namespace Self_App.myWindows
         // Class variables
         //////////////////////////////////////////////////
         // Specific
+        private MyWrite type;
         private MyTask task = new MyTask(-1);
         private List<string> projects = new List<string>();
         private List<string> sections = new List<string>();
+        private bool hasDate_due = false;
+        private bool hasDate_do = false;
+        private bool hasDate_start = false;
+        public HashSet<string> tags { get; } = new HashSet<string>();
+        public List<Tuple<bool, string>> steps { get; } = new List<Tuple<bool, string>>();
+        private enum MyWrite
+        {
+            Create,
+            Update
+        }
 
         public TaskWindow()
         {
@@ -34,7 +45,9 @@ namespace Self_App.myWindows
             InitializeComponent();
 
             // Specific
+            type = MyWrite.Create;
             this.Title += " - Create";
+            btn_update.Visibility = Visibility.Collapsed;
             InitWindow();
         }
 
@@ -44,6 +57,7 @@ namespace Self_App.myWindows
             InitializeComponent();
 
             // Specific
+            type = MyWrite.Update;
             this.Title += " - Update";
             btn_create.Visibility = Visibility.Collapsed;
 
@@ -52,14 +66,34 @@ namespace Self_App.myWindows
             cmBx_sect.Text = task.section;
             txtBx_task.Text = task.taskName;
             chkBx_task.IsChecked = task.isDone;
-            datePick_due.SelectedDate = task.dueDate;
-            datePick_do.SelectedDate = task.doDate;
-            datePick_start.SelectedDate = task.startDate;
+            if (!task.dueDate.Equals(DateTime.MinValue))
+            {
+                datePick_due.SelectedDate = task.dueDate;
+                hasDate_due = true;
+            }
+            if (!task.doDate.Equals(DateTime.MinValue))
+            {
+                datePick_do.SelectedDate = task.doDate;
+                hasDate_do = true;
+            }
+            if (!task.startDate.Equals(DateTime.MinValue))
+            {
+                datePick_start.SelectedDate = task.startDate;
+                hasDate_start = true;
+            }
             cmBx_priority.Text = task.priority_str;
             cmBx_myDay.Text = task.myDay_str;
             txtBx_note.Text = task.note;
 
             sections = Db.Select_Sections(task.project);
+            foreach (string tag in task.tags)
+            {
+                tags.Add(tag);
+            }
+            foreach (Tuple<bool, string> step in task.steps)
+            {
+                steps.Add(step);
+            }
 
             InitWindow();
         }
@@ -73,8 +107,8 @@ namespace Self_App.myWindows
             
             cmBx_proj.ItemsSource = projects;
             cmBx_sect.ItemsSource = sections;
-            listBx_tag.ItemsSource = task.tags;
-            dataGrid_steps.ItemsSource = task.steps;
+            listBx_tag.ItemsSource = tags;
+            dataGrid_steps.ItemsSource = steps;
         }
 
         private void RefreshSections(string project)
@@ -93,27 +127,116 @@ namespace Self_App.myWindows
             dataGrid_steps.Items.Refresh();
         }
 
-        private bool IsInputsValid()
+        private bool HasChange()
         {
-            // Task Name
+            // project
+            if (cmBx_proj.Text != task.project)
+            {
+                return true;
+            }
+
+            // section
+            if (cmBx_sect.Text != task.section)
+            {
+                return true;
+            }
+
+            // task_name
+            if (txtBx_task.Text != task.taskName)
+            {
+                return true;
+            }
+
+            // is_done
+            if (chkBx_task.IsChecked != task.isDone)
+            {
+                return true;
+            }
+
+            // due_date
+            if (datePick_due.SelectedDate.HasValue != hasDate_due)
+            {
+                return true;
+            }
+            else if (datePick_due.SelectedDate.HasValue && datePick_due.SelectedDate != task.dueDate)
+            {
+                return true;
+            }
+
+            // do_date
+            if (datePick_do.SelectedDate.HasValue != hasDate_do)
+            {
+                return true;
+            }
+            else if (datePick_do.SelectedDate.HasValue && datePick_do.SelectedDate != task.doDate)
+            {
+                return true;
+            }
+
+            // start_date
+            if (datePick_start.SelectedDate.HasValue != hasDate_start)
+            {
+                return true;
+            }
+            else if (datePick_start.SelectedDate.HasValue && datePick_start.SelectedDate != task.startDate)
+            {
+                return true;
+            }
+
+            // priority
+            if (cmBx_priority.Text != task.priority_str)
+            {
+                return true;
+            }
+
+            // my_day
+            if (cmBx_myDay.Text != task.myDay_str)
+            {
+                return true;
+            }
+
+            // tags
+            if (!tags.SetEquals(task.tags))
+            {
+                return true;
+            }
+
+            // steps
+            if (!steps.SequenceEqual(task.steps))
+            {
+                return true;
+            }
+
+            // note
+            if (txtBx_note.Text != task.note)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsInputsValid(bool allowEmpty_projectNSection)
+        {
+            // task_name
             if (!MyCls.IsTextInputValid(false, txtBx_task.Text, "Task Name"))
             {
                 return false;
             }
 
-            // Project
-            if (!MyCls.IsTextInputValid(true, cmBx_proj.Text, "Project"))
+            // project
+            if (!MyCls.IsTextInputValid(allowEmpty_projectNSection, cmBx_proj.Text, "Project"))
             {
                 return false;
             }
 
-            // Section
-            if (!MyCls.IsTextInputValid(true, cmBx_sect.Text, "Section"))
+            // section
+            if (!MyCls.IsTextInputValid(allowEmpty_projectNSection, cmBx_sect.Text, "Section"))
             {
                 return false;
             }
 
-            // Note
+            // note
             if (!MyCls.IsTextInputValid(true, txtBx_note.Text, "Note"))
             {
                 return false;
@@ -124,7 +247,7 @@ namespace Self_App.myWindows
 
         private void CreateTask()
         {
-            if (!IsInputsValid())
+            if (!IsInputsValid(true))
             {
                 return;
             }
@@ -132,6 +255,7 @@ namespace Self_App.myWindows
             string pre = MyCls.SQL_COMMA;
             string dF = MyCls.DATE_FORMAT_DB;
             string dtF = MyCls.DATETIME_FORMAT_DB;
+            string currDatetime = DateTime.Now.ToString(dtF);
 
             // task_name
             string query_pre = "task_name";
@@ -185,10 +309,10 @@ namespace Self_App.myWindows
             query_post += $"{pre}{cmBx_myDay.SelectedIndex}";
 
             // tags
-            if (task.tags.Count > 0)
+            if (tags.Count > 0)
             {
                 string tagQuery = "";
-                foreach (string tag in task.tags)
+                foreach (string tag in tags)
                 {
                     tagQuery += $"{tag};";
                 }
@@ -198,10 +322,10 @@ namespace Self_App.myWindows
             }
 
             // steps
-            if (task.steps.Count > 0)
+            if (steps.Count > 0)
             {
                 string stepQuery = "";
-                foreach (Tuple<bool, string> step in task.steps)
+                foreach (Tuple<bool, string> step in steps)
                 {
                     stepQuery += $"{Convert.ToInt32(step.Item1)}|{step.Item2};";
                 }
@@ -216,13 +340,107 @@ namespace Self_App.myWindows
 
             // create_date
             query_pre += $"{pre}create_date";
-            query_post += $"{pre}'{DateTime.Now.ToString(dtF)}'";
+            query_post += $"{pre}'{currDatetime}'";
 
             // modify_date
             query_pre += $"{pre}modify_date";
-            query_post += $"{pre}'{DateTime.Now.ToString(dtF)}'";
+            query_post += $"{pre}'{currDatetime}'";
 
+            // complete_date
+            if ((bool)chkBx_task.IsChecked)
+            {
+                query_pre += $"{pre}complete_date";
+                query_post += $"{pre}'{currDatetime}'";
+            }
+            
             Db.WriteDb($"INSERT INTO Task({query_pre}) VALUES({query_post})");
+            Close();
+        }
+
+        private void UpdateTask()
+        {
+            bool cHasChange = HasChange();
+            if (!cHasChange)
+            {
+                MessageBox.Show("Nothing to update");
+                return;
+            }
+
+            if (!IsInputsValid(false))
+            {
+                return;
+            }
+
+            string pre = MyCls.SQL_COMMA;
+            string dF = MyCls.DATE_FORMAT_DB;
+            string dtF = MyCls.DATETIME_FORMAT_DB;
+            string currDatetime = DateTime.Now.ToString(dtF);
+
+            // task_name
+            string query = $"task_name='{txtBx_task.Text}'";
+
+            // is_done
+            query += $"{pre}is_done={Convert.ToInt32(chkBx_task.IsChecked)}";
+
+            // project
+            query += $"{pre}project='{cmBx_proj.Text}'";
+
+            // section
+            query += $"{pre}section='{cmBx_sect.Text}'";
+
+            // due_date
+            string dueDateStr = datePick_due.SelectedDate.HasValue ? ((DateTime)datePick_due.SelectedDate).ToString(dF) : "0001-01-01";
+            query += $"{pre}due_date='{dueDateStr}'";
+
+            // do_date
+            string doDateStr = datePick_do.SelectedDate.HasValue ? ((DateTime)datePick_do.SelectedDate).ToString(dF) : "0001-01-01";
+            query += $"{pre}do_date='{doDateStr}'";
+
+            // start_date
+            string startDateStr = datePick_start.SelectedDate.HasValue ? ((DateTime)datePick_start.SelectedDate).ToString(dF) : "0001-01-01";
+            query += $"{pre}start_date='{startDateStr}'";
+
+            // priority
+            query += $"{pre}priority={cmBx_priority.SelectedIndex}";
+
+            // my_day
+            query += $"{pre}my_day={cmBx_myDay.SelectedIndex}";
+
+            // tags
+            string tagsStr = "";
+            if (tags.Count > 0)
+            {
+                foreach (string tag in tags)
+                {
+                    tagsStr += $"{tag};";
+                }
+            }
+            query += $"{pre}tags='{tagsStr}'";
+
+            // steps
+            string stepsStr = "";
+            if (steps.Count > 0)
+            {
+                foreach (Tuple<bool, string> step in steps)
+                {
+                    stepsStr += $"{Convert.ToInt32(step.Item1)}|{step.Item2};";
+                }
+            }
+            query += $"{pre}steps='{stepsStr}'";
+
+            // note
+            query += $"{pre}note='{txtBx_note.Text}'";
+
+            // modify_date
+            query += $"{pre}modify_date='{currDatetime}'";
+
+            // complete_date
+            if ((bool)chkBx_task.IsChecked)
+            {
+                query += $"{pre}complete_date='{currDatetime}'";
+            }
+
+            Db.WriteDb($"UPDATE Task SET {query} WHERE id={task.id}");
             Close();
         }
 
@@ -234,10 +452,28 @@ namespace Self_App.myWindows
         {
             if (e.Key == Key.Return)
             {
-                CreateTask();
+                if (type == MyWrite.Create)
+                {
+                    CreateTask();
+                }
+                else if (type == MyWrite.Update)
+                {
+                    UpdateTask();
+                }
             }
             else if (e.Key == Key.Escape)
             {
+                if (type == MyWrite.Update && HasChange())
+                {
+                    MessageBoxResult result = MessageBox.Show("Unsave changes, continue?", "Unsave Changes", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+                    switch (result)
+                    {
+                        case MessageBoxResult.No:
+                            return;
+                    }
+                    
+                }
+
                 Close();
             }
         }
@@ -248,12 +484,20 @@ namespace Self_App.myWindows
             CreateTask();
         }
 
+        private void btn_update_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateTask();
+        }
+
         private void cmBx_proj_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cmBx = e.Source as ComboBox;
 
             cmBx_sect.Text = "";
-            RefreshSections(cmBx.Items[cmBx.SelectedIndex].ToString());
+            if (cmBx.SelectedIndex != -1)
+            {
+                RefreshSections(cmBx.Items[cmBx.SelectedIndex].ToString());
+            }
         }
 
         private void btn_tagAdd_Click(object sender, RoutedEventArgs e)
@@ -262,7 +506,7 @@ namespace Self_App.myWindows
             tagWin.ShowDialog();
             if (tagWin.toAdd)
             {
-                task.tags.Add(tagWin.tag);
+                tags.Add(tagWin.tag);
                 RefreshTags();
             }
         }
@@ -281,7 +525,7 @@ namespace Self_App.myWindows
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    task.tags.Remove(listBx.Items[i].ToString());
+                    tags.Remove(listBx.Items[i].ToString());
                     RefreshTags();
                     break;
             }
@@ -293,7 +537,7 @@ namespace Self_App.myWindows
             stepWin.ShowDialog();
             if (stepWin.toAdd)
             {
-                task.steps.Add(stepWin.step);
+                steps.Add(stepWin.step);
                 RefreshSteps();
             }
         }
@@ -307,19 +551,19 @@ namespace Self_App.myWindows
                 return;
             }
 
-            StepWindow stepWin = new StepWindow(task.steps[i]);
+            StepWindow stepWin = new StepWindow(steps[i]);
             stepWin.ShowDialog();
 
             // Update step
             if (stepWin.toUpdate)
             {
-                task.steps[i] = stepWin.step;
+                steps[i] = stepWin.step;
                 RefreshSteps();
             }
             // Delete step
             else if (stepWin.toDelete)
             {
-                task.steps.RemoveAt(i);
+                steps.RemoveAt(i);
                 RefreshSteps();
             }
         }

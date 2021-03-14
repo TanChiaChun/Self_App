@@ -126,6 +126,15 @@
             <TextBox Padding="5" AcceptsReturn="True" Height="120" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Name="txtBx_note"/>
         </StackPanel>
 
-        <Button Grid.Column="1" Grid.Row="7" Content="Create" Margin="0,30,0,0" HorizontalAlignment="Center" Name="btn_create" Click="btn_create_Click"/>
+        <StackPanel Grid.Column="1" Grid.Row="7" Margin="0,30,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="Margin" Value="30,0"/>
+                </Style>
+            </StackPanel.Resources>
+            
+            <Button Content="Create" Name="btn_create" Click="btn_create_Click"/>
+            <Button Content="Update" Name="btn_update" Click="btn_update_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
