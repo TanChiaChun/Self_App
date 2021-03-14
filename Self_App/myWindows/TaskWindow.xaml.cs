@@ -23,9 +23,6 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         // Class variables
         //////////////////////////////////////////////////
-        // Generic
-        private Db db = new Db();
-
         // Specific
         private MyTask task = new MyTask(-1);
         private List<string> projects = new List<string>();
@@ -123,15 +120,6 @@ namespace Self_App.myWindows
             }
 
             return true;
-        }
-
-        private DateTime ValidateDate(DatePicker datePick)
-        {
-            if (datePick.SelectedDate.HasValue)
-            {
-                return (DateTime)datePick.SelectedDate;
-            }
-            return DateTime.MinValue.Date;
         }
 
         private void CreateTask()
@@ -260,6 +248,14 @@ namespace Self_App.myWindows
             CreateTask();
         }
 
+        private void cmBx_proj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cmBx = e.Source as ComboBox;
+
+            cmBx_sect.Text = "";
+            RefreshSections(cmBx.Items[cmBx.SelectedIndex].ToString());
+        }
+
         private void btn_tagAdd_Click(object sender, RoutedEventArgs e)
         {
             TagWindow tagWin = new TagWindow();
@@ -326,14 +322,6 @@ namespace Self_App.myWindows
                 task.steps.RemoveAt(i);
                 RefreshSteps();
             }
-        }
-
-        private void cmBx_proj_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ComboBox cmBx = e.Source as ComboBox;
-            
-            cmBx_sect.Text = "";
-            RefreshSections(cmBx.Items[cmBx.SelectedIndex].ToString());
         }
     }
 }
