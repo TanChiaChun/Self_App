@@ -51,5 +51,13 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////
+        private void dataGrid_0_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGrid cDataGrid = e.Source as DataGrid;
+            if (MyCls.DataGrid_Todo_MouseDoubleClick(ref cDataGrid))
+            {
+                RefreshData();
+            }
+        }
     }
 }

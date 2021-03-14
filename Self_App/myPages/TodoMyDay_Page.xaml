@@ -51,7 +51,7 @@
         <TextBlock Text="Urgent" Grid.Column="3" Grid.Row="2"/>
         <TextBlock Text="Important" Grid.Column="1" Grid.Row="4"/>
 
-        <DataGrid Grid.Column="3" Grid.Row="4" Name="dataGrid_0" BorderThickness="1" HeadersVisibility="None">
+        <DataGrid Grid.Column="3" Grid.Row="4" Name="dataGrid_0" BorderThickness="1" HeadersVisibility="None" MouseDoubleClick="dataGrid_0_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}" Width="*"/>
                 <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr_dayMonth, Mode=OneTime}"/>
