@@ -26,7 +26,7 @@ namespace Self_App.myPages
         // Class variables
         //////////////////////////////////////////////////
         // Generic
-        private Database db = new Database();
+        private Db db = new Db();
 
         // Specific
         private List<MyTask> tasks = new List<MyTask>();

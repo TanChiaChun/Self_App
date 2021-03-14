@@ -24,7 +24,7 @@ namespace Self_App.myWindows
         // Class variables
         //////////////////////////////////////////////////
         // Generic
-        private Database db = new Database();
+        private Db db = new Db();
 
         // Specific
         private HashSet<string> tags = new HashSet<string>();

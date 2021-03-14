@@ -8,7 +8,7 @@ using System.Data.SQLite;
 
 namespace Self_App.myClasses
 {
-    class Database
+    class Db
     {
         //////////////////////////////////////////////////
         // Class variables
@@ -21,7 +21,7 @@ namespace Self_App.myClasses
         public readonly string DATETIME_FORMAT_DB = "yyyy-MM-ddThh:mm:ss";
         public readonly string SQL_COMMA = ", ";
 
-        public Database()
+        public Db()
         {
             if (!File.Exists(DB_PATH))
             {
