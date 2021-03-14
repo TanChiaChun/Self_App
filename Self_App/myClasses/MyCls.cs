@@ -25,6 +25,23 @@ namespace Self_App.myClasses
             Dark
         }
 
+        public enum Priority
+        {
+            Urgent,
+            Important,
+            Normal,
+            Low
+        }
+
+        public enum MyDay
+        {
+            Urgent_Important,
+            NotUrgent_Important,
+            Urgent_NotImportant,
+            NotUrgent_NotImportant,
+            None
+        }
+
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////

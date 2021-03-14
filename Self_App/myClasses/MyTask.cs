@@ -11,7 +11,6 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         // Class variables
         //////////////////////////////////////////////////
-        private const string DATE_FORMAT = "yyyy-MM-dd";
         public int id { get; } = -1;
         public string taskName { get; private set; } = "";
         public bool isDone { get; private set; } = false;
@@ -20,10 +19,10 @@ namespace Self_App.myClasses
         public DateTime dueDate { get; private set; } = DateTime.MinValue.Date;
         public DateTime doDate { get; private set; } = DateTime.MinValue.Date;
         public DateTime startDate { get; private set; } = DateTime.MinValue.Date;
-        private Priority _priority = Priority.Normal;
+        private MyCls.Priority _priority = MyCls.Priority.Normal;
         public string priority_str => _priority.ToString();
         public string priority_intStr => (int)_priority + "-" + _priority.ToString();
-        private MyDay _myDay = MyDay.None;
+        private MyCls.MyDay _myDay = MyCls.MyDay.None;
         public string myDay_str => _myDay.ToString();
         public string myDay_intStr => (int)_myDay + "-"  + _myDay.ToString();
         public HashSet<string> tags { get; } = new HashSet<string>();
@@ -33,7 +32,7 @@ namespace Self_App.myClasses
         {
             get
             {
-                string dateStr = !dueDate.Equals(DateTime.MinValue.Date) ? dueDate.ToString(DATE_FORMAT) : "";
+                string dateStr = !dueDate.Equals(DateTime.MinValue.Date) ? dueDate.ToString(MyCls.DATE_FORMAT_DB) : "";
                 return dateStr;
             }
         }
@@ -41,7 +40,7 @@ namespace Self_App.myClasses
         {
             get
             {
-                string dateStr = !doDate.Equals(DateTime.MinValue.Date) ? doDate.ToString(DATE_FORMAT) : "";
+                string dateStr = !doDate.Equals(DateTime.MinValue.Date) ? doDate.ToString(MyCls.DATE_FORMAT_DB) : "";
                 return dateStr;
             }
         }
@@ -49,26 +48,11 @@ namespace Self_App.myClasses
         {
             get
             {
-                string dateStr = !startDate.Equals(DateTime.MinValue.Date) ? startDate.ToString(DATE_FORMAT) : "";
+                string dateStr = !startDate.Equals(DateTime.MinValue.Date) ? startDate.ToString(MyCls.DATE_FORMAT_DB) : "";
                 return dateStr;
             }
         }
-        private enum Priority
-        {
-            Urgent,
-            Important,
-            Normal,
-            Low
-        }
-        private enum MyDay
-        {
-            Urgent_Important,
-            NotUrgent_Important,
-            Urgent_NotImportant,
-            NotUrgent_NotImportant,
-            None
-        }
-
+        
         //////////////////////////////////////////////////
         // Constructors
         //////////////////////////////////////////////////
@@ -84,11 +68,11 @@ namespace Self_App.myClasses
             isDone = Convert.ToBoolean(Int32.Parse(pIsDone));
             project = pProj;
             section = pSect;
-            dueDate = DateTime.ParseExact(pDueDate, DATE_FORMAT, null);
-            doDate = DateTime.ParseExact(pDoDate, DATE_FORMAT, null);
-            startDate = DateTime.ParseExact(pStartDate, DATE_FORMAT, null);
-            _priority = (Priority)Int32.Parse(pPriority);
-            _myDay = (MyDay)Int32.Parse(pMyDay);
+            dueDate = DateTime.ParseExact(pDueDate, MyCls.DATE_FORMAT_DB, null);
+            doDate = DateTime.ParseExact(pDoDate, MyCls.DATE_FORMAT_DB, null);
+            startDate = DateTime.ParseExact(pStartDate, MyCls.DATE_FORMAT_DB, null);
+            _priority = (MyCls.Priority)Int32.Parse(pPriority);
+            _myDay = (MyCls.MyDay)Int32.Parse(pMyDay);
         }
 
         //////////////////////////////////////////////////
@@ -105,11 +89,11 @@ namespace Self_App.myClasses
             isDone = Convert.ToBoolean(Int32.Parse(pIsDone));
             project = pProj;
             section = pSect;
-            dueDate = DateTime.ParseExact(pDueDate, DATE_FORMAT, null);
-            doDate = DateTime.ParseExact(pDoDate, DATE_FORMAT, null);
-            startDate = DateTime.ParseExact(pStartDate, DATE_FORMAT, null);
-            _priority = (Priority)Int32.Parse(pPriority);
-            _myDay = (MyDay)Int32.Parse(pMyDay);
+            dueDate = DateTime.ParseExact(pDueDate, MyCls.DATE_FORMAT_DB, null);
+            doDate = DateTime.ParseExact(pDoDate, MyCls.DATE_FORMAT_DB, null);
+            startDate = DateTime.ParseExact(pStartDate, MyCls.DATE_FORMAT_DB, null);
+            _priority = (MyCls.Priority)Int32.Parse(pPriority);
+            _myDay = (MyCls.MyDay)Int32.Parse(pMyDay);
             note = pNote;
 
             if (!String.IsNullOrEmpty(pTags))
