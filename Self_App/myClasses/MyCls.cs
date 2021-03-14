@@ -13,7 +13,7 @@ namespace Self_App.myClasses
         // Class variables
         //////////////////////////////////////////////////
         public static string DATE_FORMAT_DB = "yyyy-MM-dd";
-        public static string DATETIME_FORMAT_DB = "yyyy-MM-ddThh:mm:ss";
+        public static string DATETIME_FORMAT_DB = "yyyy-MM-ddTHH:mm:ss";
         public static string SQL_COMMA = ", ";
 
         //////////////////////////////////////////////////
