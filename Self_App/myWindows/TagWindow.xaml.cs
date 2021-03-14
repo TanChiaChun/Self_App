@@ -25,8 +25,10 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         // Generic
         private MyFunctions f = new MyFunctions();
+        private Database db = new Database();
 
         // Specific
+        private HashSet<string> tags = new HashSet<string>();
         public bool toAdd { get; private set; } = false;
         public string tag { get; private set; } = "";
 
@@ -34,6 +36,10 @@ namespace Self_App.myWindows
         {
             // Generic
             InitializeComponent();
+
+            // Specific
+            tags = db.Select_Tags();
+            cmBx_tag.ItemsSource = tags;
         }
 
         //////////////////////////////////////////////////

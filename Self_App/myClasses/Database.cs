@@ -137,6 +137,30 @@ namespace Self_App.myClasses
             return sections;
         }
 
+        public HashSet<string> Select_Tags()
+        {
+            HashSet<string> tags = new HashSet<string>();
+            string query = "WITH RECURSIVE neat (id1, tag1, etc) AS (SELECT id, '', tags || ';' FROM Task WHERE id UNION ALL SELECT id1, substr(etc, 0, instr(etc, ';')), substr(etc, instr(etc, ';') + 1) FROM neat WHERE etc <> '') SELECT DISTINCT tag1 FROM neat WHERE tag1 <> '' ORDER BY tag1 ASC";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            while (res.Read())
+                            {
+                                tags.Add(res["tag1"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            return tags;
+        }
+
         public void WriteDb(string query)
         {
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
