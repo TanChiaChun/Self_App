@@ -80,7 +80,7 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         public override string ToString()
         {
-            return $"{taskName}-{isDone.ToString()}-{project}-{section}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_priority.ToString()}-{_myDay.ToString()}-{tags.Count}-{steps.Count}-{note}";
+            return $"{id}-{taskName}-{isDone.ToString()}-{project}-{section}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_priority.ToString()}-{_myDay.ToString()}-{tags.Count}-{steps.Count}-{note}";
         }
 
         public void UpdateTask_FromDb(string pTaskName, string pIsDone, string pProj, string pSect, string pDueDate, string pDoDate, string pStartDate, string pPriority, string pMyDay, string pTags, string pSteps, string pNote)
