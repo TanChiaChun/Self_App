@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using Self_App.myWindows;
 
 namespace Self_App.myClasses
 {
@@ -79,6 +81,28 @@ namespace Self_App.myClasses
             }
 
             return true;
+        }
+
+        //////////////////////////////////////////////////
+        // Events
+        //////////////////////////////////////////////////
+        public static bool DataGrid_Todo_MouseDoubleClick(ref DataGrid pDataGrid)
+        {
+            int i = pDataGrid.SelectedIndex;
+            if (i == -1)
+            {
+                return false;
+            }
+
+            MyTask cTask = (MyTask)pDataGrid.Items[i];
+            TaskWindow taskWin = new TaskWindow(Db.Select_Task(cTask.id));
+            taskWin.ShowDialog();
+            if (taskWin.toUpdate || taskWin.toDelete)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

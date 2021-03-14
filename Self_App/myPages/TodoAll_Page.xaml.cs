@@ -52,16 +52,7 @@ namespace Self_App.myPages
         private void dataGrid_todoAll_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DataGrid cDataGrid = e.Source as DataGrid;
-            int i = cDataGrid.SelectedIndex;
-            if (i == -1)
-            {
-                return;
-            }
-
-            MyTask cTask = (MyTask)cDataGrid.Items[i];
-            TaskWindow taskWin = new TaskWindow(Db.Select_Task(cTask.id));
-            taskWin.ShowDialog();
-            if (taskWin.toUpdate || taskWin.toDelete)
+            if (MyCls.DataGrid_Todo_MouseDoubleClick(ref cDataGrid))
             {
                 RefreshData();
             }
