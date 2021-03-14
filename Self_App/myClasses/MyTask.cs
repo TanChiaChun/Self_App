@@ -36,6 +36,14 @@ namespace Self_App.myClasses
                 return dateStr;
             }
         }
+        public string dueDateStr_dayMonth
+        {
+            get
+            {
+                string dateStr = !dueDate.Equals(DateTime.MinValue.Date) ? $"[Du]{dueDate.ToString(MyCls.DATE_FORMAT_DAY_MONTH)}" : "";
+                return dateStr;
+            }
+        }
         public string doDateStr
         {
             get
@@ -59,6 +67,14 @@ namespace Self_App.myClasses
         public MyTask(int pId)
         {
             id = pId;
+        }
+
+        public MyTask(string pId, string pTaskName, string pIsDone, string pDueDate)
+        {
+            id = Int32.Parse(pId);
+            taskName = pTaskName;
+            isDone = Convert.ToBoolean(Int32.Parse(pIsDone));
+            dueDate = DateTime.ParseExact(pDueDate, MyCls.DATE_FORMAT_DB, null);
         }
 
         public MyTask(string pId, string pTaskName, string pIsDone, string pProj, string pSect, string pDueDate, string pDoDate, string pStartDate, string pPriority, string pMyDay)

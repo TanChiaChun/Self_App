@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Self_App.myClasses;
 
 namespace Self_App.myPages
 {
@@ -20,6 +21,12 @@ namespace Self_App.myPages
     /// </summary>
     public partial class TodoMyDay_Page : Page
     {
+        //////////////////////////////////////////////////
+        // Class variables
+        //////////////////////////////////////////////////
+        // Specific
+        private List<MyTask> tasks_0 = new List<MyTask>();
+
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
@@ -30,6 +37,15 @@ namespace Self_App.myPages
 
             // Specific
             txtBlk_myDay.Text += DateTime.Now.ToString("d MMM");
+        }
+
+        //////////////////////////////////////////////////
+        // Functions
+        //////////////////////////////////////////////////
+        public void RefreshData()
+        {
+            tasks_0 = Db.Select_TodoMyDay(0);
+            dataGrid_0.ItemsSource = tasks_0;
         }
 
         //////////////////////////////////////////////////

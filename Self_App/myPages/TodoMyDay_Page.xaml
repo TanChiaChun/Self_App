@@ -9,6 +9,22 @@
       Title="TodoMyDay_Page">
 
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="DataGridRow">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding isDone, Mode=OneTime}" Value="true">
+                        <Setter Property="Background" Value="Gray"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="auto"/>
@@ -22,12 +38,24 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="My Day - " Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Style="{DynamicResource my_TxtBlk_H1}" Name="txtBlk_myDay"/>
+        <TextBlock Text="My Day - " Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Style="{DynamicResource my_TxtBlk_H1}" Name="txtBlk_myDay" Margin="0,0,0,20"/>
+
+        <TextBlock Text="Urgent" Grid.Column="3" Grid.Row="2"/>
+        <TextBlock Text="Important" Grid.Column="1" Grid.Row="4"/>
+
+        <DataGrid Grid.Column="3" Grid.Row="4" Name="dataGrid_0" BorderThickness="1" HeadersVisibility="None">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}" Width="*"/>
+                <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr_dayMonth, Mode=OneTime}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

@@ -54,6 +54,7 @@ namespace Self_App.myPages
 
         private void btn_myDay_Click(object sender, RoutedEventArgs e)
         {
+            todoMyDayPg.RefreshData();
             fr_todo.Content = todoMyDayPg;
         }
 
