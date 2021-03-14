@@ -33,6 +33,7 @@ namespace Self_App.myWindows
         private bool hasDate_start = false;
         public HashSet<string> tags { get; } = new HashSet<string>();
         public List<Tuple<bool, string>> steps { get; } = new List<Tuple<bool, string>>();
+        public bool toUpdate { get; private set; } = false;
         private enum MyWrite
         {
             Create,
@@ -359,8 +360,8 @@ namespace Self_App.myWindows
 
         private void UpdateTask()
         {
-            bool cHasChange = HasChange();
-            if (!cHasChange)
+            toUpdate = HasChange();
+            if (!toUpdate)
             {
                 MessageBox.Show("Nothing to update");
                 return;
@@ -463,7 +464,8 @@ namespace Self_App.myWindows
             }
             else if (e.Key == Key.Escape)
             {
-                if (type == MyWrite.Update && HasChange())
+                toUpdate = HasChange();
+                if (type == MyWrite.Update && toUpdate)
                 {
                     MessageBoxResult result = MessageBox.Show("Unsave changes, continue?", "Unsave Changes", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
                     switch (result)

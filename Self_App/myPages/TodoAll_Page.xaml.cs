@@ -61,6 +61,10 @@ namespace Self_App.myPages
             MyTask currTask = (MyTask)cDataGrid.Items[i];
             TaskWindow taskWin = new TaskWindow(Db.Select_Task(currTask.id));
             taskWin.ShowDialog();
+            if (taskWin.toUpdate)
+            {
+                RefreshData();
+            }
         }
     }
 }
