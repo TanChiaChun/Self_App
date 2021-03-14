@@ -23,9 +23,6 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         // Class variables
         //////////////////////////////////////////////////
-        // Generic
-        private MyCls f = new MyCls();
-
         // Specific
         private MyWrite type;
         public bool toAdd { get; private set; } = false;
@@ -68,7 +65,7 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         private void WriteStep()
         {
-            if (!f.IsTextInputValid(false, txtBx_step.Text, "Step"))
+            if (!MyCls.IsTextInputValid(false, txtBx_step.Text, "Step"))
             {
                 return;
             }

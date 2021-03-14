@@ -7,12 +7,12 @@ using System.Windows;
 
 namespace Self_App.myClasses
 {
-    class MyCls
+    static class MyCls
     {
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
-        public string ValidateSqlInput(string input)
+        public static string ValidateSqlInput(string input)
         {
             List<char> badChars = new List<char>() { '"', '\'', ';', '|' };
 
@@ -29,7 +29,7 @@ namespace Self_App.myClasses
             return "";
         }
 
-        public bool IsTextInputValid(bool allowEmpty, string input, string type)
+        public static bool IsTextInputValid(bool allowEmpty, string input, string type)
         {
             if (!allowEmpty && String.IsNullOrEmpty(input))
             {

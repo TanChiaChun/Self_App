@@ -24,7 +24,6 @@ namespace Self_App.myWindows
         // Class variables
         //////////////////////////////////////////////////
         // Generic
-        private MyCls f = new MyCls();
         private Database db = new Database();
 
         // Specific
@@ -100,25 +99,25 @@ namespace Self_App.myWindows
         private bool IsInputsValid()
         {
             // Task Name
-            if (!f.IsTextInputValid(false, txtBx_task.Text, "Task Name"))
+            if (!MyCls.IsTextInputValid(false, txtBx_task.Text, "Task Name"))
             {
                 return false;
             }
 
             // Project
-            if (!f.IsTextInputValid(true, cmBx_proj.Text, "Project"))
+            if (!MyCls.IsTextInputValid(true, cmBx_proj.Text, "Project"))
             {
                 return false;
             }
 
             // Section
-            if (!f.IsTextInputValid(true, cmBx_sect.Text, "Section"))
+            if (!MyCls.IsTextInputValid(true, cmBx_sect.Text, "Section"))
             {
                 return false;
             }
 
             // Note
-            if (!f.IsTextInputValid(true, txtBx_note.Text, "Note"))
+            if (!MyCls.IsTextInputValid(true, txtBx_note.Text, "Note"))
             {
                 return false;
             }

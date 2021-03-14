@@ -24,7 +24,6 @@ namespace Self_App.myWindows
         // Class variables
         //////////////////////////////////////////////////
         // Generic
-        private MyCls f = new MyCls();
         private Database db = new Database();
 
         // Specific
@@ -47,7 +46,7 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         private void AddTag()
         {
-            if (!f.IsTextInputValid(false, cmBx_tag.Text, "Tag"))
+            if (!MyCls.IsTextInputValid(false, cmBx_tag.Text, "Tag"))
             {
                 return;
             }
