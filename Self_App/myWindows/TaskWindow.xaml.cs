@@ -555,7 +555,8 @@ namespace Self_App.myWindows
                 return;
             }
 
-            StepWindow stepWin = new StepWindow(steps[i]);
+            Tuple<bool, string> cStep = (Tuple<bool, string>)cDataGrid.Items[i];
+            StepWindow stepWin = new StepWindow(cStep);
             stepWin.ShowDialog();
 
             // Update step

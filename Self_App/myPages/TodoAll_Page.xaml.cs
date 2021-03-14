@@ -58,8 +58,8 @@ namespace Self_App.myPages
                 return;
             }
 
-            MyTask currTask = (MyTask)cDataGrid.Items[i];
-            TaskWindow taskWin = new TaskWindow(Db.Select_Task(currTask.id));
+            MyTask cTask = (MyTask)cDataGrid.Items[i];
+            TaskWindow taskWin = new TaskWindow(Db.Select_Task(cTask.id));
             taskWin.ShowDialog();
             if (taskWin.toUpdate || taskWin.toDelete)
             {
