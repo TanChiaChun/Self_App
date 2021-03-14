@@ -77,6 +77,11 @@
                 <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
             </Style>
             
+            <!--Frame-->
+            <Style TargetType="{x:Type Frame}">
+                <Setter Property="NavigationUIVisibility" Value="Hidden"/>
+            </Style>
+            
             <!--ComboBox Template Start-->
             <Style x:Key="FocusVisual">
                 <Setter Property="Control.Template">
