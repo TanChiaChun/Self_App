@@ -169,5 +169,18 @@ namespace Self_App.myClasses
                 }
             }
         }
+
+        public static void DeleteTask(int id)
+        {
+            string query = $"DELETE FROM Task WHERE id={id}";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

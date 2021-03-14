@@ -34,6 +34,7 @@ namespace Self_App.myWindows
         public HashSet<string> tags { get; } = new HashSet<string>();
         public List<Tuple<bool, string>> steps { get; } = new List<Tuple<bool, string>>();
         public bool toUpdate { get; private set; } = false;
+        public bool toDelete { get; private set; } = false;
         private enum MyWrite
         {
             Create,
@@ -49,6 +50,7 @@ namespace Self_App.myWindows
             type = MyWrite.Create;
             this.Title += " - Create";
             btn_update.Visibility = Visibility.Collapsed;
+            btn_delete.Visibility = Visibility.Collapsed;
             InitWindow();
         }
 
@@ -567,6 +569,19 @@ namespace Self_App.myWindows
             {
                 steps.RemoveAt(i);
                 RefreshSteps();
+            }
+        }
+
+        private void btn_delete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Delete task?", "Delete Task", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    toDelete = true;
+                    Db.DeleteTask(task.id);
+                    Close();
+                    break;
             }
         }
     }
