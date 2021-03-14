@@ -62,7 +62,7 @@ namespace Self_App.myWindows
             cmBx_myDay.Text = task.myDay_str;
             txtBx_note.Text = task.note;
 
-            sections = db.Select_Sections(task.project);
+            sections = Db.Select_Sections(task.project);
 
             InitWindow();
         }
@@ -72,7 +72,7 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         private void InitWindow()
         {
-            projects = db.Select_Projects();
+            projects = Db.Select_Projects();
             
             cmBx_proj.ItemsSource = projects;
             cmBx_sect.ItemsSource = sections;
@@ -82,7 +82,7 @@ namespace Self_App.myWindows
 
         private void RefreshSections(string project)
         {
-            sections = db.Select_Sections(project);
+            sections = Db.Select_Sections(project);
             cmBx_sect.ItemsSource = sections;
         }
         
@@ -141,9 +141,9 @@ namespace Self_App.myWindows
                 return;
             }
 
-            string pre = db.SQL_COMMA;
-            string dF = db.DATE_FORMAT_DB;
-            string dtF = db.DATETIME_FORMAT_DB;
+            string pre = MyCls.SQL_COMMA;
+            string dF = MyCls.DATE_FORMAT_DB;
+            string dtF = MyCls.DATETIME_FORMAT_DB;
 
             // task_name
             string query_pre = "task_name";
@@ -234,7 +234,7 @@ namespace Self_App.myWindows
             query_pre += $"{pre}modify_date";
             query_post += $"{pre}'{DateTime.Now.ToString(dtF)}'";
 
-            db.WriteDb($"INSERT INTO Task({query_pre}) VALUES({query_post})");
+            Db.WriteDb($"INSERT INTO Task({query_pre}) VALUES({query_post})");
             Close();
         }
 

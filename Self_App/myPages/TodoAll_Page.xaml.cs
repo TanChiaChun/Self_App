@@ -25,9 +25,6 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Class variables
         //////////////////////////////////////////////////
-        // Generic
-        private Db db = new Db();
-
         // Specific
         private List<MyTask> tasks = new List<MyTask>();
 
@@ -40,7 +37,7 @@ namespace Self_App.myPages
             InitializeComponent();
 
             // Specific
-            tasks = db.Select_TodoAll();
+            tasks = Db.Select_TodoAll();
             dataGrid_todoAll.ItemsSource = tasks;
         }
         
@@ -56,7 +53,7 @@ namespace Self_App.myPages
                 return;
             }
 
-            TaskWindow taskWin = new TaskWindow(db.Select_Task(tasks[i].id));
+            TaskWindow taskWin = new TaskWindow(Db.Select_Task(tasks[i].id));
             taskWin.ShowDialog();
         }
     }

@@ -8,7 +8,7 @@ using System.Data.SQLite;
 
 namespace Self_App.myClasses
 {
-    class Db
+    static class Db
     {
         //////////////////////////////////////////////////
         // Class variables
@@ -17,11 +17,11 @@ namespace Self_App.myClasses
         private const string DB_FOLDER = "content";
         private const string DB_PATH = DB_FOLDER + "/app.db";
         private const string CONNECTION_STR = "Data Source=" + DB_PATH;
-        public readonly string DATE_FORMAT_DB = "yyyy-MM-dd";
-        public readonly string DATETIME_FORMAT_DB = "yyyy-MM-ddThh:mm:ss";
-        public readonly string SQL_COMMA = ", ";
-
-        public Db()
+        
+        //////////////////////////////////////////////////
+        // Functions
+        //////////////////////////////////////////////////
+        public static void InitDb()
         {
             if (!File.Exists(DB_PATH))
             {
@@ -40,10 +40,7 @@ namespace Self_App.myClasses
             }
         }
 
-        //////////////////////////////////////////////////
-        // Functions
-        //////////////////////////////////////////////////
-        public MyTask Select_Task(int id)
+        public static MyTask Select_Task(int id)
         {
             MyTask task = new MyTask(id);
             string query = $"SELECT project, section, task_name, is_done, due_date, do_date, start_date, priority, my_day, tags, steps, note FROM Task WHERE id={id}";
@@ -65,7 +62,7 @@ namespace Self_App.myClasses
             return task;
         }
 
-        public List<MyTask> Select_TodoAll()
+        public static List<MyTask> Select_TodoAll()
         {
             List<MyTask> tasks = new List<MyTask>();
             string query = "SELECT id, task_name, is_done, project, section, due_date, do_date, start_date, priority, my_day FROM Task ORDER BY modify_date DESC";
@@ -89,7 +86,7 @@ namespace Self_App.myClasses
             return tasks;
         }
 
-        public List<string> Select_Projects()
+        public static List<string> Select_Projects()
         {
             List<string> projects = new List<string>();
             string query = "SELECT DISTINCT project FROM Task ORDER BY project ASC";
@@ -113,7 +110,7 @@ namespace Self_App.myClasses
             return projects;
         }
 
-        public List<string> Select_Sections(string project)
+        public static List<string> Select_Sections(string project)
         {
             List<string> sections = new List<string>();
             string query = $"SELECT DISTINCT section FROM Task WHERE project='{project}' ORDER BY section ASC";
@@ -137,7 +134,7 @@ namespace Self_App.myClasses
             return sections;
         }
 
-        public HashSet<string> Select_Tags()
+        public static HashSet<string> Select_Tags()
         {
             HashSet<string> tags = new HashSet<string>();
             string query = "WITH RECURSIVE neat (id1, tag1, etc) AS (SELECT id, '', tags || ';' FROM Task WHERE id UNION ALL SELECT id1, substr(etc, 0, instr(etc, ';')), substr(etc, instr(etc, ';') + 1) FROM neat WHERE etc <> '') SELECT DISTINCT tag1 FROM neat WHERE tag1 <> '' ORDER BY tag1 ASC";
@@ -161,7 +158,7 @@ namespace Self_App.myClasses
             return tags;
         }
 
-        public void WriteDb(string query)
+        public static void WriteDb(string query)
         {
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
             {

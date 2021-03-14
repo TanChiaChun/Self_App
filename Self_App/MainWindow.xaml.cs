@@ -41,6 +41,7 @@ namespace Self_App
 
             // Specific
             SetColorMode();
+            Db.InitDb();
         }
 
         //////////////////////////////////////////////////

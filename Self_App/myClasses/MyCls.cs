@@ -10,6 +10,13 @@ namespace Self_App.myClasses
     static class MyCls
     {
         //////////////////////////////////////////////////
+        // Class variables
+        //////////////////////////////////////////////////
+        public static string DATE_FORMAT_DB = "yyyy-MM-dd";
+        public static string DATETIME_FORMAT_DB = "yyyy-MM-ddThh:mm:ss";
+        public static string SQL_COMMA = ", ";
+
+        //////////////////////////////////////////////////
         // Enums
         //////////////////////////////////////////////////
         public enum ColorMode

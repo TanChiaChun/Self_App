@@ -23,9 +23,6 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         // Class variables
         //////////////////////////////////////////////////
-        // Generic
-        private Db db = new Db();
-
         // Specific
         private HashSet<string> tags = new HashSet<string>();
         public bool toAdd { get; private set; } = false;
@@ -37,7 +34,7 @@ namespace Self_App.myWindows
             InitializeComponent();
 
             // Specific
-            tags = db.Select_Tags();
+            tags = Db.Select_Tags();
             cmBx_tag.ItemsSource = tags;
         }
 
