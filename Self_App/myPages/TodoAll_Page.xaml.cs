@@ -35,12 +35,17 @@ namespace Self_App.myPages
         {
             // Generic
             InitializeComponent();
+        }
 
-            // Specific
+        //////////////////////////////////////////////////
+        // Functions
+        //////////////////////////////////////////////////
+        public void RefreshData()
+        {
             tasks = Db.Select_TodoAll();
             dataGrid_todoAll.ItemsSource = tasks;
         }
-        
+
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////

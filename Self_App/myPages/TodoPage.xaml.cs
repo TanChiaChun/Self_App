@@ -44,10 +44,16 @@ namespace Self_App.myPages
         {
             TaskWindow taskWin = new TaskWindow();
             taskWin.ShowDialog();
+
+            if (fr_todo.Content == todoAllPg)
+            {
+                todoAllPg.RefreshData();
+            }
         }
 
         private void btn_all_Click(object sender, RoutedEventArgs e)
         {
+            todoAllPg.RefreshData();
             fr_todo.Content = todoAllPg;
         }
     }
