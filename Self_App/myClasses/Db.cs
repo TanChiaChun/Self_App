@@ -134,30 +134,6 @@ namespace Self_App.myClasses
             return tags;
         }
 
-        public static List<MyTask> Select_TodoAll()
-        {
-            List<MyTask> tasks = new List<MyTask>();
-            string query = "SELECT id, task_name, is_done, project, section, due_date, do_date, start_date, priority, my_day FROM Task ORDER BY modify_date DESC";
-            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
-            {
-                connect.Open();
-                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
-                {
-                    using (SQLiteDataReader res = cmd.ExecuteReader())
-                    {
-                        if (res.HasRows)
-                        {
-                            while (res.Read())
-                            {
-                                tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["is_done"].ToString(), res["project"].ToString(), res["section"].ToString(), res["due_date"].ToString(), res["do_date"].ToString(), res["start_date"].ToString(), res["priority"].ToString(), res["my_day"].ToString()));
-                            }
-                        }
-                    }
-                }
-            }
-            return tasks;
-        }
-
         public static List<MyTask> Select_TodoMyDay(int myDay)
         {
             List<MyTask> tasks = new List<MyTask>();
@@ -174,6 +150,30 @@ namespace Self_App.myClasses
                             while (res.Read())
                             {
                                 tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["is_done"].ToString(), res["due_date"].ToString()));
+                            }
+                        }
+                    }
+                }
+            }
+            return tasks;
+        }
+
+        public static List<MyTask> Select_TodoAll()
+        {
+            List<MyTask> tasks = new List<MyTask>();
+            string query = "SELECT id, task_name, is_done, project, section, due_date, do_date, start_date, priority, my_day FROM Task ORDER BY modify_date DESC";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            while (res.Read())
+                            {
+                                tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["is_done"].ToString(), res["project"].ToString(), res["section"].ToString(), res["due_date"].ToString(), res["do_date"].ToString(), res["start_date"].ToString(), res["priority"].ToString(), res["my_day"].ToString()));
                             }
                         }
                     }
