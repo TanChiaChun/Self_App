@@ -122,7 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="myClasses\Database.cs" />
-    <Compile Include="myClasses\MyFunctions.cs" />
+    <Compile Include="myClasses\MyCls.cs" />
     <Compile Include="myClasses\MyTask.cs" />
     <Compile Include="myPages\TodoAll_Page.xaml.cs">
       <DependentUpon>TodoAll_Page.xaml</DependentUpon>

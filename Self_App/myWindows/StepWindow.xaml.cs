@@ -24,7 +24,7 @@ namespace Self_App.myWindows
         // Class variables
         //////////////////////////////////////////////////
         // Generic
-        private MyFunctions f = new MyFunctions();
+        private MyCls f = new MyCls();
 
         // Specific
         private MyWrite type;

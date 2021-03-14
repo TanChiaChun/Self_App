@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace Self_App.myClasses
 {
-    class MyFunctions
+    class MyCls
     {
         //////////////////////////////////////////////////
         // Functions
