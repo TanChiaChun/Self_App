@@ -19,8 +19,17 @@
                 <Button Content="Create Task" Margin="8" Name="btn_task_create" Click="btn_task_create_Click"/>
                 <Border BorderThickness="0,1" Padding="8">
                     <StackPanel>
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="Padding" Value="10,5"/>
+                                <Setter Property="Margin" Value="0,5,0,0"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        
                         <TextBlock Text="Home" Style="{DynamicResource my_TxtBlk_H2}"/>
-                        <Button Content="All" HorizontalContentAlignment="Left" Padding="10,5" Margin="0,5,0,0" Name="btn_all" Click="btn_all_Click"/>
+                        <Button Content="My Day" Name="btn_myDay" Click="btn_myDay_Click"/>
+                        <Button Content="All" Name="btn_all" Click="btn_all_Click"/>
                     </StackPanel>
                 </Border>
             </StackPanel>

@@ -26,6 +26,7 @@ namespace Self_App.myPages
         // Class variables
         //////////////////////////////////////////////////
         // Specific
+        private TodoMyDay_Page todoMyDayPg = new TodoMyDay_Page();
         private TodoAll_Page todoAllPg = new TodoAll_Page();
 
         //////////////////////////////////////////////////
@@ -49,6 +50,11 @@ namespace Self_App.myPages
             {
                 todoAllPg.RefreshData();
             }
+        }
+
+        private void btn_myDay_Click(object sender, RoutedEventArgs e)
+        {
+            fr_todo.Content = todoMyDayPg;
         }
 
         private void btn_all_Click(object sender, RoutedEventArgs e)
