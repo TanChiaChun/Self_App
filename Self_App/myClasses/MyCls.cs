@@ -10,6 +10,15 @@ namespace Self_App.myClasses
     static class MyCls
     {
         //////////////////////////////////////////////////
+        // Enums
+        //////////////////////////////////////////////////
+        public enum ColorMode
+        {
+            Light,
+            Dark
+        }
+
+        //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
         public static string ValidateSqlInput(string input)

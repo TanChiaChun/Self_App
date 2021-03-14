@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
 using Self_App.myWindows;
+using Self_App.myClasses;
 using Self_App.myPages;
 
 namespace Self_App
@@ -29,12 +30,7 @@ namespace Self_App
         // Specific
         private string myColorMode = ConfigurationManager.AppSettings.Get("ColorMode");
         private TodoPage todoPg = new TodoPage();
-        private enum ColorMode
-        {
-            Light,
-            Dark
-        }
-
+        
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
@@ -71,14 +67,14 @@ namespace Self_App
         {
             Button btn = e.Source as Button;
             
-            if (myColorMode == ColorMode.Light.ToString())
+            if (myColorMode == MyCls.ColorMode.Light.ToString())
             {
-                myColorMode = ColorMode.Dark.ToString();
+                myColorMode = MyCls.ColorMode.Dark.ToString();
                 SetConfig("ColorMode", myColorMode);
             }
-            else if (myColorMode == ColorMode.Dark.ToString())
+            else if (myColorMode == MyCls.ColorMode.Dark.ToString())
             {
-                myColorMode = ColorMode.Light.ToString();
+                myColorMode = MyCls.ColorMode.Light.ToString();
                 SetConfig("ColorMode", myColorMode);
             }
 
