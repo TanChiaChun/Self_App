@@ -65,8 +65,14 @@ namespace Self_App.myClasses
             return "";
         }
 
-        public static bool IsTextInputValid(bool allowEmpty, string input, string type)
+        public static bool IsTextInputValid(string input, string type, int limit, bool allowEmpty)
         {
+            if (input.Length > limit)
+            {
+                MessageBox.Show($"Exceed {limit} limit for {type}!");
+                return false;
+            }
+            
             if (!allowEmpty && String.IsNullOrEmpty(input))
             {
                 MessageBox.Show($"{type} cannot be empty!");

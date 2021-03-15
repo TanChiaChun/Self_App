@@ -43,7 +43,7 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         private void AddTag()
         {
-            if (!MyCls.IsTextInputValid(false, cmBx_tag.Text, "Tag"))
+            if (!MyCls.IsTextInputValid(cmBx_tag.Text, "Tag", 50, false))
             {
                 return;
             }

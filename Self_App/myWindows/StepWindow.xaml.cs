@@ -65,7 +65,7 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         private void WriteStep()
         {
-            if (!MyCls.IsTextInputValid(false, txtBx_step.Text, "Step"))
+            if (!MyCls.IsTextInputValid(txtBx_step.Text, "Step", 100, false))
             {
                 return;
             }

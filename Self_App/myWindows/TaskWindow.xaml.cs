@@ -222,25 +222,25 @@ namespace Self_App.myWindows
         private bool IsInputsValid(bool allowEmpty_projectNSection)
         {
             // task_name
-            if (!MyCls.IsTextInputValid(false, txtBx_task.Text, "Task Name"))
+            if (!MyCls.IsTextInputValid(txtBx_task.Text, "Task Name", 150, false))
             {
                 return false;
             }
 
             // project
-            if (!MyCls.IsTextInputValid(allowEmpty_projectNSection, cmBx_proj.Text, "Project"))
+            if (!MyCls.IsTextInputValid(cmBx_proj.Text, "Project", 50, allowEmpty_projectNSection))
             {
                 return false;
             }
 
             // section
-            if (!MyCls.IsTextInputValid(allowEmpty_projectNSection, cmBx_sect.Text, "Section"))
+            if (!MyCls.IsTextInputValid(cmBx_sect.Text, "Section", 50, allowEmpty_projectNSection))
             {
                 return false;
             }
 
             // note
-            if (!MyCls.IsTextInputValid(true, txtBx_note.Text, "Note"))
+            if (!MyCls.IsTextInputValid(txtBx_note.Text, "Note", 1000, true))
             {
                 return false;
             }
