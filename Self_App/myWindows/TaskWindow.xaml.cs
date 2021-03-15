@@ -51,6 +51,7 @@ namespace Self_App.myWindows
             this.Title += " - Create";
             btn_update.Visibility = Visibility.Collapsed;
             btn_delete.Visibility = Visibility.Collapsed;
+
             InitWindow();
         }
 
