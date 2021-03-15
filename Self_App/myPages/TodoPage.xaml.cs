@@ -47,9 +47,9 @@ namespace Self_App.myPages
             TaskWindow taskWin = new TaskWindow();
             taskWin.ShowDialog();
 
-            if (fr_todo.Content == todoAllPg)
+            if (fr_todo.Content != null)
             {
-                todoAllPg.RefreshData();
+                ((ITodo)fr_todo.Content).RefreshData();
             }
         }
 

@@ -132,6 +132,7 @@
     <Compile Include="myClasses\Db.cs" />
     <Compile Include="myClasses\MyCls.cs" />
     <Compile Include="myClasses\MyTask.cs" />
+    <Compile Include="myPages\ITodo.cs" />
     <Compile Include="myPages\TodoAll_Page.xaml.cs">
       <DependentUpon>TodoAll_Page.xaml</DependentUpon>
     </Compile>

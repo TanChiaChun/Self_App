@@ -19,7 +19,7 @@ namespace Self_App.myPages
     /// <summary>
     /// Interaction logic for TodoMyDay_Page.xaml
     /// </summary>
-    public partial class TodoMyDay_Page : Page
+    public partial class TodoMyDay_Page : Page, ITodo
     {
         //////////////////////////////////////////////////
         // Class variables
