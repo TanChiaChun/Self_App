@@ -18,7 +18,7 @@ namespace Self_App.myWindows
     /// <summary>
     /// Interaction logic for TaskWindow.xaml
     /// </summary>
-    public partial class TaskWindow : Window
+    public partial class TaskWindow : Window, IWindow
     {
         //////////////////////////////////////////////////
         // Class variables
@@ -452,7 +452,7 @@ namespace Self_App.myWindows
         // Events
         //////////////////////////////////////////////////
         // Generic with differences
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        public void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {

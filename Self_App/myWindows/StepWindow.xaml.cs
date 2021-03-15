@@ -18,7 +18,7 @@ namespace Self_App.myWindows
     /// <summary>
     /// Interaction logic for StepWindow.xaml
     /// </summary>
-    public partial class StepWindow : Window
+    public partial class StepWindow : Window, IWindow
     {
         //////////////////////////////////////////////////
         // Class variables
@@ -87,7 +87,7 @@ namespace Self_App.myWindows
         // Events
         //////////////////////////////////////////////////
         // Generic with differences
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        public void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {

@@ -18,7 +18,7 @@ namespace Self_App.myWindows
     /// <summary>
     /// Interaction logic for TagWindow.xaml
     /// </summary>
-    public partial class TagWindow : Window
+    public partial class TagWindow : Window, IWindow
     {
         //////////////////////////////////////////////////
         // Class variables
@@ -57,7 +57,7 @@ namespace Self_App.myWindows
         // Events
         //////////////////////////////////////////////////
         // Generic with differences
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        public void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {

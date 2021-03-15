@@ -145,6 +145,7 @@
     <Compile Include="myPages\TodoPage.xaml.cs">
       <DependentUpon>TodoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="myWindows\IWindow.cs" />
     <Compile Include="myWindows\StepWindow.xaml.cs">
       <DependentUpon>StepWindow.xaml</DependentUpon>
     </Compile>
