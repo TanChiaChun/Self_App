@@ -18,6 +18,7 @@
 
             <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
                 <Setter Property="HeadersVisibility" Value="None"/>
+                <Setter Property="BorderThickness" Value="1"/>
                 <EventSetter Event="MouseDoubleClick" Handler="dataGrid_MouseDoubleClick"/>
             </Style>
             

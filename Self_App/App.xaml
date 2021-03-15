@@ -75,6 +75,7 @@
                 <Setter Property="HeadersVisibility" Value="Column"/>
                 <Setter Property="GridLinesVisibility" Value="Horizontal"/>
                 <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+                <Setter Property="BorderThickness" Value="1,1,1,0"/>
             </Style>
             
             <!--Frame-->
