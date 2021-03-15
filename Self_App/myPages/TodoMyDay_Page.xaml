@@ -51,7 +51,7 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="My Day - " Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Style="{DynamicResource my_TxtBlk_H1}" Name="txtBlk_myDay" Margin="0,0,0,20"/>
+        <TextBlock Text="My Day - " Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Style="{DynamicResource my_TxtBlk_H1}" Margin="0,0,0,20" Name="txtBlk_myDay"/>
 
         <TextBlock Text="Urgent" Grid.Column="3" Grid.Row="2"/>
         <TextBlock Text="Not Urgent" Grid.Column="5" Grid.Row="2"/>
