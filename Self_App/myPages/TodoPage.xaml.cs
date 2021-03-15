@@ -27,6 +27,7 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Specific
         private TodoMyDay_Page todoMyDayPg = new TodoMyDay_Page();
+        private TodoDue_Page todoDuePg = new TodoDue_Page();
         private TodoAll_Page todoAllPg = new TodoAll_Page();
 
         //////////////////////////////////////////////////
@@ -56,6 +57,11 @@ namespace Self_App.myPages
         {
             todoMyDayPg.RefreshData();
             fr_todo.Content = todoMyDayPg;
+        }
+
+        private void btn_due_Click(object sender, RoutedEventArgs e)
+        {
+            fr_todo.Content = todoDuePg;
         }
 
         private void btn_all_Click(object sender, RoutedEventArgs e)
