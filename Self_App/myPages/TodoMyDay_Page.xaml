@@ -10,13 +10,18 @@
 
     <Grid>
         <Grid.Resources>
-            <Style TargetType="TextBlock">
+            <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
 
-            <Style TargetType="DataGridRow">
+            <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
+                <Setter Property="HeadersVisibility" Value="None"/>
+                <EventSetter Event="MouseDoubleClick" Handler="dataGrid_MouseDoubleClick"/>
+            </Style>
+            
+            <Style TargetType="{x:Type DataGridRow}">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding isDone, Mode=OneTime}" Value="true">
                         <Setter Property="Background" Value="Gray"/>
@@ -49,9 +54,32 @@
         <TextBlock Text="My Day - " Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Style="{DynamicResource my_TxtBlk_H1}" Name="txtBlk_myDay" Margin="0,0,0,20"/>
 
         <TextBlock Text="Urgent" Grid.Column="3" Grid.Row="2"/>
+        <TextBlock Text="Not Urgent" Grid.Column="5" Grid.Row="2"/>
         <TextBlock Text="Important" Grid.Column="1" Grid.Row="4"/>
+        <TextBlock Text="Not Important" Grid.Column="1" Grid.Row="6"/>
 
-        <DataGrid Grid.Column="3" Grid.Row="4" Name="dataGrid_0" BorderThickness="1" HeadersVisibility="None" MouseDoubleClick="dataGrid_0_MouseDoubleClick">
+        <DataGrid Grid.Column="3" Grid.Row="4" Name="dataGrid_0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}" Width="*"/>
+                <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr_dayMonth, Mode=OneTime}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Column="5" Grid.Row="4" Name="dataGrid_1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}" Width="*"/>
+                <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr_dayMonth, Mode=OneTime}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Column="3" Grid.Row="6" Name="dataGrid_2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}" Width="*"/>
+                <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr_dayMonth, Mode=OneTime}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Column="5" Grid.Row="6" Name="dataGrid_3">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}" Width="*"/>
                 <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr_dayMonth, Mode=OneTime}"/>

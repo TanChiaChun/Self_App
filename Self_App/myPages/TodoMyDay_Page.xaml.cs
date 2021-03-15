@@ -26,6 +26,9 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Specific
         private List<MyTask> tasks_0 = new List<MyTask>();
+        private List<MyTask> tasks_1 = new List<MyTask>();
+        private List<MyTask> tasks_2 = new List<MyTask>();
+        private List<MyTask> tasks_3 = new List<MyTask>();
 
         //////////////////////////////////////////////////
         // Main
@@ -46,12 +49,21 @@ namespace Self_App.myPages
         {
             tasks_0 = Db.Select_TodoMyDay(0);
             dataGrid_0.ItemsSource = tasks_0;
+
+            tasks_1 = Db.Select_TodoMyDay(1);
+            dataGrid_1.ItemsSource = tasks_1;
+
+            tasks_2 = Db.Select_TodoMyDay(2);
+            dataGrid_2.ItemsSource = tasks_2;
+
+            tasks_3 = Db.Select_TodoMyDay(3);
+            dataGrid_3.ItemsSource = tasks_3;
         }
 
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////
-        private void dataGrid_0_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DataGrid cDataGrid = e.Source as DataGrid;
             if (MyCls.DataGrid_Todo_MouseDoubleClick(ref cDataGrid))
