@@ -27,12 +27,12 @@ namespace Self_App.myPages
         // Class variables
         //////////////////////////////////////////////////
         // Specific
-        private TodoMyDay_Page todoMyDayPg = new TodoMyDay_Page();
-        private TodoDate_Page todoDuePg = new TodoDate_Page(MyCls.DateType.Due);
-        private TodoDate_Page todoDoPg = new TodoDate_Page(MyCls.DateType.Do);
-        private TodoGeneric_Page todoPriorityPg = new TodoGeneric_Page(MyCls.TodoGeneric.Priority);
-        private TodoGeneric_Page todoBlankPg = new TodoGeneric_Page(MyCls.TodoGeneric.Blank);
-        private TodoGeneric_Page todoAllPg = new TodoGeneric_Page(MyCls.TodoGeneric.All);
+        private TodoMyDay_Page todoMyDayPg;
+        private TodoDate_Page todoDuePg;
+        private TodoDate_Page todoDoPg;
+        private TodoGeneric_Page todoPriorityPg;
+        private TodoGeneric_Page todoBlankPg;
+        private TodoGeneric_Page todoAllPg;
 
         //////////////////////////////////////////////////
         // Main
@@ -41,6 +41,23 @@ namespace Self_App.myPages
         {
             // Generic
             InitializeComponent();
+
+            // Specific
+            todoMyDayPg = new TodoMyDay_Page(stkPnl_proj);
+            todoDuePg = new TodoDate_Page(MyCls.DateType.Due, stkPnl_proj);
+            todoDoPg = new TodoDate_Page(MyCls.DateType.Do, stkPnl_proj);
+            todoPriorityPg = new TodoGeneric_Page(MyCls.TodoGeneric.Priority, stkPnl_proj);
+            todoBlankPg = new TodoGeneric_Page(MyCls.TodoGeneric.Blank, stkPnl_proj);
+            todoAllPg = new TodoGeneric_Page(MyCls.TodoGeneric.All, stkPnl_proj);
+            RefreshData();
+        }
+
+        //////////////////////////////////////////////////
+        // Functions
+        //////////////////////////////////////////////////
+        private void RefreshData()
+        {
+            MyCls.RefreshProjectButtons(stkPnl_proj);
         }
 
         //////////////////////////////////////////////////
@@ -51,6 +68,7 @@ namespace Self_App.myPages
             TaskWindow taskWin = new TaskWindow();
             taskWin.ShowDialog();
 
+            RefreshData();
             if (fr_todo.Content != null)
             {
                 ((ITodo)fr_todo.Content).RefreshData();

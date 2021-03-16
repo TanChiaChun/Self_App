@@ -124,6 +124,18 @@ namespace Self_App.myClasses
             return new Tuple<string, string>("", "");
         }
 
+        public static void RefreshProjectButtons(StackPanel stkPnl)
+        {
+            stkPnl.Children.Clear();
+            List<string> projects = Db.Select_Projects();
+            foreach (string project in projects)
+            {
+                Button btn = new Button();
+                btn.Content = project;
+                stkPnl.Children.Add(btn);
+            }
+        }
+
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////

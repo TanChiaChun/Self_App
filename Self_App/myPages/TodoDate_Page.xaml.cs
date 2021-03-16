@@ -29,16 +29,18 @@ namespace Self_App.myPages
         private List<MyTask> tasks_earlier = new List<MyTask>();
         private List<MyTask> tasks_today = new List<MyTask>();
         private List<MyTask> tasks_upcoming = new List<MyTask>();
+        public StackPanel stkPnl_proj { get; }
 
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
-        public TodoDate_Page(MyCls.DateType pDateType)
+        public TodoDate_Page(MyCls.DateType pDateType, StackPanel stkPnl)
         {
             // Generic
             InitializeComponent();
 
             // Specific
+            stkPnl_proj = stkPnl;
             dateType = pDateType;
             txtBlk_date.Text = pDateType.ToString();
         }
@@ -56,6 +58,8 @@ namespace Self_App.myPages
 
             tasks_upcoming = Db.Select_TodoDate(dateType.ToString(), MyCls.GenerateSql_DateRange(MyCls.DateRange.Upcoming));
             dataGrid_upcoming.ItemsSource = tasks_upcoming;
+
+            MyCls.RefreshProjectButtons(stkPnl_proj);
         }
 
         //////////////////////////////////////////////////

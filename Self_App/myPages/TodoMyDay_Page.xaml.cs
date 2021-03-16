@@ -29,16 +29,18 @@ namespace Self_App.myPages
         private List<MyTask> tasks_1 = new List<MyTask>();
         private List<MyTask> tasks_2 = new List<MyTask>();
         private List<MyTask> tasks_3 = new List<MyTask>();
+        public StackPanel stkPnl_proj { get; }
 
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
-        public TodoMyDay_Page()
+        public TodoMyDay_Page(StackPanel stkPnl)
         {
             // Generic
             InitializeComponent();
 
             // Specific
+            stkPnl_proj = stkPnl;
             txtBlk_myDay.Text += DateTime.Now.ToString("d MMM");
         }
 
@@ -58,6 +60,8 @@ namespace Self_App.myPages
 
             tasks_3 = Db.Select_TodoMyDay(3);
             dataGrid_3.ItemsSource = tasks_3;
+
+            MyCls.RefreshProjectButtons(stkPnl_proj);
         }
 
         //////////////////////////////////////////////////

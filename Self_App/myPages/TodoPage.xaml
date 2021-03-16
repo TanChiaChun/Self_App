@@ -9,44 +9,60 @@
       Title="TodoPage">
 
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}" x:Key="my_button">
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="Padding" Value="10,5"/>
+                <Setter Property="Margin" Value="0,5,0,0"/>
+            </Style>
+        </Grid.Resources>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <Border Grid.Column="0" BorderThickness="0,0,1,0">
-            <StackPanel>
-                <Button Content="Create Task" Margin="8" Name="btn_task_create" Click="btn_task_create_Click"/>
-                <Border BorderThickness="0,1" Padding="8">
-                    <StackPanel>
-                        <StackPanel.Resources>
-                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
-                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                <Setter Property="Padding" Value="10,5"/>
-                                <Setter Property="Margin" Value="0,5,0,0"/>
-                            </Style>
-                        </StackPanel.Resources>
-                        
-                        <TextBlock Text="Home" Style="{DynamicResource my_TxtBlk_H2}"/>
-                        <Button Content="My Day" Name="btn_myDay" Click="btn_myDay_Click"/>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="5"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            
-                            <Button Grid.Column="0" Content="Due" Name="btn_due" Click="btn_due_Click"/>
-                            <Button Grid.Column="2" Content="Do" Name="btn_do" Click="btn_do_Click"/>
-                        </Grid>
-                        <Button Content="Priority" Name="btn_priority" Click="btn_priority_Click"/>
-                        <Button Content="Blank" Name="btn_blank" Click="btn_blank_Click"/>
-                        <Button Content="All" Name="btn_all" Click="btn_all_Click"/>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-        </Border>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <Button Content="Create Task" Margin="8" Name="btn_task_create" Click="btn_task_create_Click"/>
 
+                    <Border BorderThickness="0,1" Padding="8">
+                        <StackPanel>
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource my_button}"/>
+                            </StackPanel.Resources>
+
+                            <TextBlock Text="Home" Style="{DynamicResource my_TxtBlk_H2}"/>
+                            <Button Content="My Day" Name="btn_myDay" Click="btn_myDay_Click"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Grid.Column="0" Content="Due" Name="btn_due" Click="btn_due_Click"/>
+                                <Button Grid.Column="2" Content="Do" Name="btn_do" Click="btn_do_Click"/>
+                            </Grid>
+                            <Button Content="Priority" Name="btn_priority" Click="btn_priority_Click"/>
+                            <Button Content="Blank" Name="btn_blank" Click="btn_blank_Click"/>
+                            <Button Content="All" Name="btn_all" Click="btn_all_Click"/>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel Margin="8">
+                        <TextBlock Text="Projects" Style="{DynamicResource my_TxtBlk_H2}"/>
+                        <StackPanel Name="stkPnl_proj">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource my_button}"/>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        
         <Frame Grid.Column="1" Name="fr_todo"/>
     </Grid>
 </Page>
