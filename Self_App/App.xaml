@@ -41,6 +41,12 @@
                 <Setter Property="Padding" Value="30,5"/>
             </Style>
 
+            <!--Button Red-->
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}" x:Key="my_btn_red">
+                <Setter Property="Background" Value="Red"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
+
             <!--Border-->
             <Style TargetType="{x:Type Border}">
                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
