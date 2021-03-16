@@ -24,6 +24,7 @@ namespace Self_App.myPages
         // Class variables
         //////////////////////////////////////////////////
         // Specific
+        private string project = "";
         public StackPanel stkPnl_proj { get; }
 
         //////////////////////////////////////////////////
@@ -41,6 +42,12 @@ namespace Self_App.myPages
         public void RefreshData()
         {
 
+        }
+
+        public void UpdateProject(string pProject)
+        {
+            project = pProject;
+            txtBlk_proj.Text = project;
         }
 
         //////////////////////////////////////////////////

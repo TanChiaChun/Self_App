@@ -115,6 +115,8 @@ namespace Self_App.myPages
 
         private void btn_project_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = e.Source as Button;
+            todoProjPg.UpdateProject((string)btn.Content);
             fr_todo.Content = todoProjPg;
         }
     }

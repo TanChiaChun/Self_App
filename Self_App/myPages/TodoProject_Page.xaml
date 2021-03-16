@@ -16,7 +16,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="Project 1" Style="{DynamicResource my_TxtBlk_H1}"/>
+                <TextBlock Grid.Column="0" Style="{DynamicResource my_TxtBlk_H1}" Name="txtBlk_proj"/>
                 <Button Grid.Column="1" Content="Show Complete" Padding="5"/>
             </Grid>
         </StackPanel>
