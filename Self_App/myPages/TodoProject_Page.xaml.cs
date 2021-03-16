@@ -26,6 +26,7 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Specific
         private string project = "";
+        private bool includeDone = true;
         public StackPanel stkPnl_proj { get; }
 
         //////////////////////////////////////////////////
@@ -83,16 +84,31 @@ namespace Self_App.myPages
                 cDataGrid.Columns.Add(Generate_DataGridTextColumn("Su", "hasSteps_Str", 22));
                 cDataGrid.Columns.Add(Generate_DataGridTextColumn("N", "hasNote_Str", 18));
                 stkPnl.Children.Add(cDataGrid);
-                List<MyTask> tasks = Db.Select_SectionTasks(project, section);
+                List<MyTask> tasks = Db.Select_SectionTasks(project, section, includeDone);
                 cDataGrid.ItemsSource = tasks;
 
                 stkPnl_sect.Children.Add(stkPnl);
             }
         }
-        
+
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////
+        private void btn_done_Click(object sender, RoutedEventArgs e)
+        {
+            if (includeDone)
+            {
+                includeDone = false;
+                btn_done.Content = "Hide Done";
+            }
+            else if (!includeDone)
+            {
+                includeDone = true;
+                btn_done.Content = "Show Done";
+            }
+            UpdateSections();
+        }
+
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DataGrid cDataGrid = e.Source as DataGrid;

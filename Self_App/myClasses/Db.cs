@@ -320,10 +320,11 @@ namespace Self_App.myClasses
             return tasks;
         }
 
-        public static List<MyTask> Select_SectionTasks(string proj, string sect)
+        public static List<MyTask> Select_SectionTasks(string proj, string sect, bool includeDone)
         {
+            string doneFltr = includeDone ? "" : " AND is_done=0";
             List<MyTask> tasks = new List<MyTask>();
-            string query = $"SELECT id, task_name, is_done, due_date, do_date, start_date, (CASE WHEN is_done=0 AND my_day<4 THEN 1 ELSE 0 END) AS my_day_not_done, (CASE WHEN steps!='' THEN 1 ELSE 0 END) AS has_steps, (CASE WHEN note!='' THEN 1 ELSE 0 END) AS has_note FROM Task WHERE project='{proj}' AND section='{sect}' ORDER BY is_done ASC, task_name ASC";
+            string query = $"SELECT id, task_name, is_done, due_date, do_date, start_date, (CASE WHEN is_done=0 AND my_day<4 THEN 1 ELSE 0 END) AS my_day_not_done, (CASE WHEN steps!='' THEN 1 ELSE 0 END) AS has_steps, (CASE WHEN note!='' THEN 1 ELSE 0 END) AS has_note FROM Task WHERE project='{proj}' AND section='{sect}'{doneFltr} ORDER BY is_done ASC, task_name ASC";
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
             {
                 connect.Open();

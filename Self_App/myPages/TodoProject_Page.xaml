@@ -22,7 +22,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Style="{DynamicResource my_TxtBlk_H1}" Name="txtBlk_proj"/>
-                <Button Grid.Column="1" Content="Show Complete" Padding="5"/>
+                <Button Grid.Column="1" Content="Show Done" Padding="5" Name="btn_done" Click="btn_done_Click"/>
             </Grid>
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
