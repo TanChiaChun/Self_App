@@ -54,7 +54,6 @@ namespace Self_App.myPages
             todoAllPg = new TodoGeneric_Page(MyCls.TodoGeneric.All, stkPnl_proj);
             todoProjPg = new TodoProject_Page(stkPnl_proj);
             todoExtFuncPg = new TodoExternalFunctions_Page();
-            RefreshData();
         }
 
         //////////////////////////////////////////////////

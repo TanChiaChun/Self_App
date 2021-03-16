@@ -84,6 +84,7 @@ namespace Self_App
 
         private void btn_todo_Click(object sender, RoutedEventArgs e)
         {
+            todoPg.RefreshData();
             fr_main.Content = todoPg;
         }
     }
