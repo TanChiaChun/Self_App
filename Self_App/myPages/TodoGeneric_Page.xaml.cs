@@ -26,25 +26,30 @@ namespace Self_App.myPages
         // Class variables
         //////////////////////////////////////////////////
         // Specific
+        private MyCls.TodoGeneric todo;
         private List<MyTask> tasks = new List<MyTask>();
         private DataGrid dataGrid;
 
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
-        public TodoGeneric_Page(MyCls.TodoGeneric todo)
+        public TodoGeneric_Page(MyCls.TodoGeneric pTodo)
         {
             // Generic
             InitializeComponent();
 
             // Specific
+            todo = pTodo;
             switch (todo)
             {
+                case MyCls.TodoGeneric.Priority:
+                    dataGrid = dataGrid_priority;
+                    break;
                 case MyCls.TodoGeneric.All:
-                    txtBlk_generic.Text = "All";
                     dataGrid = dataGrid_all;
                     break;
             }
+            txtBlk_generic.Text = todo.ToString();
             dataGrid.Visibility = Visibility.Visible;
         }
 
@@ -53,7 +58,15 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         public void RefreshData()
         {
-            tasks = Db.Select_TodoAll();
+            switch (todo)
+            {
+                case MyCls.TodoGeneric.Priority:
+                    tasks = Db.Select_TodoPriority();
+                    break;
+                case MyCls.TodoGeneric.All:
+                    tasks = Db.Select_TodoAll();
+                    break;
+            }
             dataGrid.ItemsSource = tasks;
         }
 

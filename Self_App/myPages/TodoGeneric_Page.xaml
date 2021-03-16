@@ -26,6 +26,18 @@
 
             <TextBlock Grid.Row="0" Style="{DynamicResource my_TxtBlk_H1}" Margin="10,10,0,0" Name="txtBlk_generic"/>
 
+            <DataGrid Grid.Row="1" Name="dataGrid_priority">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Priority" Binding="{Binding priority_intStr, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Project" Binding="{Binding project, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Section" Binding="{Binding section, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Do" Binding="{Binding doDateStr, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="My Day" Binding="{Binding myDay_intStr, Mode=OneTime}" HeaderStyle="{StaticResource my_dataGridColHead_last}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            
             <DataGrid Grid.Row="1" Name="dataGrid_all">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>

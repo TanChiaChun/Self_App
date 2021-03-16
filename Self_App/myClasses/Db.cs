@@ -182,6 +182,30 @@ namespace Self_App.myClasses
             return tasks;
         }
 
+        public static List<MyTask> Select_TodoPriority()
+        {
+            List<MyTask> tasks = new List<MyTask>();
+            string query = "SELECT id, task_name, project, section, due_date, do_date, priority, my_day FROM Task WHERE is_done=0 ORDER BY priority ASC, due_date ASC, modify_date DESC";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            while (res.Read())
+                            {
+                                tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["project"].ToString(), res["section"].ToString(), res["due_date"].ToString(), res["do_date"].ToString(), res["priority"].ToString(), res["my_day"].ToString()));
+                            }
+                        }
+                    }
+                }
+            }
+            return tasks;
+        }
+
         public static List<MyTask> Select_TodoAll()
         {
             List<MyTask> tasks = new List<MyTask>();

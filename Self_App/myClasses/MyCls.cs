@@ -60,6 +60,7 @@ namespace Self_App.myClasses
 
         public enum TodoGeneric
         {
+            Priority,
             All
         }
 

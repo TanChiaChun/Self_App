@@ -39,6 +39,7 @@
                             <Button Grid.Column="0" Content="Due" Name="btn_due" Click="btn_due_Click"/>
                             <Button Grid.Column="2" Content="Do" Name="btn_do" Click="btn_do_Click"/>
                         </Grid>
+                        <Button Content="Priority" Name="btn_priority" Click="btn_priority_Click"/>
                         <Button Content="All" Name="btn_all" Click="btn_all_Click"/>
                     </StackPanel>
                 </Border>

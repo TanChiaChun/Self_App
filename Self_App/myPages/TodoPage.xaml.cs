@@ -30,6 +30,7 @@ namespace Self_App.myPages
         private TodoMyDay_Page todoMyDayPg = new TodoMyDay_Page();
         private TodoDate_Page todoDuePg = new TodoDate_Page(MyCls.DateType.Due);
         private TodoDate_Page todoDoPg = new TodoDate_Page(MyCls.DateType.Do);
+        private TodoGeneric_Page todoPriorityPg = new TodoGeneric_Page(MyCls.TodoGeneric.Priority);
         private TodoGeneric_Page todoAllPg = new TodoGeneric_Page(MyCls.TodoGeneric.All);
 
         //////////////////////////////////////////////////
@@ -71,6 +72,12 @@ namespace Self_App.myPages
         {
             todoDoPg.RefreshData();
             fr_todo.Content = todoDoPg;
+        }
+
+        private void btn_priority_Click(object sender, RoutedEventArgs e)
+        {
+            todoPriorityPg.RefreshData();
+            fr_todo.Content = todoPriorityPg;
         }
 
         private void btn_all_Click(object sender, RoutedEventArgs e)
