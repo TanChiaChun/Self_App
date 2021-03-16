@@ -69,48 +69,48 @@ namespace Self_App.myClasses
             id = pId;
         }
 
-        public MyTask(string pId, string pTaskName, string pIsDone, string pDueDate)
+        public MyTask(int pId, string pTaskName, bool pIsDone, DateTime pDueDate)
         {
-            id = Int32.Parse(pId);
+            id = pId;
             taskName = pTaskName;
-            isDone = Convert.ToBoolean(Int32.Parse(pIsDone));
-            dueDate = DateTime.ParseExact(pDueDate, MyCls.DATE_FORMAT_DB, null);
+            isDone = pIsDone;
+            dueDate = pDueDate;
         }
 
-        public MyTask(string pId, string pTaskName, string pProj, string pSect, string pDueDate, string pDoDate, string pPriority, string pMyDay)
+        public MyTask(int pId, string pTaskName, string pProj, string pSect, DateTime pStartDate, MyCls.Priority pPriority)
         {
-            id = Int32.Parse(pId);
+            id = pId;
             taskName = pTaskName;
             project = pProj;
             section = pSect;
-            dueDate = DateTime.ParseExact(pDueDate, MyCls.DATE_FORMAT_DB, null);
-            doDate = DateTime.ParseExact(pDoDate, MyCls.DATE_FORMAT_DB, null);
-            _priority = (MyCls.Priority)Int32.Parse(pPriority);
-            _myDay = (MyCls.MyDay)Int32.Parse(pMyDay);
+            startDate = pStartDate;
+            _priority = pPriority;
         }
 
-        public MyTask(string pId, string pTaskName, string pProj, string pSect, string pStartDate, string pPriority)
+        public MyTask(int pId, string pTaskName, string pProj, string pSect, DateTime pDueDate, DateTime pDoDate, MyCls.Priority pPriority, MyCls.MyDay pMyDay)
         {
-            id = Int32.Parse(pId);
+            id = pId;
             taskName = pTaskName;
             project = pProj;
             section = pSect;
-            startDate = DateTime.ParseExact(pStartDate, MyCls.DATE_FORMAT_DB, null);
-            _priority = (MyCls.Priority)Int32.Parse(pPriority);
+            dueDate = pDueDate;
+            doDate = pDoDate;
+            _priority = pPriority;
+            _myDay = pMyDay;
         }
 
-        public MyTask(string pId, string pTaskName, string pIsDone, string pProj, string pSect, string pDueDate, string pDoDate, string pStartDate, string pPriority, string pMyDay)
+        public MyTask(int pId, string pTaskName, bool pIsDone, string pProj, string pSect, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, MyCls.Priority pPriority, MyCls.MyDay pMyDay)
         {
-            id = Int32.Parse(pId);
+            id = pId;
             taskName = pTaskName;
-            isDone = Convert.ToBoolean(Int32.Parse(pIsDone));
+            isDone = pIsDone;
             project = pProj;
             section = pSect;
-            dueDate = DateTime.ParseExact(pDueDate, MyCls.DATE_FORMAT_DB, null);
-            doDate = DateTime.ParseExact(pDoDate, MyCls.DATE_FORMAT_DB, null);
-            startDate = DateTime.ParseExact(pStartDate, MyCls.DATE_FORMAT_DB, null);
-            _priority = (MyCls.Priority)Int32.Parse(pPriority);
-            _myDay = (MyCls.MyDay)Int32.Parse(pMyDay);
+            dueDate = pDueDate;
+            doDate = pDoDate;
+            startDate = pStartDate;
+            _priority = pPriority;
+            _myDay = pMyDay;
         }
 
         //////////////////////////////////////////////////
@@ -121,17 +121,18 @@ namespace Self_App.myClasses
             return $"{id}-{taskName}-{isDone.ToString()}-{project}-{section}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_priority.ToString()}-{_myDay.ToString()}-{tags.Count}-{steps.Count}-{note}";
         }
 
-        public void UpdateTask_FromDb(string pTaskName, string pIsDone, string pProj, string pSect, string pDueDate, string pDoDate, string pStartDate, string pPriority, string pMyDay, string pTags, string pSteps, string pNote)
+        public void UpdateTask_FromDb(string pTaskName, bool pIsDone, string pProj, string pSect, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, MyCls.Priority pPriority, MyCls.MyDay pMyDay, string pTags, string pSteps, string pNote)
         {
             taskName = pTaskName;
-            isDone = Convert.ToBoolean(Int32.Parse(pIsDone));
+            taskName = pTaskName;
+            isDone = pIsDone;
             project = pProj;
             section = pSect;
-            dueDate = DateTime.ParseExact(pDueDate, MyCls.DATE_FORMAT_DB, null);
-            doDate = DateTime.ParseExact(pDoDate, MyCls.DATE_FORMAT_DB, null);
-            startDate = DateTime.ParseExact(pStartDate, MyCls.DATE_FORMAT_DB, null);
-            _priority = (MyCls.Priority)Int32.Parse(pPriority);
-            _myDay = (MyCls.MyDay)Int32.Parse(pMyDay);
+            dueDate = pDueDate;
+            doDate = pDoDate;
+            startDate = pStartDate;
+            _priority = pPriority;
+            _myDay = pMyDay;
             note = pNote;
 
             if (!String.IsNullOrEmpty(pTags))

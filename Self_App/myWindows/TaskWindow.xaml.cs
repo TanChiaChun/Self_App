@@ -25,7 +25,7 @@ namespace Self_App.myWindows
         //////////////////////////////////////////////////
         // Specific
         private MyWrite type;
-        private MyTask task = new MyTask(-1);
+        private MyTask task;
         private List<string> projects = new List<string>();
         private List<string> sections = new List<string>();
         private bool hasDate_due = false;

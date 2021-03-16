@@ -54,7 +54,19 @@ namespace Self_App.myClasses
                         if (res.HasRows)
                         {
                             res.Read();
-                            task.UpdateTask_FromDb(res["task_name"].ToString(), res["is_done"].ToString(), res["project"].ToString(), res["section"].ToString(), res["due_date"].ToString(), res["do_date"].ToString(), res["start_date"].ToString(), res["priority"].ToString(), res["my_day"].ToString(), res["tags"].ToString(), res["steps"].ToString(), res["note"].ToString());
+                            string taskName = res["task_name"].ToString();
+                            bool isDone = Convert.ToBoolean(Int32.Parse(res["is_done"].ToString()));
+                            string project = res["project"].ToString();
+                            string section = res["section"].ToString();
+                            DateTime dueDate = DateTime.ParseExact(res["due_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                            DateTime doDate = DateTime.ParseExact(res["do_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                            DateTime startDate = DateTime.ParseExact(res["start_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                            MyCls.Priority _priority = (MyCls.Priority)Int32.Parse(res["priority"].ToString());
+                            MyCls.MyDay _myDay = (MyCls.MyDay)Int32.Parse(res["my_day"].ToString());
+                            string tags = res["tags"].ToString();
+                            string steps = res["steps"].ToString();
+                            string note = res["note"].ToString();
+                            task.UpdateTask_FromDb(taskName, isDone, project, section, dueDate, doDate, startDate, _priority, _myDay, tags, steps, note);
                         }
                     }
                 }
@@ -149,7 +161,11 @@ namespace Self_App.myClasses
                         {
                             while (res.Read())
                             {
-                                tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["is_done"].ToString(), res["due_date"].ToString()));
+                                int id = Int32.Parse(res["id"].ToString());
+                                string taskName = res["task_name"].ToString();
+                                bool isDone = Convert.ToBoolean(Int32.Parse(res["is_done"].ToString()));
+                                DateTime dueDate = DateTime.ParseExact(res["due_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                tasks.Add(new MyTask(id, taskName, isDone, dueDate));
                             }
                         }
                     }
@@ -173,7 +189,15 @@ namespace Self_App.myClasses
                         {
                             while (res.Read())
                             {
-                                tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["project"].ToString(), res["section"].ToString(), res["due_date"].ToString(), res["do_date"].ToString(), res["priority"].ToString(), res["my_day"].ToString()));
+                                int id = Int32.Parse(res["id"].ToString());
+                                string taskName = res["task_name"].ToString();
+                                string project = res["project"].ToString();
+                                string section = res["section"].ToString();
+                                DateTime dueDate = DateTime.ParseExact(res["due_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                DateTime doDate = DateTime.ParseExact(res["do_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                MyCls.Priority _priority = (MyCls.Priority)Int32.Parse(res["priority"].ToString());
+                                MyCls.MyDay _myDay = (MyCls.MyDay)Int32.Parse(res["my_day"].ToString());
+                                tasks.Add(new MyTask(id, taskName, project, section, dueDate, doDate, _priority, _myDay));
                             }
                         }
                     }
@@ -197,7 +221,15 @@ namespace Self_App.myClasses
                         {
                             while (res.Read())
                             {
-                                tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["project"].ToString(), res["section"].ToString(), res["due_date"].ToString(), res["do_date"].ToString(), res["priority"].ToString(), res["my_day"].ToString()));
+                                int id = Int32.Parse(res["id"].ToString());
+                                string taskName = res["task_name"].ToString();
+                                string project = res["project"].ToString();
+                                string section = res["section"].ToString();
+                                DateTime dueDate = DateTime.ParseExact(res["due_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                DateTime doDate = DateTime.ParseExact(res["do_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                MyCls.Priority _priority = (MyCls.Priority)Int32.Parse(res["priority"].ToString());
+                                MyCls.MyDay _myDay = (MyCls.MyDay)Int32.Parse(res["my_day"].ToString());
+                                tasks.Add(new MyTask(id, taskName, project, section, dueDate, doDate, _priority, _myDay));
                             }
                         }
                     }
@@ -221,7 +253,13 @@ namespace Self_App.myClasses
                         {
                             while (res.Read())
                             {
-                                tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["project"].ToString(), res["section"].ToString(), res["start_date"].ToString(), res["priority"].ToString()));
+                                int id = Int32.Parse(res["id"].ToString());
+                                string taskName = res["task_name"].ToString();
+                                string project = res["project"].ToString();
+                                string section = res["section"].ToString();
+                                DateTime startDate = DateTime.ParseExact(res["start_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                MyCls.Priority _priority = (MyCls.Priority)Int32.Parse(res["priority"].ToString());
+                                tasks.Add(new MyTask(id, taskName, project, section, startDate, _priority));
                             }
                         }
                     }
@@ -245,7 +283,17 @@ namespace Self_App.myClasses
                         {
                             while (res.Read())
                             {
-                                tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["is_done"].ToString(), res["project"].ToString(), res["section"].ToString(), res["due_date"].ToString(), res["do_date"].ToString(), res["start_date"].ToString(), res["priority"].ToString(), res["my_day"].ToString()));
+                                int id = Int32.Parse(res["id"].ToString());
+                                string taskName = res["task_name"].ToString();
+                                bool isDone = Convert.ToBoolean(Int32.Parse(res["is_done"].ToString()));
+                                string project = res["project"].ToString();
+                                string section = res["section"].ToString();
+                                DateTime dueDate = DateTime.ParseExact(res["due_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                DateTime doDate = DateTime.ParseExact(res["do_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                DateTime startDate = DateTime.ParseExact(res["start_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                MyCls.Priority _priority = (MyCls.Priority)Int32.Parse(res["priority"].ToString());
+                                MyCls.MyDay _myDay = (MyCls.MyDay)Int32.Parse(res["my_day"].ToString());
+                                tasks.Add(new MyTask(id, taskName, isDone, project, section, dueDate, doDate, startDate, _priority, _myDay));
                             }
                         }
                     }
