@@ -68,7 +68,7 @@ namespace Self_App.myClasses
             _priority = pPriority;
         }
 
-        public MyTask(int pId, string pTaskName, string pProj, string pSect, DateTime pDueDate, DateTime pDoDate, MyCls.Priority pPriority, MyCls.MyDay pMyDay)
+        public MyTask(int pId, string pTaskName, string pProj, string pSect, DateTime pDueDate, DateTime pDoDate, MyCls.Priority pPriority, MyCls.MyDay pMyDay, bool pMyDay_notDone)
         {
             id = pId;
             taskName = pTaskName;
@@ -78,9 +78,10 @@ namespace Self_App.myClasses
             doDate = pDoDate;
             _priority = pPriority;
             _myDay = pMyDay;
+            myDay_notDone = pMyDay_notDone;
         }
 
-        public MyTask(int pId, string pTaskName, bool pIsDone, string pProj, string pSect, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, MyCls.Priority pPriority, MyCls.MyDay pMyDay)
+        public MyTask(int pId, string pTaskName, bool pIsDone, string pProj, string pSect, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, MyCls.Priority pPriority, MyCls.MyDay pMyDay, bool pMyDay_notDone)
         {
             id = pId;
             taskName = pTaskName;
@@ -92,6 +93,7 @@ namespace Self_App.myClasses
             startDate = pStartDate;
             _priority = pPriority;
             _myDay = pMyDay;
+            myDay_notDone = pMyDay_notDone;
         }
 
         public MyTask(int pId, string pTaskName, bool pIsDone, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, bool pMyDay_notDone, bool pHasSteps, bool pHasNote)

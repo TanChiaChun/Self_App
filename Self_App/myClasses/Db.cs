@@ -195,7 +195,7 @@ namespace Self_App.myClasses
             }
 
             List<MyTask> tasks = new List<MyTask>();
-            string query = $"SELECT id, task_name, project, section, due_date, do_date, priority, my_day FROM Task WHERE is_done=0 AND {type}_date!='0001-01-01' AND {type}_date{optr}'{DateTime.Now.ToString(MyCls.DATE_FORMAT_DB)}' ORDER BY {type}_date {sort}, priority ASC, modify_date DESC";
+            string query = $"SELECT id, task_name, project, section, due_date, do_date, priority, my_day, (CASE WHEN my_day<4 THEN 1 ELSE 0 END) as my_day_not_done FROM Task WHERE is_done=0 AND {type}_date!='0001-01-01' AND {type}_date{optr}'{DateTime.Now.ToString(MyCls.DATE_FORMAT_DB)}' ORDER BY {type}_date {sort}, priority ASC, modify_date DESC";
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
             {
                 connect.Open();
@@ -215,7 +215,8 @@ namespace Self_App.myClasses
                                 DateTime doDate = DateTime.ParseExact(res["do_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
                                 MyCls.Priority _priority = (MyCls.Priority)Int32.Parse(res["priority"].ToString());
                                 MyCls.MyDay _myDay = (MyCls.MyDay)Int32.Parse(res["my_day"].ToString());
-                                tasks.Add(new MyTask(id, taskName, project, section, dueDate, doDate, _priority, _myDay));
+                                bool myDay_notDone = Convert.ToBoolean(Int32.Parse(res["my_day_not_done"].ToString()));
+                                tasks.Add(new MyTask(id, taskName, project, section, dueDate, doDate, _priority, _myDay, myDay_notDone));
                             }
                         }
                     }
@@ -227,7 +228,7 @@ namespace Self_App.myClasses
         public static List<MyTask> Select_TodoPriority()
         {
             List<MyTask> tasks = new List<MyTask>();
-            string query = "SELECT id, task_name, project, section, due_date, do_date, priority, my_day FROM Task WHERE is_done=0 ORDER BY priority ASC, due_date ASC, modify_date DESC";
+            string query = "SELECT id, task_name, project, section, due_date, do_date, priority, my_day, (CASE WHEN my_day<4 THEN 1 ELSE 0 END) as my_day_not_done FROM Task WHERE is_done=0 ORDER BY priority ASC, due_date ASC, modify_date DESC";
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
             {
                 connect.Open();
@@ -247,7 +248,8 @@ namespace Self_App.myClasses
                                 DateTime doDate = DateTime.ParseExact(res["do_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
                                 MyCls.Priority _priority = (MyCls.Priority)Int32.Parse(res["priority"].ToString());
                                 MyCls.MyDay _myDay = (MyCls.MyDay)Int32.Parse(res["my_day"].ToString());
-                                tasks.Add(new MyTask(id, taskName, project, section, dueDate, doDate, _priority, _myDay));
+                                bool myDay_notDone = Convert.ToBoolean(Int32.Parse(res["my_day_not_done"].ToString()));
+                                tasks.Add(new MyTask(id, taskName, project, section, dueDate, doDate, _priority, _myDay, myDay_notDone));
                             }
                         }
                     }
@@ -289,7 +291,7 @@ namespace Self_App.myClasses
         public static List<MyTask> Select_TodoAll()
         {
             List<MyTask> tasks = new List<MyTask>();
-            string query = "SELECT id, task_name, is_done, project, section, due_date, do_date, start_date, priority, my_day FROM Task ORDER BY modify_date DESC";
+            string query = "SELECT id, task_name, is_done, project, section, due_date, do_date, start_date, priority, my_day, (CASE WHEN my_day<4 THEN 1 ELSE 0 END) as my_day_not_done FROM Task ORDER BY modify_date DESC";
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
             {
                 connect.Open();
@@ -311,7 +313,8 @@ namespace Self_App.myClasses
                                 DateTime startDate = DateTime.ParseExact(res["start_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
                                 MyCls.Priority _priority = (MyCls.Priority)Int32.Parse(res["priority"].ToString());
                                 MyCls.MyDay _myDay = (MyCls.MyDay)Int32.Parse(res["my_day"].ToString());
-                                tasks.Add(new MyTask(id, taskName, isDone, project, section, dueDate, doDate, startDate, _priority, _myDay));
+                                bool myDay_notDone = Convert.ToBoolean(Int32.Parse(res["my_day_not_done"].ToString()));
+                                tasks.Add(new MyTask(id, taskName, isDone, project, section, dueDate, doDate, startDate, _priority, _myDay, myDay_notDone));
                             }
                         }
                     }
