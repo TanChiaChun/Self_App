@@ -50,7 +50,7 @@ namespace Self_App.myPages
             todoPriorityPg = new TodoGeneric_Page(MyCls.TodoGeneric.Priority, stkPnl_proj);
             todoBlankPg = new TodoGeneric_Page(MyCls.TodoGeneric.Blank, stkPnl_proj);
             todoAllPg = new TodoGeneric_Page(MyCls.TodoGeneric.All, stkPnl_proj);
-            todoProjPg = new TodoProject_Page();
+            todoProjPg = new TodoProject_Page(stkPnl_proj);
             RefreshData();
         }
 

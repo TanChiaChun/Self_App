@@ -40,6 +40,7 @@
 
                         <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
                             <Setter Property="MinColumnWidth" Value="1"/>
+                            <EventSetter Event="MouseDoubleClick" Handler="DataGrid_MouseDoubleClick"/>
                         </Style>
 
                         <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">

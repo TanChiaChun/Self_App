@@ -31,10 +31,13 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
-        public TodoProject_Page()
+        public TodoProject_Page(StackPanel stkPnl)
         {
             // Generic
             InitializeComponent();
+
+            // Specific
+            stkPnl_proj = stkPnl;
         }
 
         //////////////////////////////////////////////////
@@ -43,6 +46,8 @@ namespace Self_App.myPages
         public void RefreshData()
         {
             UpdateSections();
+
+            MyCls.RefreshProjectButtons(stkPnl_proj);
         }
 
         public void UpdateProject(string pProject)
@@ -84,9 +89,17 @@ namespace Self_App.myPages
                 stkPnl_sect.Children.Add(stkPnl);
             }
         }
-
+        
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGrid cDataGrid = e.Source as DataGrid;
+            if (MyCls.DataGrid_Todo_MouseDoubleClick(ref cDataGrid))
+            {
+                RefreshData();
+            }
+        }
     }
 }
