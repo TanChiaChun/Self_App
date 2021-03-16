@@ -29,7 +29,7 @@ namespace Self_App.myPages
         private MyCls.TodoGeneric todo;
         private List<MyTask> tasks = new List<MyTask>();
         private DataGrid dataGrid;
-        public StackPanel stkPnl_proj { get; }
+        public StackPanel myStkPnl_proj { get; }
 
         //////////////////////////////////////////////////
         // Main
@@ -40,7 +40,7 @@ namespace Self_App.myPages
             InitializeComponent();
 
             // Specific
-            stkPnl_proj = stkPnl;
+            myStkPnl_proj = stkPnl;
             todo = pTodo;
             switch (todo)
             {
@@ -77,7 +77,7 @@ namespace Self_App.myPages
             }
             dataGrid.ItemsSource = tasks;
 
-            MyCls.RefreshProjectButtons(stkPnl_proj);
+            MyCls.RefreshProjectButtons(myStkPnl_proj);
         }
 
         //////////////////////////////////////////////////

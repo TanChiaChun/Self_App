@@ -9,7 +9,7 @@ namespace Self_App.myPages
 {
     interface ITodo
     {
-        StackPanel stkPnl_proj { get; }
+        StackPanel myStkPnl_proj { get; }
 
         void RefreshData();
     }

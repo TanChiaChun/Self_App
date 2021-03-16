@@ -21,7 +21,7 @@ namespace Self_App.myPages
     /// <summary>
     /// Interaction logic for TodoPage.xaml
     /// </summary>
-    public partial class TodoPage : Page
+    public partial class TodoPage : Page, ITodo
     {
         //////////////////////////////////////////////////
         // Class variables
@@ -35,6 +35,7 @@ namespace Self_App.myPages
         private TodoGeneric_Page todoAllPg;
         private TodoProject_Page todoProjPg;
         private TodoExternalFunctions_Page todoExtFuncPg;
+        public StackPanel myStkPnl_proj { get; }
 
         //////////////////////////////////////////////////
         // Main
@@ -59,7 +60,7 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
-        private void RefreshData()
+        public void RefreshData()
         {
             MyCls.RefreshProjectButtons(stkPnl_proj);
         }

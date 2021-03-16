@@ -27,7 +27,7 @@ namespace Self_App.myPages
         // Specific
         private string project = "";
         private bool includeDone = true;
-        public StackPanel stkPnl_proj { get; }
+        public StackPanel myStkPnl_proj { get; }
 
         //////////////////////////////////////////////////
         // Main
@@ -38,7 +38,7 @@ namespace Self_App.myPages
             InitializeComponent();
 
             // Specific
-            stkPnl_proj = stkPnl;
+            myStkPnl_proj = stkPnl;
         }
 
         //////////////////////////////////////////////////
@@ -48,7 +48,7 @@ namespace Self_App.myPages
         {
             UpdateSections();
 
-            MyCls.RefreshProjectButtons(stkPnl_proj);
+            MyCls.RefreshProjectButtons(myStkPnl_proj);
         }
 
         public void UpdateProject(string pProject)
