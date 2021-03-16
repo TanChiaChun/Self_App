@@ -26,6 +26,8 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Specific
         private List<MyTask> tasks_earlier = new List<MyTask>();
+        private List<MyTask> tasks_today = new List<MyTask>();
+        private List<MyTask> tasks_upcoming = new List<MyTask>();
 
         //////////////////////////////////////////////////
         // Main
@@ -43,6 +45,12 @@ namespace Self_App.myPages
         {
             tasks_earlier = Db.Select_TodoDue(MyCls.GenerateSql_DateRange(MyCls.DateRange.Earlier));
             dataGrid_earlier.ItemsSource = tasks_earlier;
+
+            tasks_today = Db.Select_TodoDue(MyCls.GenerateSql_DateRange(MyCls.DateRange.Today));
+            dataGrid_today.ItemsSource = tasks_today;
+
+            tasks_upcoming = Db.Select_TodoDue(MyCls.GenerateSql_DateRange(MyCls.DateRange.Upcoming));
+            dataGrid_upcoming.ItemsSource = tasks_upcoming;
         }
 
         //////////////////////////////////////////////////

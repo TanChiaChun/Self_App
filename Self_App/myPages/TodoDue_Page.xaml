@@ -24,6 +24,7 @@
         <StackPanel Grid.Column="1" Grid.Row="1">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource {x:Type Expander}}">
+                    <Setter Property="Margin" Value="0,20,0,0"/>
                     <Setter Property="IsExpanded" Value="True"/>
                 </Style>
 
@@ -32,15 +33,43 @@
                 </Style>
             </StackPanel.Resources>
             
-            <TextBlock Text="Due" Style="{DynamicResource my_TxtBlk_H1}" Margin="0,0,0,20" Name="txtBlk_due"/>
+            <TextBlock Text="Due" Style="{DynamicResource my_TxtBlk_H1}" Name="txtBlk_due"/>
 
             <Expander Header="Earlier">
                 <DataGrid Name="dataGrid_earlier">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
                         <DataGridTextColumn Header="Do" Binding="{Binding doDateStr, Mode=OneTime}"/>
                         <DataGridTextColumn Header="My Day" Binding="{Binding myDay_intStr, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="Project" Binding="{Binding project, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="Section" Binding="{Binding section, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="Priority" Binding="{Binding priority_intStr, Mode=OneTime}" HeaderStyle="{StaticResource my_dataGridColHead_last}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Expander>
+
+            <Expander Header="Today">
+                <DataGrid Name="dataGrid_today">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr, Mode=OneTime}"/>
                         <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="Do" Binding="{Binding doDateStr, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="My Day" Binding="{Binding myDay_intStr, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="Project" Binding="{Binding project, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="Section" Binding="{Binding section, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="Priority" Binding="{Binding priority_intStr, Mode=OneTime}" HeaderStyle="{StaticResource my_dataGridColHead_last}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Expander>
+
+            <Expander Header="Upcoming">
+                <DataGrid Name="dataGrid_upcoming">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Due" Binding="{Binding dueDateStr, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="Do" Binding="{Binding doDateStr, Mode=OneTime}"/>
+                        <DataGridTextColumn Header="My Day" Binding="{Binding myDay_intStr, Mode=OneTime}"/>
                         <DataGridTextColumn Header="Project" Binding="{Binding project, Mode=OneTime}"/>
                         <DataGridTextColumn Header="Section" Binding="{Binding section, Mode=OneTime}"/>
                         <DataGridTextColumn Header="Priority" Binding="{Binding priority_intStr, Mode=OneTime}" HeaderStyle="{StaticResource my_dataGridColHead_last}"/>

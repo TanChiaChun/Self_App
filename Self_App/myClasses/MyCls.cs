@@ -102,6 +102,10 @@ namespace Self_App.myClasses
             {
                 case DateRange.Earlier:
                     return new Tuple<string, string>("<", "DESC");
+                case DateRange.Today:
+                    return new Tuple<string, string>("=", "ASC");
+                case DateRange.Upcoming:
+                    return new Tuple<string, string>(">", "ASC");
             }
 
             return new Tuple<string, string>("", "");
