@@ -9,9 +9,24 @@
       Title="TodoAll_Page">
 
     <Grid>
-        <StackPanel>
-            <TextBlock Text="All" Style="{DynamicResource my_TxtBlk_H1}" Margin="10,10,0,0"/>
-            <DataGrid Margin="0,5,0,0" Name="dataGrid_todoAll" BorderThickness="0,1,0,0" MouseDoubleClick="dataGrid_todoAll_MouseDoubleClick">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
+                    <Setter Property="Margin" Value="0,5,0,0"/>
+                    <Setter Property="BorderThickness" Value="0,1,0,0"/>
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <EventSetter Event="MouseDoubleClick" Handler="dataGrid_MouseDoubleClick"/>
+                </Style>
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Style="{DynamicResource my_TxtBlk_H1}" Margin="10,10,0,0" Name="txtBlk_generic"/>
+
+            <DataGrid Grid.Row="1" Name="dataGrid_all">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
                     <DataGridCheckBoxColumn Header="Done" Binding="{Binding isDone, Mode=OneTime}"/>
@@ -24,6 +39,6 @@
                     <DataGridTextColumn Header="Priority" Binding="{Binding priority_intStr, Mode=OneTime}" HeaderStyle="{StaticResource my_dataGridColHead_last}"/>
                 </DataGrid.Columns>
             </DataGrid>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Page>

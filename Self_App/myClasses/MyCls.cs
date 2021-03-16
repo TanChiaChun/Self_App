@@ -58,6 +58,11 @@ namespace Self_App.myClasses
             Upcoming
         }
 
+        public enum TodoGeneric
+        {
+            All
+        }
+
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////

@@ -27,14 +27,25 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Specific
         private List<MyTask> tasks = new List<MyTask>();
+        private DataGrid dataGrid;
 
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
-        public TodoGeneric_Page()
+        public TodoGeneric_Page(MyCls.TodoGeneric todo)
         {
             // Generic
             InitializeComponent();
+
+            // Specific
+            switch (todo)
+            {
+                case MyCls.TodoGeneric.All:
+                    txtBlk_generic.Text = "All";
+                    dataGrid = dataGrid_all;
+                    break;
+            }
+            dataGrid.Visibility = Visibility.Visible;
         }
 
         //////////////////////////////////////////////////
@@ -43,13 +54,13 @@ namespace Self_App.myPages
         public void RefreshData()
         {
             tasks = Db.Select_TodoAll();
-            dataGrid_todoAll.ItemsSource = tasks;
+            dataGrid.ItemsSource = tasks;
         }
 
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////
-        private void dataGrid_todoAll_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DataGrid cDataGrid = e.Source as DataGrid;
             if (MyCls.DataGrid_Todo_MouseDoubleClick(ref cDataGrid))
