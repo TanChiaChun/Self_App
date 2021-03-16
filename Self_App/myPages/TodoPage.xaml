@@ -51,6 +51,20 @@
                         </StackPanel>
                     </Border>
 
+                    <Border BorderThickness="0,0,0,1" Padding="8">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="External" Style="{DynamicResource my_TxtBlk_H2}"/>
+                                <Button Content="Functions" Grid.Column="1" Padding="15,0" Name="btn_ext_func" Click="btn_ext_func_Click"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
                     <StackPanel Margin="8">
                         <TextBlock Text="Projects" Style="{DynamicResource my_TxtBlk_H2}"/>
                         <StackPanel Name="stkPnl_proj">

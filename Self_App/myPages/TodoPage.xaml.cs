@@ -34,6 +34,7 @@ namespace Self_App.myPages
         private TodoGeneric_Page todoBlankPg;
         private TodoGeneric_Page todoAllPg;
         private TodoProject_Page todoProjPg;
+        private TodoExternalFunctions_Page todoExtFuncPg;
 
         //////////////////////////////////////////////////
         // Main
@@ -51,6 +52,7 @@ namespace Self_App.myPages
             todoBlankPg = new TodoGeneric_Page(MyCls.TodoGeneric.Blank, stkPnl_proj);
             todoAllPg = new TodoGeneric_Page(MyCls.TodoGeneric.All, stkPnl_proj);
             todoProjPg = new TodoProject_Page(stkPnl_proj);
+            todoExtFuncPg = new TodoExternalFunctions_Page();
             RefreshData();
         }
 
@@ -119,6 +121,11 @@ namespace Self_App.myPages
             todoProjPg.UpdateProject((string)btn.Content);
             todoProjPg.RefreshData();
             fr_todo.Content = todoProjPg;
+        }
+
+        private void btn_ext_func_Click(object sender, RoutedEventArgs e)
+        {
+            fr_todo.Content = todoExtFuncPg;
         }
     }
 }
