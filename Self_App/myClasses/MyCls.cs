@@ -9,7 +9,7 @@ using Self_App.myWindows;
 
 namespace Self_App.myClasses
 {
-    static class MyCls
+    public static class MyCls
     {
         //////////////////////////////////////////////////
         // Class variables
@@ -43,6 +43,12 @@ namespace Self_App.myClasses
             Urgent_NotImportant,
             NotUrgent_NotImportant,
             None
+        }
+
+        public enum DateType
+        {
+            Due,
+            Do
         }
 
         public enum DateRange

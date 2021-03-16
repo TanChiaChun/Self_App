@@ -33,7 +33,7 @@
                 </Style>
             </StackPanel.Resources>
             
-            <TextBlock Text="Due" Style="{DynamicResource my_TxtBlk_H1}" Name="txtBlk_due"/>
+            <TextBlock Style="{DynamicResource my_TxtBlk_H1}" Name="txtBlk_date"/>
 
             <Expander Header="Earlier">
                 <DataGrid Name="dataGrid_earlier">

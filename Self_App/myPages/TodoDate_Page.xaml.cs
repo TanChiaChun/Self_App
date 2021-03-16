@@ -25,6 +25,7 @@ namespace Self_App.myPages
         // Class variables
         //////////////////////////////////////////////////
         // Specific
+        private MyCls.DateType dateType;
         private List<MyTask> tasks_earlier = new List<MyTask>();
         private List<MyTask> tasks_today = new List<MyTask>();
         private List<MyTask> tasks_upcoming = new List<MyTask>();
@@ -32,10 +33,14 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
-        public TodoDate_Page()
+        public TodoDate_Page(MyCls.DateType pDateType)
         {
             // Generic
             InitializeComponent();
+
+            // Specific
+            dateType = pDateType;
+            txtBlk_date.Text = pDateType.ToString();
         }
 
         //////////////////////////////////////////////////
@@ -43,13 +48,13 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         public void RefreshData()
         {
-            tasks_earlier = Db.Select_TodoDue(MyCls.GenerateSql_DateRange(MyCls.DateRange.Earlier));
+            tasks_earlier = Db.Select_TodoDate(dateType.ToString(), MyCls.GenerateSql_DateRange(MyCls.DateRange.Earlier));
             dataGrid_earlier.ItemsSource = tasks_earlier;
 
-            tasks_today = Db.Select_TodoDue(MyCls.GenerateSql_DateRange(MyCls.DateRange.Today));
+            tasks_today = Db.Select_TodoDate(dateType.ToString(), MyCls.GenerateSql_DateRange(MyCls.DateRange.Today));
             dataGrid_today.ItemsSource = tasks_today;
 
-            tasks_upcoming = Db.Select_TodoDue(MyCls.GenerateSql_DateRange(MyCls.DateRange.Upcoming));
+            tasks_upcoming = Db.Select_TodoDate(dateType.ToString(), MyCls.GenerateSql_DateRange(MyCls.DateRange.Upcoming));
             dataGrid_upcoming.ItemsSource = tasks_upcoming;
         }
 

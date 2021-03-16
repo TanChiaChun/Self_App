@@ -38,7 +38,7 @@
                             </Grid.ColumnDefinitions>
                             
                             <Button Grid.Column="0" Content="Due" Name="btn_due" Click="btn_due_Click"/>
-                            <Button Grid.Column="2" Content="Do" Name="btn_do"/>
+                            <Button Grid.Column="2" Content="Do" Name="btn_do" Click="btn_do_Click"/>
                         </Grid>
                     </StackPanel>
                 </Border>

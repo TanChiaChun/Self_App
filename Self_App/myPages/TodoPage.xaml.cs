@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Self_App.myWindows;
 using Self_App.myPages;
+using Self_App.myClasses;
 
 namespace Self_App.myPages
 {
@@ -27,7 +28,8 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Specific
         private TodoMyDay_Page todoMyDayPg = new TodoMyDay_Page();
-        private TodoDate_Page todoDuePg = new TodoDate_Page();
+        private TodoDate_Page todoDuePg = new TodoDate_Page(MyCls.DateType.Due);
+        private TodoDate_Page todoDoPg = new TodoDate_Page(MyCls.DateType.Do);
         private TodoAll_Page todoAllPg = new TodoAll_Page();
 
         //////////////////////////////////////////////////
@@ -63,6 +65,12 @@ namespace Self_App.myPages
         {
             todoDuePg.RefreshData();
             fr_todo.Content = todoDuePg;
+        }
+
+        private void btn_do_Click(object sender, RoutedEventArgs e)
+        {
+            todoDoPg.RefreshData();
+            fr_todo.Content = todoDoPg;
         }
 
         private void btn_all_Click(object sender, RoutedEventArgs e)
