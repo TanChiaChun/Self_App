@@ -52,7 +52,7 @@ namespace Self_App.myWindows
             btn_update.Visibility = Visibility.Collapsed;
             btn_delete.Visibility = Visibility.Collapsed;
 
-            InitWindow();
+            InitWindow_Generic();
         }
 
         public TaskWindow(MyTask pTask)
@@ -99,13 +99,13 @@ namespace Self_App.myWindows
                 steps.Add(step);
             }
 
-            InitWindow();
+            InitWindow_Generic();
         }
 
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
-        private void InitWindow()
+        private void InitWindow_Generic()
         {
             projects = Db.Select_Projects();
             
