@@ -51,6 +51,15 @@ namespace Self_App.myPages
             txtBlk_proj.Text = project;
         }
 
+        private DataGridTextColumn Generate_DataGridTextColumn(string header, string binding, int width)
+        {
+            DataGridTextColumn col_task = new DataGridTextColumn();
+            col_task.Header = header;
+            col_task.Binding = new Binding(binding);
+            col_task.Width = width;
+            return col_task;
+        }
+
         public void UpdateSections()
         {
             stkPnl_sect.Children.Clear();
@@ -59,6 +68,19 @@ namespace Self_App.myPages
             {
                 StackPanel stkPnl = new StackPanel();
                 stkPnl.Children.Add(new TextBlock(new Run(section)));
+
+                DataGrid cDataGrid = new DataGrid();
+                cDataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                cDataGrid.Columns.Add(Generate_DataGridTextColumn("T", "taskName_wrap", 150));
+                cDataGrid.Columns.Add(Generate_DataGridTextColumn("Du", "dueDateStr_dayMonth", 39));
+                cDataGrid.Columns.Add(Generate_DataGridTextColumn("Do", "hasDoDate", 25));
+                cDataGrid.Columns.Add(Generate_DataGridTextColumn("St", "hasStartDate", 18));
+                cDataGrid.Columns.Add(Generate_DataGridTextColumn("Su", "hasSteps_Str", 22));
+                cDataGrid.Columns.Add(Generate_DataGridTextColumn("N", "hasNote_Str", 18));
+                stkPnl.Children.Add(cDataGrid);
+                List<MyTask> tasks = Db.Select_SectionTasks(project, section);
+                cDataGrid.ItemsSource = tasks;
+
                 stkPnl_sect.Children.Add(stkPnl);
             }
         }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using Self_App.myWindows;
 
 namespace Self_App.myClasses
@@ -68,7 +69,7 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
-        public static string ValidateSqlInput(string input)
+        private static string ValidateSqlInput(string input)
         {
             List<char> badChars = new List<char>() { '"', '\'', ';', '|' };
 
@@ -109,21 +110,6 @@ namespace Self_App.myClasses
             return true;
         }
 
-        public static Tuple<string, string> GenerateSql_DateRange(DateRange dateRng)
-        {
-            switch (dateRng)
-            {
-                case DateRange.Earlier:
-                    return new Tuple<string, string>("<", "DESC");
-                case DateRange.Today:
-                    return new Tuple<string, string>("=", "ASC");
-                case DateRange.Upcoming:
-                    return new Tuple<string, string>(">", "ASC");
-            }
-
-            return new Tuple<string, string>("", "");
-        }
-
         public static void RefreshProjectButtons(StackPanel stkPnl)
         {
             stkPnl.Children.Clear();
@@ -135,7 +121,7 @@ namespace Self_App.myClasses
                 stkPnl.Children.Add(btn);
             }
         }
-
+        
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////

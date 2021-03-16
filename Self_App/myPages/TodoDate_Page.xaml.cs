@@ -50,13 +50,13 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         public void RefreshData()
         {
-            tasks_earlier = Db.Select_TodoDate(dateType.ToString(), MyCls.GenerateSql_DateRange(MyCls.DateRange.Earlier));
+            tasks_earlier = Db.Select_TodoDate(dateType.ToString(), MyCls.DateRange.Earlier);
             dataGrid_earlier.ItemsSource = tasks_earlier;
 
-            tasks_today = Db.Select_TodoDate(dateType.ToString(), MyCls.GenerateSql_DateRange(MyCls.DateRange.Today));
+            tasks_today = Db.Select_TodoDate(dateType.ToString(), MyCls.DateRange.Today);
             dataGrid_today.ItemsSource = tasks_today;
 
-            tasks_upcoming = Db.Select_TodoDate(dateType.ToString(), MyCls.GenerateSql_DateRange(MyCls.DateRange.Upcoming));
+            tasks_upcoming = Db.Select_TodoDate(dateType.ToString(), MyCls.DateRange.Upcoming);
             dataGrid_upcoming.ItemsSource = tasks_upcoming;
 
             MyCls.RefreshProjectButtons(stkPnl_proj);

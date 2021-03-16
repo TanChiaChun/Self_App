@@ -174,10 +174,28 @@ namespace Self_App.myClasses
             return tasks;
         }
 
-        public static List<MyTask> Select_TodoDate(string type, Tuple<string, string> optr)
+        public static List<MyTask> Select_TodoDate(string type, MyCls.DateRange dateRng)
         {
+            string optr = "";
+            string sort = "";
+            switch (dateRng)
+            {
+                case MyCls.DateRange.Earlier:
+                    optr = "<";
+                    sort = "DESC";
+                    break;
+                case MyCls.DateRange.Today:
+                    optr = "=";
+                    sort = "ASC";
+                    break;
+                case MyCls.DateRange.Upcoming:
+                    optr = ">";
+                    sort = "ASC";
+                    break;
+            }
+
             List<MyTask> tasks = new List<MyTask>();
-            string query = $"SELECT id, task_name, project, section, due_date, do_date, priority, my_day FROM Task WHERE is_done=0 AND {type}_date!='0001-01-01' AND {type}_date{optr.Item1}'{DateTime.Now.ToString(MyCls.DATE_FORMAT_DB)}' ORDER BY {type}_date {optr.Item2}, priority ASC, modify_date DESC";
+            string query = $"SELECT id, task_name, project, section, due_date, do_date, priority, my_day FROM Task WHERE is_done=0 AND {type}_date!='0001-01-01' AND {type}_date{optr}'{DateTime.Now.ToString(MyCls.DATE_FORMAT_DB)}' ORDER BY {type}_date {sort}, priority ASC, modify_date DESC";
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
             {
                 connect.Open();
@@ -294,6 +312,39 @@ namespace Self_App.myClasses
                                 MyCls.Priority _priority = (MyCls.Priority)Int32.Parse(res["priority"].ToString());
                                 MyCls.MyDay _myDay = (MyCls.MyDay)Int32.Parse(res["my_day"].ToString());
                                 tasks.Add(new MyTask(id, taskName, isDone, project, section, dueDate, doDate, startDate, _priority, _myDay));
+                            }
+                        }
+                    }
+                }
+            }
+            return tasks;
+        }
+
+        public static List<MyTask> Select_SectionTasks(string proj, string sect)
+        {
+            List<MyTask> tasks = new List<MyTask>();
+            string query = $"SELECT id, task_name, is_done, due_date, do_date, start_date, (CASE WHEN is_done=0 AND my_day<4 THEN 1 ELSE 0 END) AS my_day_not_done, (CASE WHEN steps!='' THEN 1 ELSE 0 END) AS has_steps, (CASE WHEN note!='' THEN 1 ELSE 0 END) AS has_note FROM Task WHERE project='{proj}' AND section='{sect}' ORDER BY is_done ASC, task_name ASC";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            while (res.Read())
+                            {
+                                int id = Int32.Parse(res["id"].ToString());
+                                string taskName = res["task_name"].ToString();
+                                bool isDone = Convert.ToBoolean(Int32.Parse(res["is_done"].ToString()));
+                                DateTime dueDate = DateTime.ParseExact(res["due_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                DateTime doDate = DateTime.ParseExact(res["do_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                DateTime startDate = DateTime.ParseExact(res["start_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                bool myDay_notDone = Convert.ToBoolean(Int32.Parse(res["my_day_not_done"].ToString()));
+                                bool hasSteps = Convert.ToBoolean(Int32.Parse(res["has_steps"].ToString()));
+                                bool hasNote = Convert.ToBoolean(Int32.Parse(res["has_note"].ToString()));
+                                tasks.Add(new MyTask(id, taskName, isDone, dueDate, doDate, startDate, myDay_notDone, hasSteps, hasNote));
                             }
                         }
                     }

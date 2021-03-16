@@ -83,7 +83,19 @@
                 <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
                 <Setter Property="BorderThickness" Value="1,1,1,0"/>
             </Style>
-            
+
+            <!--DataGridRow-->
+            <Style TargetType="{x:Type DataGridRow}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding isDone, Mode=OneTime}" Value="true">
+                        <Setter Property="Background" Value="Gray"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding myDay_notDone, Mode=OneTime}" Value="true">
+                        <Setter Property="Background" Value="LimeGreen"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
             <!--Frame-->
             <Style TargetType="{x:Type Frame}">
                 <Setter Property="NavigationUIVisibility" Value="Hidden"/>
@@ -697,7 +709,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                             <Grid>
-                                <Themes:DataGridHeaderBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{DynamicResource my_blue}" IsClickable="{TemplateBinding CanUserSort}" IsPressed="{TemplateBinding IsPressed}" IsHovered="{TemplateBinding IsMouseOver}" Padding="{TemplateBinding Padding}" SortDirection="{TemplateBinding SortDirection}" SeparatorBrush="{TemplateBinding SeparatorBrush}" SeparatorVisibility="{TemplateBinding SeparatorVisibility}">
+                                <Themes:DataGridHeaderBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="CornflowerBlue" IsClickable="{TemplateBinding CanUserSort}" IsPressed="{TemplateBinding IsPressed}" IsHovered="{TemplateBinding IsMouseOver}" Padding="{TemplateBinding Padding}" SortDirection="{TemplateBinding SortDirection}" SeparatorBrush="{TemplateBinding SeparatorBrush}" SeparatorVisibility="{TemplateBinding SeparatorVisibility}">
                                     <TextBlock x:Name="my_dataGridCol_txtBlk">
                                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                     </TextBlock>

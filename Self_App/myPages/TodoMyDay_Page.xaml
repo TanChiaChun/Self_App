@@ -21,14 +21,6 @@
                 <Setter Property="BorderThickness" Value="1"/>
                 <EventSetter Event="MouseDoubleClick" Handler="dataGrid_MouseDoubleClick"/>
             </Style>
-            
-            <Style TargetType="{x:Type DataGridRow}">
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding isDone, Mode=OneTime}" Value="true">
-                        <Setter Property="Background" Value="Gray"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
         </Grid.Resources>
         
         <Grid.ColumnDefinitions>

@@ -13,12 +13,19 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         public int id { get; } = -1;
         public string taskName { get; private set; } = "";
+        public string taskName_wrap => WrapString(taskName, 20);
         public bool isDone { get; private set; } = false;
         public string project { get; private set; } = "General";
         public string section { get; private set; } = "General";
         public DateTime dueDate { get; private set; } = DateTime.MinValue.Date;
+        public string dueDateStr => !dueDate.Equals(DateTime.MinValue.Date) ? dueDate.ToString(MyCls.DATE_FORMAT_DB) : "";
+        public string dueDateStr_dayMonth => !dueDate.Equals(DateTime.MinValue.Date) ? dueDate.ToString(MyCls.DATE_FORMAT_DAY_MONTH) : "";
         public DateTime doDate { get; private set; } = DateTime.MinValue.Date;
+        public string doDateStr => !doDate.Equals(DateTime.MinValue.Date) ? doDate.ToString(MyCls.DATE_FORMAT_DB) : "";
+        public string hasDoDate => !doDate.Equals(DateTime.MinValue.Date) ? "|Do" : "";
         public DateTime startDate { get; private set; } = DateTime.MinValue.Date;
+        public string startDateStr => !startDate.Equals(DateTime.MinValue.Date) ? startDate.ToString(MyCls.DATE_FORMAT_DB) : "";
+        public string hasStartDate => !startDate.Equals(DateTime.MinValue.Date) ? "|St" : "";
         private MyCls.Priority _priority = MyCls.Priority.Normal;
         public string priority_str => _priority.ToString();
         public string priority_intStr => (int)_priority + "-" + _priority.ToString();
@@ -28,42 +35,16 @@ namespace Self_App.myClasses
         public HashSet<string> tags { get; } = new HashSet<string>();
         public List<Tuple<bool, string>> steps { get; } = new List<Tuple<bool, string>>();
         public string note { get; private set; } = "";
-        public string dueDateStr
-        {
-            get
-            {
-                string dateStr = !dueDate.Equals(DateTime.MinValue.Date) ? dueDate.ToString(MyCls.DATE_FORMAT_DB) : "";
-                return dateStr;
-            }
-        }
-        public string dueDateStr_dayMonth
-        {
-            get
-            {
-                string dateStr = !dueDate.Equals(DateTime.MinValue.Date) ? $"[Du]{dueDate.ToString(MyCls.DATE_FORMAT_DAY_MONTH)}" : "";
-                return dateStr;
-            }
-        }
-        public string doDateStr
-        {
-            get
-            {
-                string dateStr = !doDate.Equals(DateTime.MinValue.Date) ? doDate.ToString(MyCls.DATE_FORMAT_DB) : "";
-                return dateStr;
-            }
-        }
-        public string startDateStr
-        {
-            get
-            {
-                string dateStr = !startDate.Equals(DateTime.MinValue.Date) ? startDate.ToString(MyCls.DATE_FORMAT_DB) : "";
-                return dateStr;
-            }
-        }
-        
+        public bool myDay_notDone { get; } = false;
+        private bool hasSteps = false;
+        public string hasSteps_Str => hasSteps ? "|Su" : "";
+        private bool hasNote = false;
+        public string hasNote_Str => hasNote ? "|N" : "";
+
         //////////////////////////////////////////////////
         // Constructors
         //////////////////////////////////////////////////
+        public MyTask() { }
         public MyTask(int pId)
         {
             id = pId;
@@ -113,12 +94,41 @@ namespace Self_App.myClasses
             _myDay = pMyDay;
         }
 
+        public MyTask(int pId, string pTaskName, bool pIsDone, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, bool pMyDay_notDone, bool pHasSteps, bool pHasNote)
+        {
+            id = pId;
+            taskName = pTaskName;
+            isDone = pIsDone;
+            dueDate = pDueDate;
+            doDate = pDoDate;
+            startDate = pStartDate;
+            myDay_notDone = pMyDay_notDone;
+            hasSteps = pHasSteps;
+            hasNote = pHasNote;
+        }
+
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
         public override string ToString()
         {
-            return $"{id}-{taskName}-{isDone.ToString()}-{project}-{section}-{dueDate.ToString()}-{doDate.ToString()}-{startDate.ToString()}-{_priority.ToString()}-{_myDay.ToString()}-{tags.Count}-{steps.Count}-{note}";
+            return $"{id}-{taskName}";
+        }
+
+        private string WrapString(string input, int limit)
+        {
+            int i = 0;
+            string output = "";
+            foreach (char c in input)
+            {
+                if (i % limit == 0 && i != 0)
+                {
+                    output += "-\n";
+                }
+                output += c;
+                i++;
+            }
+            return output;
         }
 
         public void UpdateTask_FromDb(string pTaskName, bool pIsDone, string pProj, string pSect, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, MyCls.Priority pPriority, MyCls.MyDay pMyDay, string pTags, string pSteps, string pNote)
