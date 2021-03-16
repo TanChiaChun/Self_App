@@ -30,7 +30,7 @@ namespace Self_App.myPages
         private TodoMyDay_Page todoMyDayPg = new TodoMyDay_Page();
         private TodoDate_Page todoDuePg = new TodoDate_Page(MyCls.DateType.Due);
         private TodoDate_Page todoDoPg = new TodoDate_Page(MyCls.DateType.Do);
-        private TodoAll_Page todoAllPg = new TodoAll_Page();
+        private TodoGeneric_Page todoAllPg = new TodoGeneric_Page();
 
         //////////////////////////////////////////////////
         // Main
