@@ -29,7 +29,6 @@
                         
                         <TextBlock Text="Home" Style="{DynamicResource my_TxtBlk_H2}"/>
                         <Button Content="My Day" Name="btn_myDay" Click="btn_myDay_Click"/>
-                        <Button Content="All" Name="btn_all" Click="btn_all_Click"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -40,6 +39,7 @@
                             <Button Grid.Column="0" Content="Due" Name="btn_due" Click="btn_due_Click"/>
                             <Button Grid.Column="2" Content="Do" Name="btn_do" Click="btn_do_Click"/>
                         </Grid>
+                        <Button Content="All" Name="btn_all" Click="btn_all_Click"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
