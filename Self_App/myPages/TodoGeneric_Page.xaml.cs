@@ -45,6 +45,9 @@ namespace Self_App.myPages
                 case MyCls.TodoGeneric.Priority:
                     dataGrid = dataGrid_priority;
                     break;
+                case MyCls.TodoGeneric.Blank:
+                    dataGrid = dataGrid_blank;
+                    break;
                 case MyCls.TodoGeneric.All:
                     dataGrid = dataGrid_all;
                     break;
@@ -62,6 +65,9 @@ namespace Self_App.myPages
             {
                 case MyCls.TodoGeneric.Priority:
                     tasks = Db.Select_TodoPriority();
+                    break;
+                case MyCls.TodoGeneric.Blank:
+                    tasks = Db.Select_TodoBlank();
                     break;
                 case MyCls.TodoGeneric.All:
                     tasks = Db.Select_TodoAll();

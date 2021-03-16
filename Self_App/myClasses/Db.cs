@@ -206,6 +206,30 @@ namespace Self_App.myClasses
             return tasks;
         }
 
+        public static List<MyTask> Select_TodoBlank()
+        {
+            List<MyTask> tasks = new List<MyTask>();
+            string query = "SELECT id, task_name, project, section, start_date, priority FROM Task WHERE is_done=0 AND due_date='0001-01-01' AND do_date='0001-01-01' AND priority>0 AND my_day=4 ORDER BY project ASC, section ASC";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            while (res.Read())
+                            {
+                                tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["project"].ToString(), res["section"].ToString(), res["start_date"].ToString(), res["priority"].ToString()));
+                            }
+                        }
+                    }
+                }
+            }
+            return tasks;
+        }
+
         public static List<MyTask> Select_TodoAll()
         {
             List<MyTask> tasks = new List<MyTask>();

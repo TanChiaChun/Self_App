@@ -37,7 +37,17 @@
                     <DataGridTextColumn Header="My Day" Binding="{Binding myDay_intStr, Mode=OneTime}" HeaderStyle="{StaticResource my_dataGridColHead_last}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            
+
+            <DataGrid Grid.Row="1" Name="dataGrid_blank">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Project" Binding="{Binding project, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Section" Binding="{Binding section, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Start" Binding="{Binding startDateStr, Mode=OneTime}"/>
+                    <DataGridTextColumn Header="Priority" Binding="{Binding priority_intStr, Mode=OneTime}" HeaderStyle="{StaticResource my_dataGridColHead_last}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
             <DataGrid Grid.Row="1" Name="dataGrid_all">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
