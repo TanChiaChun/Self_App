@@ -9,19 +9,24 @@
       Title="TodoAll_Page">
 
     <Grid>
-        <StackPanel>
-            <StackPanel.Resources>
+        <Grid>
+            <Grid.Resources>
                 <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
                     <Setter Property="Margin" Value="0,5,0,0"/>
                     <Setter Property="BorderThickness" Value="0,1,0,0"/>
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <EventSetter Event="MouseDoubleClick" Handler="dataGrid_MouseDoubleClick"/>
                 </Style>
-            </StackPanel.Resources>
+            </Grid.Resources>
 
-            <TextBlock Style="{DynamicResource my_TxtBlk_H1}" Margin="10,10,0,0" Name="txtBlk_generic"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <DataGrid Name="dataGrid_priority">
+            <TextBlock Grid.Row="0" Style="{DynamicResource my_TxtBlk_H1}" Margin="10,10,0,0" Name="txtBlk_generic"/>
+
+            <DataGrid Grid.Row="1" Name="dataGrid_priority">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Priority" Binding="{Binding priority_intStr, Mode=OneTime}"/>
                     <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
@@ -33,7 +38,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <DataGrid Name="dataGrid_blank">
+            <DataGrid Grid.Row="1" Name="dataGrid_blank">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
                     <DataGridTextColumn Header="Project" Binding="{Binding project, Mode=OneTime}"/>
@@ -43,7 +48,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <DataGrid Name="dataGrid_all">
+            <DataGrid Grid.Row="1" Name="dataGrid_all">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Task" Binding="{Binding taskName, Mode=OneTime}"/>
                     <DataGridCheckBoxColumn Header="Done" Binding="{Binding isDone, Mode=OneTime}"/>
@@ -56,6 +61,6 @@
                     <DataGridTextColumn Header="Priority" Binding="{Binding priority_intStr, Mode=OneTime}" HeaderStyle="{StaticResource my_dataGridColHead_last}"/>
                 </DataGrid.Columns>
             </DataGrid>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Page>
