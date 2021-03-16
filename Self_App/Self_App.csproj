@@ -107,6 +107,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="myPages\TodoProject_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="myWindows\StepWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +148,9 @@
     </Compile>
     <Compile Include="myPages\TodoPage.xaml.cs">
       <DependentUpon>TodoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="myPages\TodoProject_Page.xaml.cs">
+      <DependentUpon>TodoProject_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="myWindows\IWindow.cs" />
     <Compile Include="myWindows\StepWindow.xaml.cs">

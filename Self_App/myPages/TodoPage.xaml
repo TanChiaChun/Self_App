@@ -55,7 +55,9 @@
                         <TextBlock Text="Projects" Style="{DynamicResource my_TxtBlk_H2}"/>
                         <StackPanel Name="stkPnl_proj">
                             <StackPanel.Resources>
-                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource my_button}"/>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource my_button}">
+                                    <EventSetter Event="Click" Handler="btn_project_Click"/>
+                                </Style>
                             </StackPanel.Resources>
                         </StackPanel>
                     </StackPanel>

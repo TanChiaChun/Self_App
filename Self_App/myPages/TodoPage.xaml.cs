@@ -33,6 +33,7 @@ namespace Self_App.myPages
         private TodoGeneric_Page todoPriorityPg;
         private TodoGeneric_Page todoBlankPg;
         private TodoGeneric_Page todoAllPg;
+        private TodoProject_Page todoProjPg;
 
         //////////////////////////////////////////////////
         // Main
@@ -49,6 +50,7 @@ namespace Self_App.myPages
             todoPriorityPg = new TodoGeneric_Page(MyCls.TodoGeneric.Priority, stkPnl_proj);
             todoBlankPg = new TodoGeneric_Page(MyCls.TodoGeneric.Blank, stkPnl_proj);
             todoAllPg = new TodoGeneric_Page(MyCls.TodoGeneric.All, stkPnl_proj);
+            todoProjPg = new TodoProject_Page();
             RefreshData();
         }
 
@@ -109,6 +111,11 @@ namespace Self_App.myPages
         {
             todoAllPg.RefreshData();
             fr_todo.Content = todoAllPg;
+        }
+
+        private void btn_project_Click(object sender, RoutedEventArgs e)
+        {
+            fr_todo.Content = todoProjPg;
         }
     }
 }
