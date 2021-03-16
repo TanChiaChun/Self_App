@@ -77,6 +77,18 @@ namespace Self_App.myClasses
             dueDate = DateTime.ParseExact(pDueDate, MyCls.DATE_FORMAT_DB, null);
         }
 
+        public MyTask(string pId, string pTaskName, string pProj, string pSect, string pDueDate, string pDoDate, string pPriority, string pMyDay)
+        {
+            id = Int32.Parse(pId);
+            taskName = pTaskName;
+            project = pProj;
+            section = pSect;
+            dueDate = DateTime.ParseExact(pDueDate, MyCls.DATE_FORMAT_DB, null);
+            doDate = DateTime.ParseExact(pDoDate, MyCls.DATE_FORMAT_DB, null);
+            _priority = (MyCls.Priority)Int32.Parse(pPriority);
+            _myDay = (MyCls.MyDay)Int32.Parse(pMyDay);
+        }
+
         public MyTask(string pId, string pTaskName, string pIsDone, string pProj, string pSect, string pDueDate, string pDoDate, string pStartDate, string pPriority, string pMyDay)
         {
             id = Int32.Parse(pId);

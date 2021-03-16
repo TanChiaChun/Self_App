@@ -158,6 +158,30 @@ namespace Self_App.myClasses
             return tasks;
         }
 
+        public static List<MyTask> Select_TodoDue(Tuple<string, string> sql)
+        {
+            List<MyTask> tasks = new List<MyTask>();
+            string query = $"SELECT id, task_name, project, section, due_date, do_date, priority, my_day FROM Task WHERE is_done=0 AND due_date!='0001-01-01' AND due_date{sql.Item1}'{DateTime.Now.ToString(MyCls.DATE_FORMAT_DB)}' ORDER BY due_date {sql.Item2}, priority ASC, modify_date DESC";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            while (res.Read())
+                            {
+                                tasks.Add(new MyTask(res["id"].ToString(), res["task_name"].ToString(), res["project"].ToString(), res["section"].ToString(), res["due_date"].ToString(), res["do_date"].ToString(), res["priority"].ToString(), res["my_day"].ToString()));
+                            }
+                        }
+                    }
+                }
+            }
+            return tasks;
+        }
+
         public static List<MyTask> Select_TodoAll()
         {
             List<MyTask> tasks = new List<MyTask>();

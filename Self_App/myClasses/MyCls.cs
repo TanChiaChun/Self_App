@@ -45,6 +45,13 @@ namespace Self_App.myClasses
             None
         }
 
+        public enum DateRange
+        {
+            Earlier,
+            Today,
+            Upcoming
+        }
+
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
@@ -87,6 +94,17 @@ namespace Self_App.myClasses
             }
 
             return true;
+        }
+
+        public static Tuple<string, string> GenerateSql_DateRange(DateRange dateRng)
+        {
+            switch (dateRng)
+            {
+                case DateRange.Earlier:
+                    return new Tuple<string, string>("<", "DESC");
+            }
+
+            return new Tuple<string, string>("", "");
         }
 
         //////////////////////////////////////////////////

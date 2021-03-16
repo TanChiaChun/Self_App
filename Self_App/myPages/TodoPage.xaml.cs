@@ -61,6 +61,7 @@ namespace Self_App.myPages
 
         private void btn_due_Click(object sender, RoutedEventArgs e)
         {
+            todoDuePg.RefreshData();
             fr_todo.Content = todoDuePg;
         }
 
