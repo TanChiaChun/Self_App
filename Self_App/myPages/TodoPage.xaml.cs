@@ -27,7 +27,7 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Specific
         private TodoMyDay_Page todoMyDayPg = new TodoMyDay_Page();
-        private TodoDue_Page todoDuePg = new TodoDue_Page();
+        private TodoDate_Page todoDuePg = new TodoDate_Page();
         private TodoAll_Page todoAllPg = new TodoAll_Page();
 
         //////////////////////////////////////////////////

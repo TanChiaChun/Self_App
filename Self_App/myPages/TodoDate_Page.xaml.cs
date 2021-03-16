@@ -19,7 +19,7 @@ namespace Self_App.myPages
     /// <summary>
     /// Interaction logic for TodoDue_Page.xaml
     /// </summary>
-    public partial class TodoDue_Page : Page, ITodo
+    public partial class TodoDate_Page : Page, ITodo
     {
         //////////////////////////////////////////////////
         // Class variables
@@ -32,7 +32,7 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
-        public TodoDue_Page()
+        public TodoDate_Page()
         {
             // Generic
             InitializeComponent();
