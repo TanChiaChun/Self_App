@@ -117,6 +117,7 @@ namespace Self_App.myPages
         {
             Button btn = e.Source as Button;
             todoProjPg.UpdateProject((string)btn.Content);
+            todoProjPg.RefreshData();
             fr_todo.Content = todoProjPg;
         }
     }

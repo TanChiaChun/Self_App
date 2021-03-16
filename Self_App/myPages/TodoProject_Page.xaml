@@ -9,8 +9,13 @@
       Title="TodoProject_Page">
 
     <Grid>
-        <StackPanel Margin="10">
-            <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
@@ -19,6 +24,20 @@
                 <TextBlock Grid.Column="0" Style="{DynamicResource my_TxtBlk_H1}" Name="txtBlk_proj"/>
                 <Button Grid.Column="1" Content="Show Complete" Padding="5"/>
             </Grid>
-        </StackPanel>
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+                <StackPanel Name="stkPnl_sect" Orientation="Horizontal" Width="auto" Margin="10">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource my_TxtBlk_H2}">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+
+                        <Style TargetType="{x:Type StackPanel}">
+                            <Setter Property="Width" Value="180"/>
+                        </Style>
+                    </StackPanel.Resources>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Page>

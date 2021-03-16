@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Self_App.myClasses;
 
 namespace Self_App.myPages
 {
@@ -41,13 +42,25 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         public void RefreshData()
         {
-
+            UpdateSections();
         }
 
         public void UpdateProject(string pProject)
         {
             project = pProject;
             txtBlk_proj.Text = project;
+        }
+
+        public void UpdateSections()
+        {
+            stkPnl_sect.Children.Clear();
+            List<string> sections = Db.Select_Sections(project);
+            foreach (string section in sections)
+            {
+                StackPanel stkPnl = new StackPanel();
+                stkPnl.Children.Add(new TextBlock(new Run(section)));
+                stkPnl_sect.Children.Add(stkPnl);
+            }
         }
 
         //////////////////////////////////////////////////
