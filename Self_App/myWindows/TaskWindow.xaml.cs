@@ -246,6 +246,18 @@ namespace Self_App.myWindows
                 return false;
             }
 
+            // start_date
+            if (datePick_start.SelectedDate.HasValue && !datePick_due.SelectedDate.HasValue)
+            {
+                MessageBox.Show("Due date cannot be empty!");
+                return false;
+            }
+            else if (datePick_start.SelectedDate.HasValue && datePick_due.SelectedDate.HasValue && datePick_start.SelectedDate >= datePick_due.SelectedDate)
+            {
+                MessageBox.Show("Due date must be greater than start date!");
+                return false;
+            }
+
             return true;
         }
 
