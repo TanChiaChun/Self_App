@@ -63,15 +63,18 @@ namespace Self_App.myPages
             {
                 foreach (MyTask task in due)
                 {
-                    outputFile.WriteLine($"{task.taskName};{task.dueDateStr};{task.dueDateStr}");
+                    string dateType = MyCls.DateType.Due.ToString();
+                    outputFile.WriteLine($"[{dateType}] {task.taskName};{task.dueDate.ToString(MyCls.DATETIME_FORMAT_VBA)};{task.dueDate.AddDays(1).ToString(MyCls.DATETIME_FORMAT_VBA)};Task_{dateType}");
                 }
                 foreach (MyTask task in cDo)
                 {
-                    outputFile.WriteLine($"{task.taskName};{task.doDateStr};{task.doDateStr}");
+                    string dateType = MyCls.DateType.Do.ToString();
+                    outputFile.WriteLine($"[{dateType}] {task.taskName};{task.doDate.ToString(MyCls.DATETIME_FORMAT_VBA)};{task.doDate.AddDays(1).ToString(MyCls.DATETIME_FORMAT_VBA)};Task_{dateType}");
                 }
                 foreach (MyTask task in start)
                 {
-                    outputFile.WriteLine($"{task.taskName};{task.startDateStr};{task.dueDateStr}");
+                    string dateType = MyCls.DateType.Start.ToString();
+                    outputFile.WriteLine($"[{dateType}] {task.taskName};{task.startDate.ToString(MyCls.DATETIME_FORMAT_VBA)};{task.dueDate.AddDays(1).ToString(MyCls.DATETIME_FORMAT_VBA)};Task_{dateType}");
                 }
             }
 
