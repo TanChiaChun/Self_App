@@ -365,6 +365,37 @@ namespace Self_App.myClasses
             return tasks;
         }
 
+        public static List<string> Select_Timeline()
+        {
+            List<string> tasks = new List<string>();
+            string query = "SELECT project, section, task_name, start_date, due_date, complete_date FROM Task ORDER BY project ASC, section ASC, task_name ASC";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            while (res.Read())
+                            {
+                                string project = res["project"].ToString();
+                                string section = res["section"].ToString();
+                                string taskName = res["task_name"].ToString();
+                                DateTime startDate = DateTime.ParseExact(res["start_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                DateTime dueDate = DateTime.ParseExact(res["due_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                DateTime completeDate = DateTime.ParseExact(res["complete_date"].ToString(), MyCls.DATETIME_FORMAT_DB, null);
+                                tasks.Add($"{project};{section};{taskName};{startDate.ToString(MyCls.DATE_FORMAT_DB)};{dueDate.ToString(MyCls.DATE_FORMAT_DB)}");
+                                tasks.Add($"{project};{section};{taskName};{startDate.ToString(MyCls.DATE_FORMAT_DB)};{completeDate.ToString(MyCls.DATE_FORMAT_DB)}");
+                            }
+                        }
+                    }
+                }
+            }
+            return tasks;
+        }
+
         public static List<MyTask> Select_Calendar(MyCls.DateType dateType)
         {
             string startAdd = "";

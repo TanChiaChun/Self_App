@@ -92,5 +92,18 @@ namespace Self_App.myPages
                 MessageBox.Show("Error running script!");
             }
         }
+
+        private void btn_export_timeline_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> tasks = Db.Select_Timeline();
+            using (StreamWriter outputFile = new StreamWriter("data/timeline.txt"))
+            {
+                foreach (string task in tasks)
+                {
+                    outputFile.WriteLine(task);
+                }
+            }
+            MessageBox.Show("Timeline exported successfully");
+        }
     }
 }

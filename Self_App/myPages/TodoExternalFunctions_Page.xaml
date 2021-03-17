@@ -20,6 +20,10 @@
                     <Setter Property="Margin" Value="10,0,0,0"/>
                 </Style>
 
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                </Style>
+
                 <Style TargetType="{x:Type StackPanel}" x:Key="my_stkPnl">
                     <Setter Property="Orientation" Value="Horizontal"/>
                     <Setter Property="Margin" Value="0,10,0,0"/>
@@ -33,6 +37,9 @@
                 <Button Content="Calendar" Name="btn_write_calendar" Click="btn_write_calendar_Click"/>
                 <TextBlock Name="txtBlk_write_calendar"/>
             </StackPanel>
+            
+            <TextBlock Text="Export" Style="{DynamicResource my_TxtBlk_H2}"/>
+            <Button Content="Timeline" Name="btn_export_timeline" Click="btn_export_timeline_Click"/>
         </StackPanel>
     </Grid>
 </Page>
