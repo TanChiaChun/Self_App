@@ -64,25 +64,33 @@ namespace Self_App.myPages
                 foreach (MyTask task in due)
                 {
                     string dateType = MyCls.DateType.Due.ToString();
-                    outputFile.WriteLine($"[{dateType}] {task.taskName};{task.dueDate.ToString(MyCls.DATETIME_FORMAT_VBA)};{task.dueDate.AddDays(1).ToString(MyCls.DATETIME_FORMAT_VBA)};Task_{dateType}");
+                    outputFile.WriteLine($"[{dateType}] {task.taskName};{task.dueDate.ToString(MyCls.DATE_FORMAT_DB)};{task.dueDate.AddDays(1).ToString(MyCls.DATE_FORMAT_DB)};Task_{dateType}");
                 }
                 foreach (MyTask task in cDo)
                 {
                     string dateType = MyCls.DateType.Do.ToString();
-                    outputFile.WriteLine($"[{dateType}] {task.taskName};{task.doDate.ToString(MyCls.DATETIME_FORMAT_VBA)};{task.doDate.AddDays(1).ToString(MyCls.DATETIME_FORMAT_VBA)};Task_{dateType}");
+                    outputFile.WriteLine($"[{dateType}] {task.taskName};{task.doDate.ToString(MyCls.DATE_FORMAT_DB)};{task.doDate.AddDays(1).ToString(MyCls.DATE_FORMAT_DB)};Task_{dateType}");
                 }
                 foreach (MyTask task in start)
                 {
                     string dateType = MyCls.DateType.Start.ToString();
-                    outputFile.WriteLine($"[{dateType}] {task.taskName};{task.startDate.ToString(MyCls.DATETIME_FORMAT_VBA)};{task.dueDate.AddDays(1).ToString(MyCls.DATETIME_FORMAT_VBA)};Task_{dateType}");
+                    outputFile.WriteLine($"[{dateType}] {task.taskName};{task.startDate.ToString(MyCls.DATE_FORMAT_DB)};{task.dueDate.AddDays(1).ToString(MyCls.DATE_FORMAT_DB)};Task_{dateType}");
                 }
             }
 
-            DateTime cDateTime = DateTime.Now;
-            string cDateTime_str = cDateTime.ToString(MyCls.DATE_FORMAT_TIME_DATE);
-            Db.Update_Hour(cDateTime, "W_Calendar");
-            MyCls.UpdateDateTextBlock(txtBlk_write_calendar, cDateTime_str);
-            MyCls.UpdateDateTextBlock(myTxtBlk_cal, $"Calendar last refresh: {cDateTime_str}");
+            if (MyCls.RunPython("content/Outlook_WriteCalendar.py") == 0)
+            {
+                DateTime cDateTime = DateTime.Now;
+                string cDateTime_str = cDateTime.ToString(MyCls.DATE_FORMAT_TIME_DATE);
+                Db.Update_Hour(cDateTime, "W_Calendar");
+                MyCls.UpdateDateTextBlock(txtBlk_write_calendar, cDateTime_str);
+                MyCls.UpdateDateTextBlock(myTxtBlk_cal, $"Calendar last refresh: {cDateTime_str}");
+                MessageBox.Show("Script ran successfully");
+            }
+            else
+            {
+                MessageBox.Show("Error running script!");
+            }
         }
     }
 }

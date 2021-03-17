@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -144,7 +147,29 @@ namespace Self_App.myClasses
 
             return true;
         }
-        
+
+        public static int RunPython(string pArgs)
+        {
+            int exitCode = -1;
+            ProcessStartInfo myStart = new ProcessStartInfo();
+            myStart.FileName = ConfigurationManager.AppSettings.Get("Python");
+            myStart.Arguments = pArgs;
+            myStart.UseShellExecute = false;
+            myStart.CreateNoWindow = true;
+            myStart.RedirectStandardOutput = true;
+            myStart.RedirectStandardError = true;
+            using (Process myProcess = Process.Start(myStart))
+            {
+                using (StreamReader myReader = myProcess.StandardOutput)
+                {
+                    string myStderr = myProcess.StandardError.ReadToEnd();
+                    string myResult = myReader.ReadToEnd();
+                    exitCode = myProcess.ExitCode;
+                }
+            }
+            return exitCode;
+        }
+
         //////////////////////////////////////////////////
         // Events
         //////////////////////////////////////////////////
