@@ -50,6 +50,27 @@ namespace Self_App.myClasses
             id = pId;
         }
 
+        public MyTask(string pTaskName, DateTime pDate, MyCls.DateType dateType)
+        {
+            taskName = pTaskName;
+            switch (dateType)
+            {
+                case MyCls.DateType.Due:
+                    dueDate = pDate;
+                    break;
+                case MyCls.DateType.Do:
+                    doDate = pDate;
+                    break;
+            }
+        }
+
+        public MyTask(string pTaskName, DateTime pDueDate, DateTime pStartDate)
+        {
+            taskName = pTaskName;
+            dueDate = pDueDate;
+            startDate = pStartDate;
+        }
+
         public MyTask(int pId, string pTaskName, bool pIsDone, DateTime pDueDate)
         {
             id = pId;
@@ -81,6 +102,19 @@ namespace Self_App.myClasses
             myDay_notDone = pMyDay_notDone;
         }
 
+        public MyTask(int pId, string pTaskName, bool pIsDone, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, bool pMyDay_notDone, bool pHasSteps, bool pHasNote)
+        {
+            id = pId;
+            taskName = pTaskName;
+            isDone = pIsDone;
+            dueDate = pDueDate;
+            doDate = pDoDate;
+            startDate = pStartDate;
+            myDay_notDone = pMyDay_notDone;
+            hasSteps = pHasSteps;
+            hasNote = pHasNote;
+        }
+
         public MyTask(int pId, string pTaskName, bool pIsDone, string pProj, string pSect, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, MyCls.Priority pPriority, MyCls.MyDay pMyDay, bool pMyDay_notDone)
         {
             id = pId;
@@ -94,19 +128,6 @@ namespace Self_App.myClasses
             _priority = pPriority;
             _myDay = pMyDay;
             myDay_notDone = pMyDay_notDone;
-        }
-
-        public MyTask(int pId, string pTaskName, bool pIsDone, DateTime pDueDate, DateTime pDoDate, DateTime pStartDate, bool pMyDay_notDone, bool pHasSteps, bool pHasNote)
-        {
-            id = pId;
-            taskName = pTaskName;
-            isDone = pIsDone;
-            dueDate = pDueDate;
-            doDate = pDoDate;
-            startDate = pStartDate;
-            myDay_notDone = pMyDay_notDone;
-            hasSteps = pHasSteps;
-            hasNote = pHasNote;
         }
 
         //////////////////////////////////////////////////

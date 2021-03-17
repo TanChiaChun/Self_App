@@ -365,6 +365,52 @@ namespace Self_App.myClasses
             return tasks;
         }
 
+        public static List<MyTask> Select_Calendar(MyCls.DateType dateType)
+        {
+            string startAdd = "";
+            if (dateType == MyCls.DateType.Start)
+            {
+                startAdd = "due_date, ";
+            }
+            
+            List<MyTask> tasks = new List<MyTask>();
+            string query = $"SELECT task_name, {startAdd}{dateType}_date FROM Task WHERE is_done=0 AND {dateType}_date!='0001-01-01'";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            while (res.Read())
+                            {
+                                string taskName = res["task_name"].ToString();
+                                switch (dateType)
+                                {
+                                    case MyCls.DateType.Due:
+                                        DateTime dueDate = DateTime.ParseExact(res["due_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                        tasks.Add(new MyTask(taskName, dueDate, dateType));
+                                        break;
+                                    case MyCls.DateType.Do:
+                                        DateTime doDate = DateTime.ParseExact(res["do_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                        tasks.Add(new MyTask(taskName, doDate, dateType));
+                                        break;
+                                    case MyCls.DateType.Start:
+                                        dueDate = DateTime.ParseExact(res["due_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                        DateTime startDate = DateTime.ParseExact(res["start_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
+                                        tasks.Add(new MyTask(taskName, dueDate, startDate));
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return tasks;
+        }
+
         public static DateTime Select_Hour(string item)
         {
             DateTime cDateTime = DateTime.MinValue;

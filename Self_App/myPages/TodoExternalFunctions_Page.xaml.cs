@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,26 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         private void btn_write_calendar_Click(object sender, RoutedEventArgs e)
         {
+            List<MyTask> due = Db.Select_Calendar(MyCls.DateType.Due);
+            List<MyTask> cDo = Db.Select_Calendar(MyCls.DateType.Do);
+            List<MyTask> start = Db.Select_Calendar(MyCls.DateType.Start);
+
+            using (StreamWriter outputFile = new StreamWriter("data/calendar.txt"))
+            {
+                foreach (MyTask task in due)
+                {
+                    outputFile.WriteLine($"{task.taskName};{task.dueDateStr};{task.dueDateStr}");
+                }
+                foreach (MyTask task in cDo)
+                {
+                    outputFile.WriteLine($"{task.taskName};{task.doDateStr};{task.doDateStr}");
+                }
+                foreach (MyTask task in start)
+                {
+                    outputFile.WriteLine($"{task.taskName};{task.startDateStr};{task.dueDateStr}");
+                }
+            }
+
             DateTime cDateTime = DateTime.Now;
             string cDateTime_str = cDateTime.ToString(MyCls.DATE_FORMAT_TIME_DATE);
             Db.Update_Hour(cDateTime, "W_Calendar");

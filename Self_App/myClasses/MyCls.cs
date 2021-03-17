@@ -51,7 +51,8 @@ namespace Self_App.myClasses
         public enum DateType
         {
             Due,
-            Do
+            Do,
+            Start
         }
 
         public enum DateRange
