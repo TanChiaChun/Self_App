@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using Self_App.myWindows;
 
 namespace Self_App.myClasses
@@ -70,6 +71,37 @@ namespace Self_App.myClasses
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
+        public static void ProcessDateTextBlock(TextBlock txtBlk, DateTime pDateTime, DateTime info, DateTime warning, string dateTimeFormat, string prefix)
+        {
+            txtBlk.Text = prefix + pDateTime.ToString(dateTimeFormat);
+            if (pDateTime < warning)
+            {
+                txtBlk.Foreground = Brushes.Red;
+            }
+            else if (pDateTime < info)
+            {
+                txtBlk.Foreground = Brushes.Gold;
+            }
+        }
+
+        public static void UpdateDateTextBlock(TextBlock txtBlk, string input)
+        {
+            txtBlk.Text = input;
+            txtBlk.ClearValue(TextBlock.ForegroundProperty);
+        }
+        
+        public static void RefreshProjectButtons(StackPanel stkPnl)
+        {
+            stkPnl.Children.Clear();
+            List<string> projects = Db.Select_Projects();
+            foreach (string project in projects)
+            {
+                Button btn = new Button();
+                btn.Content = project;
+                stkPnl.Children.Add(btn);
+            }
+        }
+
         private static string ValidateSqlInput(string input)
         {
             List<char> badChars = new List<char>() { '"', '\'', ';', '|' };
@@ -109,18 +141,6 @@ namespace Self_App.myClasses
             }
 
             return true;
-        }
-
-        public static void RefreshProjectButtons(StackPanel stkPnl)
-        {
-            stkPnl.Children.Clear();
-            List<string> projects = Db.Select_Projects();
-            foreach (string project in projects)
-            {
-                Button btn = new Button();
-                btn.Content = project;
-                stkPnl.Children.Add(btn);
-            }
         }
         
         //////////////////////////////////////////////////

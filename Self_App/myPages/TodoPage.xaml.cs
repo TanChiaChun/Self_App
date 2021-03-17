@@ -40,7 +40,7 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
-        public TodoPage()
+        public TodoPage(DateTime calLastChk, TextBlock txtBlk)
         {
             // Generic
             InitializeComponent();
@@ -53,7 +53,7 @@ namespace Self_App.myPages
             todoBlankPg = new TodoGeneric_Page(MyCls.TodoGeneric.Blank, stkPnl_proj);
             todoAllPg = new TodoGeneric_Page(MyCls.TodoGeneric.All, stkPnl_proj);
             todoProjPg = new TodoProject_Page(stkPnl_proj);
-            todoExtFuncPg = new TodoExternalFunctions_Page();
+            todoExtFuncPg = new TodoExternalFunctions_Page(calLastChk, txtBlk);
         }
 
         //////////////////////////////////////////////////

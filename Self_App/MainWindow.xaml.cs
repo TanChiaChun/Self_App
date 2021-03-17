@@ -29,7 +29,7 @@ namespace Self_App
         //////////////////////////////////////////////////
         // Specific
         private string myColorMode = ConfigurationManager.AppSettings.Get("ColorMode");
-        private TodoPage todoPg = new TodoPage();
+        private TodoPage todoPg;
         
         //////////////////////////////////////////////////
         // Main
@@ -42,6 +42,10 @@ namespace Self_App
             // Specific
             SetColorMode();
             Db.InitDb();
+
+            DateTime calLastChk = Db.Select_Hour("W_Calendar");
+            MyCls.ProcessDateTextBlock(txtBlk_cal, calLastChk, DateTime.Today, DateTime.Today.AddDays(-1), MyCls.DATE_FORMAT_TIME_DATE, "Calendar last refresh: ");
+            todoPg = new TodoPage(calLastChk, txtBlk_cal);
         }
 
         //////////////////////////////////////////////////
@@ -66,8 +70,6 @@ namespace Self_App
         //////////////////////////////////////////////////
         private void btn_colorMode_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = e.Source as Button;
-            
             if (myColorMode == MyCls.ColorMode.Light.ToString())
             {
                 myColorMode = MyCls.ColorMode.Dark.ToString();

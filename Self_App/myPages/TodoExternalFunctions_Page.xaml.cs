@@ -25,15 +25,20 @@ namespace Self_App.myPages
         // Class variables
         //////////////////////////////////////////////////
         // Specific
+        private TextBlock myTxtBlk_cal;
         public StackPanel myStkPnl_proj { get; }
 
         //////////////////////////////////////////////////
         // Main
         //////////////////////////////////////////////////
-        public TodoExternalFunctions_Page()
+        public TodoExternalFunctions_Page(DateTime calLastChk, TextBlock txtBlk)
         {
             // Generic
             InitializeComponent();
+
+            // Specific
+            MyCls.ProcessDateTextBlock(txtBlk_write_calendar, calLastChk, DateTime.Today, DateTime.Today.AddDays(-1), MyCls.DATE_FORMAT_TIME_DATE, "");
+            myTxtBlk_cal = txtBlk;
         }
 
         //////////////////////////////////////////////////
@@ -41,7 +46,7 @@ namespace Self_App.myPages
         //////////////////////////////////////////////////
         public void RefreshData()
         {
-            txtBlk_write_calendar.Text = Db.Select_Hour("W_Calendar").ToString(MyCls.DATE_FORMAT_TIME_DATE);
+            
         }
 
         //////////////////////////////////////////////////
@@ -50,8 +55,10 @@ namespace Self_App.myPages
         private void btn_write_calendar_Click(object sender, RoutedEventArgs e)
         {
             DateTime cDateTime = DateTime.Now;
+            string cDateTime_str = cDateTime.ToString(MyCls.DATE_FORMAT_TIME_DATE);
             Db.Update_Hour(cDateTime, "W_Calendar");
-            txtBlk_write_calendar.Text = cDateTime.ToString(MyCls.DATE_FORMAT_TIME_DATE);
+            MyCls.UpdateDateTextBlock(txtBlk_write_calendar, cDateTime_str);
+            MyCls.UpdateDateTextBlock(myTxtBlk_cal, $"Calendar last refresh: {cDateTime_str}");
         }
     }
 }

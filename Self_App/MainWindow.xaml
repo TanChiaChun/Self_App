@@ -24,7 +24,8 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <Button Content="Light" Padding="50,0" Name="btn_colorMode" Click="btn_colorMode_Click"/>
+                    <TextBlock Name="txtBlk_cal"/>
+                    <Button Content="Light" Padding="50,0" HorizontalAlignment="Right" Name="btn_colorMode" Click="btn_colorMode_Click"/>
                 </StackPanel>
             </Grid>
         </Border>
