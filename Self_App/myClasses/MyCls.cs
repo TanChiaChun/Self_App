@@ -16,6 +16,7 @@ namespace Self_App.myClasses
         // Class variables
         //////////////////////////////////////////////////
         public static string DATE_FORMAT_DAY_MONTH = "d/M";
+        public static string DATE_FORMAT_TIME_DATE = "h:mmtt (d/M)";
         public static string DATE_FORMAT_DB = "yyyy-MM-dd";
         public static string DATETIME_FORMAT_DB = "yyyy-MM-ddTHH:mm:ss";
         public static string SQL_COMMA = ", ";

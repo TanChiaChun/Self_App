@@ -10,7 +10,29 @@
 
     <Grid>
         <StackPanel Margin="10">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource my_TxtBlk_H2}" x:Key="my_TxtBlk_H2">
+                    <Setter Property="Margin" Value="0,20,0,0"/>
+                </Style>
+
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource my_TxtBlk}">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="10,0,0,0"/>
+                </Style>
+
+                <Style TargetType="{x:Type StackPanel}" x:Key="my_stkPnl">
+                    <Setter Property="Orientation" Value="Horizontal"/>
+                    <Setter Property="Margin" Value="0,10,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+            
             <TextBlock Text="External" Style="{DynamicResource my_TxtBlk_H1}"/>
+
+            <TextBlock Text="Write" Style="{DynamicResource my_TxtBlk_H2}"/>
+            <StackPanel Style="{DynamicResource my_stkPnl}">
+                <Button Content="Calendar" Name="btn_write_calendar" Click="btn_write_calendar_Click"/>
+                <TextBlock Name="txtBlk_write_calendar"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

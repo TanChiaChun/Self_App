@@ -17,7 +17,7 @@ namespace Self_App.myClasses
         private const string DB_FOLDER = "content";
         private const string DB_PATH = DB_FOLDER + "/app.db";
         private const string CONNECTION_STR = "Data Source=" + DB_PATH;
-        
+
         //////////////////////////////////////////////////
         // Functions
         //////////////////////////////////////////////////
@@ -28,15 +28,23 @@ namespace Self_App.myClasses
                 Directory.CreateDirectory(DB_FOLDER);
                 SQLiteConnection.CreateFile(DB_PATH);
 
-                string query = "CREATE TABLE 'Task' ('id' INTEGER, 'task_name' TEXT NOT NULL DEFAULT '', 'is_done' INTEGER NOT NULL DEFAULT 0 CHECK(is_done >= 0 AND is_done <= 1), 'project' TEXT NOT NULL DEFAULT 'General', 'section' TEXT NOT NULL DEFAULT 'General', 'due_date' TEXT NOT NULL DEFAULT '0001-01-01', 'do_date' TEXT NOT NULL DEFAULT '0001-01-01', 'start_date' TEXT NOT NULL DEFAULT '0001-01-01', 'priority' INTEGER NOT NULL DEFAULT 2 CHECK(priority >= 0 AND priority <= 3), 'my_day' INTEGER NOT NULL DEFAULT 4 CHECK(my_day >= 0 AND my_day <= 4), 'tags' TEXT NOT NULL DEFAULT '', 'steps' TEXT NOT NULL DEFAULT '', 'note' TEXT NOT NULL DEFAULT '', 'create_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'modify_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'complete_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'external_id' INTEGER NOT NULL DEFAULT -1, PRIMARY KEY('id' AUTOINCREMENT))";
+                List<string> queries = new List<string>();
+                queries.Add("CREATE TABLE 'Task' ('id' INTEGER, 'task_name' TEXT NOT NULL DEFAULT '', 'is_done' INTEGER NOT NULL DEFAULT 0 CHECK(is_done >= 0 AND is_done <= 1), 'project' TEXT NOT NULL DEFAULT 'General', 'section' TEXT NOT NULL DEFAULT 'General', 'due_date' TEXT NOT NULL DEFAULT '0001-01-01', 'do_date' TEXT NOT NULL DEFAULT '0001-01-01', 'start_date' TEXT NOT NULL DEFAULT '0001-01-01', 'priority' INTEGER NOT NULL DEFAULT 2 CHECK(priority >= 0 AND priority <= 3), 'my_day' INTEGER NOT NULL DEFAULT 4 CHECK(my_day >= 0 AND my_day <= 4), 'tags' TEXT NOT NULL DEFAULT '', 'steps' TEXT NOT NULL DEFAULT '', 'note' TEXT NOT NULL DEFAULT '', 'create_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'modify_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'complete_date' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'external_id' TEXT NOT NULL DEFAULT '', PRIMARY KEY('id' AUTOINCREMENT))");
+                queries.Add("CREATE TABLE 'Hour' ('id' INTEGER, 'item' TEXT NOT NULL DEFAULT '' UNIQUE, 'last_check' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', 'last_check_undo' TEXT NOT NULL DEFAULT '0001-01-01T12:00:00', PRIMARY KEY('id' AUTOINCREMENT))");
+                queries.Add("INSERT INTO Hour (item) VALUES ('W_Calendar')");
+
                 using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
                 {
                     connect.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                    foreach (string query in queries)
                     {
-                        cmd.ExecuteNonQuery();
+                        using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
                     }
                 }
+                
             }
         }
 
@@ -357,8 +365,43 @@ namespace Self_App.myClasses
             return tasks;
         }
 
+        public static DateTime Select_Hour(string item)
+        {
+            DateTime cDateTime = DateTime.MinValue;
+            string query = $"SELECT last_check FROM Hour WHERE item='{item}'";
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    using (SQLiteDataReader res = cmd.ExecuteReader())
+                    {
+                        if (res.HasRows)
+                        {
+                            res.Read();
+                            cDateTime = DateTime.ParseExact(res["last_check"].ToString(), MyCls.DATETIME_FORMAT_DB, null);
+                        }
+                    }
+                }
+            }
+            return cDateTime;
+        }
+
         public static void WriteDb(string query)
         {
+            using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
+            {
+                connect.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, connect))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void Update_Hour(DateTime pDateTime, string item)
+        {
+            string query = $"UPDATE Hour SET last_check='{pDateTime.ToString(MyCls.DATETIME_FORMAT_DB)}' WHERE item='{item}'";
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
             {
                 connect.Open();

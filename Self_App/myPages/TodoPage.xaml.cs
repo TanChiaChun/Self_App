@@ -125,6 +125,7 @@ namespace Self_App.myPages
 
         private void btn_ext_func_Click(object sender, RoutedEventArgs e)
         {
+            todoExtFuncPg.RefreshData();
             fr_todo.Content = todoExtFuncPg;
         }
     }
