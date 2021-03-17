@@ -581,7 +581,7 @@ namespace Self_App.myWindows
             {
                 case MessageBoxResult.Yes:
                     toDelete = true;
-                    Db.DeleteTask(task.id);
+                    Db.Delete_Task(task.id);
                     Close();
                     break;
             }

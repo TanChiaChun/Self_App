@@ -369,7 +369,7 @@ namespace Self_App.myClasses
             }
         }
 
-        public static void DeleteTask(int id)
+        public static void Delete_Task(int id)
         {
             string query = $"DELETE FROM Task WHERE id={id}";
             using (SQLiteConnection connect = new SQLiteConnection(CONNECTION_STR))
