@@ -39,7 +39,10 @@
             </StackPanel>
             
             <TextBlock Text="Export" Style="{DynamicResource my_TxtBlk_H2}"/>
-            <Button Content="Timeline" Name="btn_export_timeline" Click="btn_export_timeline_Click"/>
+            <StackPanel Style="{DynamicResource my_stkPnl}">
+                <Button Content="Timeline" Name="btn_export_timeline" Click="btn_export_timeline_Click"/>
+            </StackPanel>
         </StackPanel>
+            
     </Grid>
 </Page>

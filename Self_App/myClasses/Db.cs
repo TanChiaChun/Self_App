@@ -386,8 +386,8 @@ namespace Self_App.myClasses
                                 DateTime startDate = DateTime.ParseExact(res["start_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
                                 DateTime dueDate = DateTime.ParseExact(res["due_date"].ToString(), MyCls.DATE_FORMAT_DB, null);
                                 DateTime completeDate = DateTime.ParseExact(res["complete_date"].ToString(), MyCls.DATETIME_FORMAT_DB, null);
-                                tasks.Add($"{project};{section};{taskName};{startDate.ToString(MyCls.DATE_FORMAT_DB)};{dueDate.ToString(MyCls.DATE_FORMAT_DB)}");
-                                tasks.Add($"{project};{section};{taskName};{startDate.ToString(MyCls.DATE_FORMAT_DB)};{completeDate.ToString(MyCls.DATE_FORMAT_DB)}");
+                                tasks.Add($"{project};{section};{taskName};{startDate.ToString(MyCls.DATE_FORMAT_DB)};{dueDate.ToString(MyCls.DATE_FORMAT_DB)};Plan");
+                                tasks.Add($"{project};{section};{taskName};{startDate.ToString(MyCls.DATE_FORMAT_DB)};{completeDate.ToString(MyCls.DATE_FORMAT_DB)};Actual");
                             }
                         }
                     }

@@ -98,6 +98,7 @@ namespace Self_App.myPages
             List<string> tasks = Db.Select_Timeline();
             using (StreamWriter outputFile = new StreamWriter("data/timeline.txt"))
             {
+                outputFile.WriteLine("Project;Section;Task;Start;End;Type");
                 foreach (string task in tasks)
                 {
                     outputFile.WriteLine(task);
